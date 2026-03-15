@@ -46,4 +46,4 @@ Livre para usar e modificar.
 ---
 
 **Autor:** Bruno Novaes
-**Design & Tecnologia Educacional**
+**Design Educacional**
