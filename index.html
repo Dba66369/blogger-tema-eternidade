@@ -3,235 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova Jerusalém — Escola Bíblica Online</title>
-<meta name="description" content="Escola bíblica online inspirada na Nova Jerusalém. Estudos, meditações, adoração e comunidade para crescer na fé.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<title>Nova Jerusalém — Escola Bíblica</title>
+<meta name="description" content="Escola bíblica online inspirada na Nova Jerusalém e no Rio da Água da Vida de Apocalipse 22.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --gold:#B8860B;--gold-l:#D4A820;--gold-ll:#FFE566;
-  --cream:#FEFAF3;--warm:#FDF5E4;--white:#FFFFFF;
-  --text:#1C1C2E;--text-m:#4A4A6A;--text-l:#7A7A9A;
-  --border:rgba(184,134,11,0.18);--border-s:rgba(184,134,11,0.08);
-  --sapphire:#1B3A6B;--emerald:#14522E;--ruby:#7A1818;
+  --river:rgba(180,230,255,0.35);
+  --river-d:#5BA8D0;
+  --river-m:#A8D8F0;
+  --gold:#B8860B;--gold-l:#D4A017;--gold-ll:#FFE566;
+  --crystal:#E8F7FF;--sky:#D4EEFF;
+  --cream:#F8FDFF;--white:#FFFFFF;
+  --text:#12213A;--text-m:#3A5070;--text-l:#7A90AA;
+  --border:rgba(91,168,208,0.22);--border-s:rgba(91,168,208,0.1);
+  --card:rgba(255,255,255,0.72);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;min-height:100vh}
 
-/* SKY BG */
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+/* ── RIVER BACKGROUND ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 90% 50% at 50% -5%,rgba(255,229,102,0.22) 0%,transparent 65%),
-    radial-gradient(ellipse 60% 40% at 85% 15%,rgba(180,210,255,0.2) 0%,transparent 55%),
-    linear-gradient(180deg,#EBF4FF 0%,#FEFAF3 40%,#FFF8EA 100%)}
+    radial-gradient(ellipse 100% 55% at 50% -5%,rgba(255,240,130,0.18) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 40% at 20% 60%,rgba(168,216,240,0.25) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 40% at 80% 40%,rgba(168,216,240,0.2) 0%,transparent 55%),
+    linear-gradient(180deg,#D4EEFF 0%,#E8F7FF 30%,#F0FAFF 60%,#F8FDFF 100%)
+}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(254,250,243,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav-wrap{max-width:1200px;margin:0 auto;padding:.9rem 1.5rem;display:flex;align-items:center;gap:1.5rem}
-.nav-logo{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-decoration:none;flex-shrink:0}
-.nav-logo span{color:var(--text);font-weight:400}
-nav ul{display:flex;gap:.2rem;list-style:none;margin-left:auto}
-nav a{color:var(--text-m);text-decoration:none;font-size:.8rem;font-weight:500;padding:.4rem .8rem;border-radius:6px;transition:all .25s;white-space:nowrap}
-nav a:hover{color:var(--gold);background:rgba(184,134,11,.07)}
-.nav-cta{background:var(--gold)!important;color:#fff!important;border-radius:20px!important;padding:.4rem 1rem!important}
-.nav-cta:hover{background:var(--gold-l)!important;color:#fff!important}
+/* ── CANVAS RIVER ── */
+#river-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.55}
 
-/* HERO */
-.hero{position:relative;z-index:1;text-align:center;padding:5rem 1.5rem 4rem}
-.hero-tag{display:inline-block;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:.3rem 1rem;border-radius:999px;margin-bottom:1.5rem;background:rgba(255,255,255,.6);backdrop-filter:blur(4px)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:700;line-height:1.1;color:var(--text);margin-bottom:1rem}
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(248,253,255,0.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav-wrap{max-width:1100px;margin:0 auto;padding:.85rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav-logo{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:var(--river-d);letter-spacing:.1em;text-decoration:none;flex-shrink:0}
+.nav-logo em{color:var(--gold);font-style:normal}
+nav ul{display:flex;gap:.1rem;list-style:none;margin-left:auto}
+nav a{color:var(--text-m);text-decoration:none;font-size:.78rem;font-weight:500;padding:.4rem .75rem;border-radius:8px;transition:all .25s}
+nav a:hover{color:var(--river-d);background:rgba(91,168,208,.1)}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:1;text-align:center;padding:5.5rem 1.5rem 4rem}
+.hero-eyebrow{display:inline-block;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--river-d);border:1px solid rgba(91,168,208,.35);padding:.3rem 1rem;border-radius:999px;margin-bottom:1.5rem;background:rgba(255,255,255,.6);backdrop-filter:blur(6px)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,7vw,4.5rem);font-weight:700;line-height:1.08;color:var(--text);margin-bottom:1rem}
 .hero h1 em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:1rem;color:var(--text-m);max-width:560px;margin:0 auto 1.2rem;line-height:1.75;font-style:italic}
-.hero-cite{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,134,11,.65)}
+.hero-verse{font-size:.95rem;color:var(--text-m);max-width:520px;margin:0 auto .6rem;line-height:1.75;font-style:italic}
+.hero-cite{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(91,168,208,.8)}
 .hero-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
-.btn{display:inline-block;text-decoration:none;font-size:.82rem;font-weight:600;padding:.75rem 1.8rem;border-radius:999px;transition:all .3s}
-.btn-gold{background:var(--gold);color:#fff;box-shadow:0 4px 20px rgba(184,134,11,.3)}
-.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 30px rgba(184,134,11,.4)}
+.btn{display:inline-block;text-decoration:none;font-size:.8rem;font-weight:600;padding:.7rem 1.7rem;border-radius:999px;transition:all .3s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.btn-river{background:linear-gradient(135deg,var(--river-d),#3A88BB);color:#fff;box-shadow:0 4px 20px rgba(91,168,208,.35)}
+.btn-river:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(91,168,208,.45)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#fff;box-shadow:0 4px 20px rgba(184,134,11,.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,134,11,.4)}
 .btn-outline{border:1.5px solid var(--border);color:var(--text-m);background:rgba(255,255,255,.6)}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:#fff}
+.btn-outline:hover{border-color:var(--river-d);color:var(--river-d);background:#fff}
 
-/* VERSE TICKER */
-.ticker{background:linear-gradient(90deg,var(--sapphire),#1B4F8A,var(--sapphire));color:#fff;padding:.6rem 0;font-size:.78rem;letter-spacing:.05em;overflow:hidden;position:relative;z-index:1}
-.ticker-inner{display:flex;gap:4rem;animation:ticker 30s linear infinite;white-space:nowrap}
-.ticker-inner span{flex-shrink:0;opacity:.9}
-.ticker-sep{color:rgba(255,229,102,.6);margin:0 1rem}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ── RIVER DIVIDER ── */
+.river-divider{position:relative;z-index:1;width:100%;height:140px;overflow:hidden;margin:0}
+.river-divider canvas{width:100%;height:100%;display:block}
 
-/* MAIN LAYOUT */
-.main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:3rem 1.5rem;display:grid;grid-template-columns:1fr 320px;gap:2.5rem}
-@media(max-width:900px){.main{grid-template-columns:1fr}}
+/* ── TICKER ── */
+.ticker{background:linear-gradient(90deg,rgba(91,168,208,.9),rgba(41,108,158,.95),rgba(91,168,208,.9));color:#fff;padding:.6rem 0;font-size:.77rem;overflow:hidden;position:relative;z-index:1}
+.ticker-inner{display:flex;gap:5rem;animation:tick 40s linear infinite;white-space:nowrap}
+.ticker-inner span{flex-shrink:0;opacity:.92}
+.t-sep{color:var(--gold-ll);margin:0 .5rem;opacity:.7}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* SECTION LABELS */
-.sec-label{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
-.sec-label h2{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
-.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+/* ── MAIN LAYOUT ── */
+.main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 1.5rem;display:grid;grid-template-columns:1fr 300px;gap:2rem}
+@media(max-width:860px){.main{grid-template-columns:1fr}}
 
-/* FEATURED POST */
-.featured-card{background:var(--white);border:1px solid var(--border-s);border-radius:20px;overflow:hidden;margin-bottom:2.5rem;box-shadow:0 2px 20px rgba(0,0,0,.05);transition:box-shadow .3s}
-.featured-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.1)}
-.feat-banner{background:linear-gradient(135deg,var(--sapphire) 0%,#2A518A 50%,#1A3A6A 100%);padding:3rem 2.5rem;position:relative;overflow:hidden}
-.feat-banner::before{content:'✦';position:absolute;right:2rem;top:1rem;font-size:6rem;color:rgba(255,229,102,.07);line-height:1}
-.feat-tag{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;background:rgba(255,229,102,.15);color:var(--gold-ll);border:1px solid rgba(255,229,102,.25);padding:.25rem .8rem;border-radius:999px;margin-bottom:.8rem}
-.feat-banner h3{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.8rem}
-.feat-banner p{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.7;max-width:480px}
-.feat-meta{display:flex;gap:1rem;margin-top:1.2rem;font-size:.72rem;color:rgba(255,255,255,.5)}
-.feat-body{padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap .8rem}
-.feat-excerpt{font-size:.88rem;color:var(--text-m);line-height:1.7;max-width:480px}
-.feat-link{text-decoration:none;font-size:.8rem;font-weight:600;color:var(--gold);border:1.5px solid var(--border);padding:.6rem 1.4rem;border-radius:999px;white-space:nowrap;transition:all .3s;flex-shrink:0;margin-left:1rem}
-.feat-link:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+/* ── SECTION LABELS ── */
+.sec-lbl{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+.sec-lbl h2{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--river-d);white-space:nowrap}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* BLOG GRID */
-.posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-bottom:2.5rem}
-.post-card{background:var(--white);border:1px solid var(--border-s);border-radius:16px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:all .3s;box-shadow:0 1px 8px rgba(0,0,0,.04)}
-.post-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.1);border-color:var(--border)}
-.post-cat{padding:.7rem 1rem .3rem;display:flex;align-items:center;gap:.4rem}
-.cat-dot{width:8px;height:8px;border-radius:50%}
-.cat-name{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600}
-.cat-study .cat-dot{background:var(--sapphire)} .cat-study .cat-name{color:var(--sapphire)}
-.cat-med .cat-dot{background:var(--emerald)} .cat-med .cat-name{color:var(--emerald)}
-.cat-wor .cat-dot{background:#7A3A8A} .cat-wor .cat-name{color:#7A3A8A}
-.cat-proph .cat-dot{background:var(--ruby)} .cat-proph .cat-name{color:var(--ruby)}
-.post-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--text);padding:.2rem 1rem .5rem;line-height:1.35}
-.post-card p{font-size:.78rem;color:var(--text-l);padding:0 1rem;line-height:1.6;flex:1}
-.post-footer{padding:.9rem 1rem;border-top:1px solid rgba(0,0,0,.05);display:flex;justify-content:space-between;align-items:center;margin-top:.8rem}
-.post-time{font-size:.65rem;color:var(--text-l)}
-.post-arrow{font-size:.8rem;color:var(--gold)}
+/* ── GLASS CARD ── */
+.glass{background:var(--card);border:1px solid rgba(255,255,255,.8);border-radius:18px;backdrop-filter:blur(12px);box-shadow:0 2px 16px rgba(91,168,208,.08)}
 
-/* ADORAÇÃO SECTION */
-.worship-section{background:linear-gradient(135deg,#1A3010,#14521E);border-radius:20px;padding:2.5rem;margin-bottom:2.5rem;position:relative;overflow:hidden}
-.worship-section::before{content:'♫';position:absolute;right:1.5rem;top:0;font-size:8rem;color:rgba(255,255,255,.04);line-height:1}
-.worship-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:#fff;margin-bottom:.5rem}
-.worship-section>p{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:1.5rem;max-width:480px}
-.worship-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem}
-.worship-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.1rem;text-decoration:none;transition:all .3s}
-.worship-card:hover{background:rgba(255,255,255,.12);transform:translateY(-3px)}
-.worship-card span{display:block;font-size:1.4rem;margin-bottom:.5rem}
-.worship-card h4{font-family:'Playfair Display',serif;font-size:.92rem;color:#fff;margin-bottom:.3rem}
-.worship-card p{font-size:.75rem;color:rgba(255,255,255,.55);line-height:1.5}
+/* ── FEATURED (rotates daily) ── */
+.featured{margin-bottom:2.5rem}
+.feat-card{display:none;border-radius:20px;overflow:hidden;box-shadow:0 4px 30px rgba(0,0,0,.08);transition:box-shadow .3s}
+.feat-card.active{display:block}
+.feat-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.feat-top{padding:2.5rem;position:relative;overflow:hidden}
+.feat-top::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.4))}
+.feat-tag{display:inline-block;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .75rem;border-radius:999px;margin-bottom:.8rem;font-weight:600}
+.feat-card h3{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;line-height:1.25;margin-bottom:.7rem}
+.feat-card .feat-desc{font-size:.87rem;line-height:1.7;opacity:.85;max-width:460px}
+.feat-meta{display:flex;gap:1rem;margin-top:1rem;font-size:.7rem;opacity:.6}
+.feat-foot{padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.5)}
+.feat-excerpt{font-size:.83rem;color:var(--text-m);line-height:1.65;max-width:420px}
+.feat-link{text-decoration:none;font-size:.78rem;font-weight:600;color:var(--river-d);border:1.5px solid var(--border);padding:.55rem 1.3rem;border-radius:999px;white-space:nowrap;transition:all .3s;flex-shrink:0;margin-left:1rem}
+.feat-link:hover{background:var(--river-d);color:#fff;border-color:var(--river-d)}
+/* themes for each day */
+.theme-0 .feat-top{background:linear-gradient(135deg,#12213A,#1A3A6A)}
+.theme-0 .feat-top h3,.theme-0 .feat-top p,.theme-0 .feat-desc{color:#fff}
+.theme-0 .feat-tag{background:rgba(255,229,102,.15);color:#FFE566;border:1px solid rgba(255,229,102,.3)}
+.theme-1 .feat-top{background:linear-gradient(135deg,#0E3020,#14522E)}
+.theme-1 .feat-top h3,.theme-1 .feat-top p,.theme-1 .feat-desc{color:#fff}
+.theme-1 .feat-tag{background:rgba(100,230,150,.15);color:#80EAA0;border:1px solid rgba(100,230,150,.3)}
+.theme-2 .feat-top{background:linear-gradient(135deg,#3A1060,#5A1890)}
+.theme-2 .feat-top h3,.theme-2 .feat-top p,.theme-2 .feat-desc{color:#fff}
+.theme-2 .feat-tag{background:rgba(200,150,255,.15);color:#D0A0FF;border:1px solid rgba(200,150,255,.3)}
 
-/* MEDITAÇÕES */
-.med-list{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2.5rem}
-.med-item{background:var(--white);border:1px solid var(--border-s);border-radius:14px;padding:1.2rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;text-decoration:none;transition:all .3s}
-.med-item:hover{border-color:var(--border);box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateX(4px)}
-.med-num{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:rgba(184,134,11,.2);line-height:1;min-width:36px;transition:color .3s}
-.med-item:hover .med-num{color:var(--gold)}
-.med-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
-.med-desc{font-size:.78rem;color:var(--text-l);line-height:1.55}
-.med-ref{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.4rem}
+/* ── CURIOSIDADES ── */
+.curiosidades{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2.5rem}
+.curio{background:var(--card);border:1px solid var(--border-s);border-radius:14px;padding:1.1rem 1.4rem;display:flex;gap:1rem;align-items:flex-start;backdrop-filter:blur(8px);transition:all .3s}
+.curio:hover{transform:translateX(4px);border-color:var(--border);box-shadow:0 4px 20px rgba(91,168,208,.1)}
+.curio-ico{font-size:1.4rem;flex-shrink:0;line-height:1}
+.curio-title{font-weight:600;font-size:.88rem;color:var(--text);margin-bottom:.25rem}
+.curio-text{font-size:.78rem;color:var(--text-l);line-height:1.55}
+.curio-ref{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--river-d);margin-top:.4rem}
 
-/* SIDEBAR */
-.sidebar{display:flex;flex-direction:column;gap:1.5rem}
-.sidebar-widget{background:var(--white);border:1px solid var(--border-s);border-radius:16px;padding:1.5rem;box-shadow:0 1px 8px rgba(0,0,0,.04)}
-.widget-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border-s)}
+/* ── COMMENTS ── */
+.comment-box{background:var(--card);border:1px solid var(--border-s);border-radius:18px;padding:1.8rem;backdrop-filter:blur(12px);margin-bottom:2.5rem}
+.comment-box h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:.4rem}
+.comment-box>.sub-p{font-size:.8rem;color:var(--text-l);margin-bottom:1.2rem;line-height:1.55}
+.comment-form{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.5rem}
+.comment-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.fi{border:1.5px solid var(--border);border-radius:10px;padding:.6rem .9rem;font-size:.82rem;font-family:'Inter',sans-serif;color:var(--text);background:rgba(255,255,255,.8);outline:none;transition:border-color .25s;width:100%}
+.fi:focus{border-color:var(--river-d)}
+textarea.fi{resize:vertical;min-height:80px}
+.btn-send{align-self:flex-end;padding:.65rem 1.6rem}
+/* comments list */
+.comments-list{display:flex;flex-direction:column;gap:.9rem;border-top:1px solid var(--border-s);padding-top:1.2rem}
+.comment-item{display:flex;gap:.9rem;align-items:flex-start}
+.comment-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--river-m),var(--river-d));display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;flex-shrink:0;font-weight:600}
+.comment-body{}
+.comment-name{font-size:.8rem;font-weight:600;color:var(--text)}
+.comment-date{font-size:.65rem;color:var(--text-l);margin-left:.5rem}
+.comment-text{font-size:.8rem;color:var(--text-m);line-height:1.55;margin-top:.2rem}
 
-/* VERSE OF DAY */
-.verse-day{background:linear-gradient(135deg,var(--sapphire),#2A518A);border-radius:16px;padding:1.8rem}
-.verse-day .widget-title{color:rgba(255,229,102,.8);border-color:rgba(255,229,102,.15)}
-.verse-day blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#fff;line-height:1.75;margin-bottom:.8rem}
-.verse-day cite{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,229,102,.65)}
+/* ── PRAYER BOX ── */
+.prayer-box{background:linear-gradient(135deg,rgba(91,168,208,.12),rgba(41,108,158,.08));border:1px solid rgba(91,168,208,.25);border-radius:18px;padding:1.8rem;margin-bottom:2.5rem;backdrop-filter:blur(10px)}
+.prayer-box h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:.4rem}
+.prayer-box>.sub-p{font-size:.8rem;color:var(--text-l);margin-bottom:1.2rem;line-height:1.55}
+.prayer-requests{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.2rem}
+.prayer-item{background:rgba(255,255,255,.65);border:1px solid var(--border-s);border-radius:10px;padding:.85rem 1rem;display:flex;gap:.8rem;align-items:flex-start}
+.prayer-ico{font-size:1.1rem;flex-shrink:0}
+.prayer-name{font-size:.78rem;font-weight:600;color:var(--text);margin-bottom:.15rem}
+.prayer-text{font-size:.75rem;color:var(--text-l);line-height:1.5}
 
-/* QUICK LINKS */
-.qlinks{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.qlinks li a{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--text-m);font-size:.83rem;padding:.5rem .6rem;border-radius:8px;transition:all .25s}
-.qlinks li a:hover{background:rgba(184,134,11,.07);color:var(--gold)}
-.qlinks li a span{font-size:1rem}
+/* ── SIDEBAR ── */
+.sidebar{display:flex;flex-direction:column;gap:1.4rem}
+.w{background:var(--card);border:1px solid var(--border-s);border-radius:16px;padding:1.4rem;backdrop-filter:blur(10px)}
+.w-title{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--river-d);margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--border-s)}
 
-/* PROPHECY BANNER */
-.proph-widget{background:linear-gradient(135deg,#5A1010,#8B1A1A);border-radius:16px;padding:1.8rem}
-.proph-widget .widget-title{color:rgba(255,180,180,.8);border-color:rgba(255,130,130,.15)}
-.proph-widget p{font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.65;font-style:italic;margin-bottom:.8rem}
-.proph-widget cite{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,180,130,.7)}
+.verse-widget{background:linear-gradient(135deg,#0C1E40,#1A3A6A)}
+.verse-widget .w-title{color:rgba(255,229,102,.75);border-color:rgba(255,255,255,.08)}
+.verse-widget blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:.95rem;color:#fff;line-height:1.75;margin-bottom:.7rem}
+.verse-widget cite{font-size:.65rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,229,102,.6)}
 
-/* SOBRE */
-.subscribe-widget{background:linear-gradient(135deg,rgba(255,229,102,.12),rgba(184,134,11,.06));border:1px solid var(--border)!important}
-.subscribe-widget p{font-size:.82rem;color:var(--text-m);line-height:1.6;margin-bottom:1rem}
-.sub-input{display:flex;flex-direction:column;gap:.6rem}
-.sub-input input{border:1.5px solid var(--border);border-radius:8px;padding:.65rem .9rem;font-size:.82rem;font-family:'Inter',sans-serif;color:var(--text);background:var(--white);outline:none;transition:border-color .25s}
-.sub-input input:focus{border-color:var(--gold)}
-.sub-input button{background:var(--gold);color:#fff;border:none;border-radius:8px;padding:.65rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .25s}
-.sub-input button:hover{background:var(--gold-l)}
+.qlinks{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.qlinks li a{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--text-m);font-size:.8rem;padding:.45rem .5rem;border-radius:8px;transition:all .25s}
+.qlinks li a:hover{background:rgba(91,168,208,.1);color:var(--river-d)}
+.qlinks li a span{font-size:.95rem}
 
-/* NOVA JERUSALEM SECTION */
-.nj-section{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 1.5rem 4rem}
-.nj-banner{background:linear-gradient(135deg,#EDF4FF,#F5F0FF,#FFF8EA);border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;text-align:center;position:relative;overflow:hidden}
-.nj-banner::before{content:'✦';position:absolute;font-size:14rem;color:rgba(184,134,11,.04);top:-2rem;left:-1rem;font-family:'Cinzel',serif;pointer-events:none}
-.nj-banner::after{content:'✦';position:absolute;font-size:14rem;color:rgba(184,134,11,.04);bottom:-4rem;right:-1rem;font-family:'Cinzel',serif;pointer-events:none}
-.nj-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.8rem);font-weight:700;color:var(--text);margin-bottom:.8rem}
-.nj-banner h2 em{font-style:italic;color:var(--gold)}
-.nj-banner>p{color:var(--text-m);font-size:.95rem;line-height:1.8;max-width:620px;margin:0 auto 2.5rem}
-.gems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;text-align:left;max-width:900px;margin:0 auto}
-.gem-card{background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:1.2rem;backdrop-filter:blur(8px);transition:transform .3s,box-shadow .3s}
-.gem-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
-.gem-card .gem-ico{font-size:1.6rem;margin-bottom:.5rem}
-.gem-card h4{font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
-.gem-card p{font-size:.72rem;color:var(--text-l);line-height:1.5}
+.prov-widget{background:linear-gradient(135deg,#2A1A00,#4A3000)}
+.prov-widget .w-title{color:rgba(255,229,102,.75);border-color:rgba(255,255,255,.08)}
+.prov-text{font-family:'Playfair Display',serif;font-style:italic;font-size:.88rem;color:rgba(255,255,255,.85);line-height:1.75;min-height:80px;transition:opacity .5s}
+.prov-text.fade{opacity:0}
+.prov-cite{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,229,102,.55);margin-top:.6rem}
 
-/* FOOTER */
-footer{position:relative;z-index:1;background:#12121E;color:rgba(255,255,255,.5);padding:3rem 1.5rem 2rem}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.07)}
-@media(max-width:700px){.footer-top{grid-template-columns:1fr}}
-.footer-brand{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.7rem}
-.footer-desc{font-size:.8rem;line-height:1.7;max-width:280px}
-.footer-col h5{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.8rem}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
-.footer-col ul a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.8rem;transition:color .25s}
-.footer-col ul a:hover{color:var(--gold)}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;flex-wrap:wrap;gap:.5rem}
-.footer-bottom span{color:var(--gold);opacity:.7}
+/* ── NEWSLETTER ── */
+.nl-w{background:linear-gradient(135deg,rgba(180,230,255,.2),rgba(91,168,208,.1));border:1px solid var(--border)!important}
+.nl-w p{font-size:.8rem;color:var(--text-m);line-height:1.6;margin-bottom:.9rem}
+.nl-form{display:flex;flex-direction:column;gap:.55rem}
+.nl-form input{border:1.5px solid var(--border);border-radius:8px;padding:.6rem .85rem;font-size:.8rem;font-family:'Inter',sans-serif;color:var(--text);background:#fff;outline:none;transition:border-color .25s}
+.nl-form input:focus{border-color:var(--river-d)}
+.nl-form button{background:linear-gradient(135deg,var(--river-d),#3A88BB);color:#fff;border:none;border-radius:8px;padding:.65rem;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .25s}
+.nl-form button:hover{opacity:.88}
 
-/* REVEAL */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .rv.on{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── 3D TILT ── */
+.tilt{transition:transform .35s ease,box-shadow .35s ease}
+
+/* ── TOAST NOTIFICATION ── */
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#fff;border-radius:14px;padding:1rem 1.4rem;box-shadow:0 8px 32px rgba(0,0,0,0.15);border-left:4px solid var(--river-d);display:flex;align-items:center;gap:.8rem;font-size:.85rem;color:var(--text);transform:translateY(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:340px}
+.toast.show{transform:translateY(0)}
+.toast.success{border-color:#22c55e}
+.toast.error{border-color:#ef4444}
+.toast-ico{font-size:1.3rem;flex-shrink:0}
+.toast-msg{line-height:1.4}
+.toast-msg strong{display:block;margin-bottom:.1rem;font-size:.88rem}
+.toast-msg span{color:var(--text-l);font-size:.78rem}
+/* loading state */
+.btn:disabled{opacity:.6;cursor:not-allowed}
 </style>
 </head>
 <body>
 
+<!-- RIVER CANVAS -->
+<canvas id="river-canvas"></canvas>
+
 <!-- NAV -->
 <nav>
   <div class="nav-wrap">
-    <a href="#" class="nav-logo">Nova <span>Jerusalém</span></a>
+    <a href="#" class="nav-logo">Nova <em>Jerusalém</em></a>
     <ul>
       <li><a href="#estudos">Estudos</a></li>
-      <li><a href="#meditacoes">Meditações</a></li>
-      <li><a href="#adoracao">Adoração</a></li>
-      <li><a href="#profecia">Profecia</a></li>
-      <li><a href="#sobre" class="nav-cta">Entrar</a></li>
+      <li><a href="#curiosidades">Curiosidades</a></li>
+      <li><a href="#oracao">Oração</a></li>
+      <li><a href="#comentarios">Comentar</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">✦ Escola Bíblica Online ✦</div>
-  <h1>Bem-vindo à<br><em>Nova Jerusalém</em></h1>
-  <p class="hero-sub">"E vi a santa cidade, a nova Jerusalém, descer do céu, da parte de Deus, adornada como uma noiva para o seu marido."</p>
-  <p class="hero-cite">— Apocalipse 21:2</p>
+  <div class="hero-eyebrow">✦ Centro de Estudo Bíblico Online ✦</div>
+  <h1>Bem-vindo ao Centro de<br><em>Leitura que Cura</em></h1>
+  <p class="hero-verse">"E mostrou-me um rio puro de água da vida, límpido como cristal, que procedia do trono de Deus e do Cordeiro."</p>
+  <p class="hero-cite">— Apocalipse 22:1</p>
   <div class="hero-btns">
-    <a href="#estudos" class="btn btn-gold">Explorar Estudos</a>
-    <a href="#meditacoes" class="btn btn-outline">Meditações Diárias</a>
+    <a href="#estudos" class="btn btn-river">Explorar Estudos</a>
+    <a href="#oracao" class="btn btn-gold">Pedido de Oração</a>
   </div>
 </div>
 
-<!-- TICKER -->
+<!-- RIVER DIVIDER -->
+<div class="river-divider"><canvas id="river-divider-canvas"></canvas></div>
+
+<!-- TICKER (Provérbios) -->
 <div class="ticker">
-  <div class="ticker-inner">
-    <span>✦ Ap 21:4 — "Deus enxugará de seus olhos toda lágrima."</span>
-    <span class="ticker-sep">|</span>
-    <span>Ez 48:35 — "O nome da cidade desde aquele dia será: O SENHOR ESTÁ ALI."</span>
-    <span class="ticker-sep">|</span>
-    <span>Ap 21:23 — "A cidade não necessita de sol nem de lua para a iluminar."</span>
-    <span class="ticker-sep">|</span>
-    <span>Ap 22:5 — "E reinarão pelos séculos dos séculos."</span>
-    <span class="ticker-sep">|</span>
-    <span>✦ Ap 21:4 — "Deus enxugará de seus olhos toda lágrima."</span>
-    <span class="ticker-sep">|</span>
-    <span>Ez 48:35 — "O nome da cidade desde aquele dia será: O SENHOR ESTÁ ALI."</span>
-    <span class="ticker-sep">|</span>
-    <span>Ap 21:23 — "A cidade não necessita de sol nem de lua para a iluminar."</span>
-    <span class="ticker-sep">|</span>
-    <span>Ap 22:5 — "E reinarão pelos séculos dos séculos."</span>
+  <div class="ticker-inner" id="ticker-content">
+    <!-- filled by JS -->
   </div>
 </div>
 
@@ -239,132 +242,146 @@ footer{position:relative;z-index:1;background:#12121E;color:rgba(255,255,255,.5)
 <div class="main">
   <div>
 
-    <!-- DESTAQUE -->
-    <div class="sec-label rv"><h2>✦ Em Destaque</h2></div>
-    <div class="featured-card rv d1">
-      <div class="feat-banner">
-        <div class="feat-tag">📖 Estudo Completo</div>
-        <h3>Espíritos Marinhos:<br>Identificação e Libertação</h3>
-        <p>Cônjuges espirituais, íncubos e súcubos à luz de Gênesis 6 e da guerra espiritual bíblica. Um estudo aprofundado sobre como identificar e se libertar dessa opressão.</p>
-        <div class="feat-meta"><span>🗓 Março 2026</span><span>📚 Leitura: 20 min</span><span>🔥 Em destaque</span></div>
+    <!-- FEATURED (rotates daily) -->
+    <div id="estudos" class="sec-lbl rv"><h2>✦ Estudo em Destaque</h2></div>
+    <div class="featured rv d1">
+
+      <div class="feat-card theme-0" data-index="0">
+        <div class="feat-top">
+          <div class="feat-tag">🌊 Estudo Completo</div>
+          <h3>Espíritos Marinhos: Identificação e Libertação</h3>
+          <p class="feat-desc">Cônjuges espirituais, íncubos e súcubos à luz de Gênesis 6. Como identificar e se libertar dessa opressão.</p>
+          <div class="feat-meta"><span>📚 20 min</span><span>🔥 Destaque</span></div>
+        </div>
+        <div class="feat-foot">
+          <p class="feat-excerpt">Um estudo aprofundado sobre os sinais de opressão espiritual sexual, as armas bíblicas e as orações de renúncia eficazes.</p>
+          <a href="nova-jerusalem/estudo_espiritos.html" class="feat-link">Ler o Estudo →</a>
+        </div>
       </div>
-      <div class="feat-body">
-        <p class="feat-excerpt">Descubra a raiz bíblica dessa batalha espiritual, os sinais de opressão, as armas de libertação e as orações de renúncia eficazes segundo a Palavra de Deus.</p>
-        <a href="nova-jerusalem/estudo_espiritos.html" class="feat-link">Ler o Estudo →</a>
+
+      <div class="feat-card theme-1" data-index="1">
+        <div class="feat-top">
+          <div class="feat-tag">♾️ Teologia</div>
+          <h3>A Eternidade: Antes do Tempo e Depois</h3>
+          <p class="feat-desc">O que existia antes da criação? Para onde vai o tempo? A Bíblia revela um plano eterno que começa antes de Gênesis.</p>
+          <div class="feat-meta"><span>📚 15 min</span></div>
+        </div>
+        <div class="feat-foot">
+          <p class="feat-excerpt">Explore a dimensão da eternidade nas Escrituras e descubra como isso muda a forma de viver o presente.</p>
+          <a href="nova-jerusalem/Eternidade.html" class="feat-link">Ler o Estudo →</a>
+        </div>
+      </div>
+
+      <div class="feat-card theme-2" data-index="2">
+        <div class="feat-top">
+          <div class="feat-tag">🤍 Palavra</div>
+          <h3>Graça: O Dom Imerecido de Deus</h3>
+          <p class="feat-desc">Da queda em Éden à justificação pela fé. O fio dourado de graça que atravessa toda a Escritura.</p>
+          <div class="feat-meta"><span>📚 12 min</span></div>
+        </div>
+        <div class="feat-foot">
+          <p class="feat-excerpt">Entenda o que é a graça, como ela opera e por que é a única esperança da humanidade.</p>
+          <a href="nova-jerusalem/tema-graca.html" class="feat-link">Ler o Estudo →</a>
+        </div>
+      </div>
+
+    </div><!-- /featured -->
+
+    <!-- CURIOSIDADES -->
+    <div id="curiosidades" class="sec-lbl rv"><h2>✦ Você Sabia?</h2></div>
+    <div class="curiosidades">
+      <div class="curio rv tilt">
+        <div class="curio-ico">💧</div>
+        <div>
+          <div class="curio-title">O Rio tem apenas UMA origem</div>
+          <p class="curio-text">Diferente dos rios da Terra que têm diversas nascentes e afluentes, o Rio da Água da Vida de Apc 22 tem uma única origem: o próprio trono de Deus. Isso simboliza que toda graça e vida têm uma fonte exclusiva — Deus mesmo.</p>
+          <div class="curio-ref">Apocalipse 22:1</div>
+        </div>
+      </div>
+      <div class="curio rv d1 tilt">
+        <div class="curio-ico">🌳</div>
+        <div>
+          <div class="curio-title">A Árvore da Vida produz 12 frutos diferentes</div>
+          <p class="curio-text">Em Apocalipse 22:2, a Árvore da Vida produz 12 frutos, dando o seu fruto em cada mês. Ou seja, na eternidade haverá um calendário — e a plenitude da nutrição espiritual para cada "estação" da vida eterna.</p>
+          <div class="curio-ref">Apocalipse 22:2</div>
+        </div>
+      </div>
+      <div class="curio rv d2 tilt">
+        <div class="curio-ico">🌙</div>
+        <div>
+          <div class="curio-title">Na Nova Jerusalém não existe noite</div>
+          <p class="curio-text">Ap 21:25 diz que as portas "não se fecharão de dia, pois não haverá noite". A presença de Deus substitui completamente o sol e a lua. Isso é paralelo com Ezequiel 43:2: "a terra resplandecia da sua glória".</p>
+          <div class="curio-ref">Apocalipse 21:23-25 • Ezequiel 43:2</div>
+        </div>
+      </div>
+      <div class="curio rv d3 tilt">
+        <div class="curio-ico">🔱</div>
+        <div>
+          <div class="curio-title">Os Espíritos Marinhos existem há milênios</div>
+          <p class="curio-text">O Êncubo e o Súcubo são mencionados em textos sumérios de mais de 4.000 anos atrás — muito antes do Novo Testamento. A Bíblia em Gênesis 6 já descreve este fenômeno como uma invasão demoníaca real que motivou o Dilúvio.</p>
+          <div class="curio-ref">Gênesis 6:1-4 • 2 Pedro 2:4</div>
+        </div>
       </div>
     </div>
 
-    <!-- ESTUDOS -->
-    <div id="estudos" class="sec-label rv"><h2>✦ Estudos Bíblicos</h2></div>
-    <div class="posts-grid">
-
-      <a href="Eternidade.html" class="post-card rv">
-        <div class="post-cat cat-study"><div class="cat-dot"></div><span class="cat-name">Estudo</span></div>
-        <h3>A Eternidade: Antes do Tempo e Depois</h3>
-        <p>O que existia antes da criação? Para onde vai o tempo? A Bíblia revela um plano eterno que começa muito antes de Gênesis.</p>
-        <div class="post-footer"><span class="post-time">⏱ 15 min</span><span class="post-arrow">→</span></div>
-      </a>
-
-      <a href="nova-jerusalem/tema-graca.html" class="post-card rv d1">
-        <div class="post-cat cat-study"><div class="cat-dot"></div><span class="cat-name">Estudo</span></div>
-        <h3>Graça: O Dom Imerecido de Deus</h3>
-        <p>Da queda no Éden à justificação pela fé — o fio dourado de graça que perpassa toda a narrativa bíblica.</p>
-        <div class="post-footer"><span class="post-time">⏱ 12 min</span><span class="post-arrow">→</span></div>
-      </a>
-
-      <a href="nova-jerusalem/tema-fe.html" class="post-card rv d2">
-        <div class="post-cat cat-study"><div class="cat-dot"></div><span class="cat-name">Estudo</span></div>
-        <h3>Fé: A Substância do Invisível</h3>
-        <p>Hebreus 11 e os grandes heróis que atravessaram o impossível pela fé. Como cultivar uma fé que move montanhas.</p>
-        <div class="post-footer"><span class="post-time">⏱ 10 min</span><span class="post-arrow">→</span></div>
-      </a>
-
-      <a href="nova-jerusalem/tema-amor.html" class="post-card rv d3">
-        <div class="post-cat cat-study"><div class="cat-dot"></div><span class="cat-name">Estudo</span></div>
-        <h3>Amor: O Ágape que Supera Tudo</h3>
-        <p>1 Coríntios 13 e o amor de Deus que não falha. O cupprimento de toda a lei em um único mandamento.</p>
-        <div class="post-footer"><span class="post-time">⏱ 10 min</span><span class="post-arrow">→</span></div>
-      </a>
-
-      <a href="nova-jerusalem/tema-justificacao.html" class="post-card rv">
-        <div class="post-cat cat-study"><div class="cat-dot"></div><span class="cat-name">Estudo</span></div>
-        <h3>Justificação pela Fé — Romanos</h3>
-        <p>O alicerce da Reforma Protestante. A doutrina que transformou a história e que ainda é o coração do Evangelho.</p>
-        <div class="post-footer"><span class="post-time">⏱ 18 min</span><span class="post-arrow">→</span></div>
-      </a>
-
-      <a href="#" class="post-card rv d1" style="opacity:.6;pointer-events:none">
-        <div class="post-cat cat-proph"><div class="cat-dot"></div><span class="cat-name">Profecia</span></div>
-        <h3>A Visão de Ezequiel — O Templo Futuro</h3>
-        <p>Ezequiel 40-48 e a visão do templo eterno de onde brotará o rio da vida para curar as nações.</p>
-        <div class="post-footer"><span class="post-time">🔒 Em breve</span><span class="post-arrow">→</span></div>
-      </a>
-
+    <!-- PRAYERS -->
+    <div id="oracao" class="sec-lbl rv"><h2>✦ Pedidos de Oração</h2></div>
+    <div class="prayer-box rv">
+      <h3>🙏 Deixe seu Pedido de Oração</h3>
+      <p class="sub-p">Ore junto conosco. Deixe seu pedido abaixo — cada pedido será levado em intercessão pela comunidade.</p>
+      <div class="comment-form">
+        <div class="comment-row">
+          <input class="fi" type="text" id="prayer-name" placeholder="Seu nome (opcional)">
+          <input class="fi" type="text" id="prayer-topic" placeholder="Assunto (ex: cura, família...)">
+        </div>
+        <textarea class="fi" id="prayer-text" placeholder="Descreva brevemente seu pedido de oração..."></textarea>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+          <span style="font-size:.72rem;color:var(--text-l);font-style:italic">"Confessai as vossas faltas uns aos outros e orai uns pelos outros." — Tiago 5:16</span>
+          <button class="btn btn-river btn-send" onclick="submitPrayer(this)">Enviar Pedido ✦</button>
+        </div>
+      </div>
+      <div class="prayer-requests" id="prayer-list">
+        <div class="prayer-item">
+          <div class="prayer-ico">🙏</div>
+          <div><div class="prayer-name">Maria S.</div><p class="prayer-text">Peço oração pela cura da minha mãe e pela paz no meu lar. Deus abençoe a cada um.</p></div>
+        </div>
+        <div class="prayer-item">
+          <div class="prayer-ico">🙏</div>
+          <div><div class="prayer-name">João P.</div><p class="prayer-text">Preciso de sabedoria e discernimento espiritual. Estou passando por guerra espiritual intensa e preciso de cobertura em oração.</p></div>
+        </div>
+      </div>
     </div>
 
-    <!-- MEDITAÇÕES -->
-    <div id="meditacoes" class="sec-label rv"><h2>✦ Meditações</h2></div>
-    <div class="med-list">
-      <a href="#" class="med-item rv">
-        <div class="med-num">01</div>
-        <div>
-          <div class="med-title">A Cidade de Ouro Puro — Meditação sobre Ap 21:18</div>
-          <p class="med-desc">Uma cidade cujas ruas são de ouro transparente como vidro — não o ouro opaco que conhecemos, mas translúcido. Meditação sobre a glória que aguarda o crente.</p>
-          <div class="med-ref">Apocalipse 21:18 • 5 min de leitura</div>
+    <!-- COMMENTS -->
+    <div id="comentarios" class="sec-lbl rv"><h2>✦ Comunidade</h2></div>
+    <div class="comment-box rv glass">
+      <h3>💬 Deixe seu Comentário</h3>
+      <p class="sub-p">Compartilhe sua reflexão, testemunho ou pergunta sobre os estudos. A comunidade cresce com cada voz.</p>
+      <div class="comment-form">
+        <div class="comment-row">
+          <input class="fi" type="text" id="c-name" placeholder="Seu nome">
+          <input class="fi" type="email" id="c-email" placeholder="E-mail (não publicado)">
         </div>
-      </a>
-      <a href="#" class="med-item rv d1">
-        <div class="med-num">02</div>
-        <div>
-          <div class="med-title">O Rio que Cura as Nações — Ap 22:1-2</div>
-          <p class="med-desc">O rio da água da vida fluindo do trono de Deus. A árvore de vida com folhas para curar os povos. O Éden restaurado e magnificado para a eternidade.</p>
-          <div class="med-ref">Apocalipse 22:1-2 • 5 min de leitura</div>
+        <textarea class="fi" id="c-text" placeholder="Compartilhe sua reflexão ou pergunta sobre os estudos..."></textarea>
+        <div style="text-align:right">
+          <button class="btn btn-outline btn-send" onclick="submitComment(this)">Publicar Comentário →</button>
         </div>
-      </a>
-      <a href="#" class="med-item rv d2">
-        <div class="med-num">03</div>
-        <div>
-          <div class="med-title">YHWH Shammah — O SENHOR ESTÁ ALI</div>
-          <p class="med-desc">Ezequiel 48:35 encerra com este nome: "O SENHOR ESTÁ ALI". O que significa morar numa cidade onde a presença de Deus é a própria luz e o próprio templo?</p>
-          <div class="med-ref">Ezequiel 48:35 • Ap 21:22-23 • 7 min de leitura</div>
+      </div>
+      <div class="comments-list" id="comments-list">
+        <div class="comment-item">
+          <div class="comment-avatar">A</div>
+          <div class="comment-body">
+            <span class="comment-name">Ana R.</span><span class="comment-date">14 Mar 2026</span>
+            <p class="comment-text">O estudo sobre Espíritos Marinhos me abriu os olhos para o que estava acontecendo em minha vida. Muito obrigada pela clareza bíblica!</p>
+          </div>
         </div>
-      </a>
-      <a href="#" class="med-item rv d3">
-        <div class="med-num">04</div>
-        <div>
-          <div class="med-title">As 12 Pérolas — Cada Porta, Uma Pérola</div>
-          <p class="med-desc">As portas da Nova Jerusalém não são feitas de mármore ou metal. Cada porta é uma única pérola gigantesca. A pérola que nasce da dor — uma profunda analogia da graça.</p>
-          <div class="med-ref">Apocalipse 21:21 • 6 min de leitura</div>
+        <div class="comment-item">
+          <div class="comment-avatar">C</div>
+          <div class="comment-body">
+            <span class="comment-name">Carlos M.</span><span class="comment-date">13 Mar 2026</span>
+            <p class="comment-text">As meditações sobre a Nova Jerusalém são simplesmente transformadoras. Cada detalhe de Apocalipse 21-22 tem uma profundidade incrível.</p>
+          </div>
         </div>
-      </a>
-    </div>
-
-    <!-- ADORAÇÃO -->
-    <div id="adoracao" class="sec-label rv"><h2>✦ Espaço de Adoração</h2></div>
-    <div class="worship-section rv">
-      <h2>Adorar em Espírito e Verdade</h2>
-      <p>"Mas a hora vem, e agora é, em que os verdadeiros adoradores adorarão o Pai em espírito e em verdade." — João 4:23</p>
-      <div class="worship-grid">
-        <a href="#" class="worship-card">
-          <span>🎵</span>
-          <h4>Salmos Meditativos</h4>
-          <p>Os Salmos como oração e adoração. Uma seleção para cada momento da vida.</p>
-        </a>
-        <a href="#" class="worship-card">
-          <span>🙏</span>
-          <h4>Orações de Guerra</h4>
-          <p>Orações baseadas em Efésios 6 para a batalha espiritual do dia a dia.</p>
-        </a>
-        <a href="#" class="worship-card">
-          <span>📿</span>
-          <h4>Liturgia Diária</h4>
-          <p>Uma estrutura de devoção matinal baseada nos Salmos e nos Evangelhos.</p>
-        </a>
-        <a href="#" class="worship-card">
-          <span>🕊️</span>
-          <h4>Silêncio Sagrado</h4>
-          <p>A prática do silêncio contemplativo na tradição dos Padres do Deserto.</p>
-        </a>
       </div>
     </div>
 
@@ -373,117 +390,350 @@ footer{position:relative;z-index:1;background:#12121E;color:rgba(255,255,255,.5)
   <!-- SIDEBAR -->
   <aside class="sidebar">
 
-    <!-- VERSÍCULO DO DIA -->
-    <div class="verse-day rv">
-      <div class="widget-title">✦ Versículo do Dia</div>
-      <blockquote>"Não haverá mais maldição alguma. O trono de Deus e do Cordeiro estará nela, e os seus servos o servirão e verão a sua face."</blockquote>
-      <cite>— Apocalipse 22:3-4</cite>
+    <div class="w verse-widget rv">
+      <div class="w-title">✦ Versículo do Dia</div>
+      <blockquote id="daily-verse">"E reinarão pelos séculos dos séculos."</blockquote>
+      <cite id="daily-ref">— Apocalipse 22:5</cite>
     </div>
 
-    <!-- LINKS RÁPIDOS -->
-    <div class="sidebar-widget rv d1">
-      <div class="widget-title">✦ Estudos Disponíveis</div>
+    <div class="w rv d1">
+      <div class="w-title">✦ Estudos Disponíveis</div>
       <ul class="qlinks">
         <li><a href="nova-jerusalem/estudo_espiritos.html"><span>🌊</span> Espíritos Marinhos</a></li>
-        <li><a href="Eternidade.html"><span>♾️</span> Tema: Eternidade</a></li>
-        <li><a href="nova-jerusalem/tema-graca.html"><span>🤍</span> Tema: Graça</a></li>
-        <li><a href="nova-jerusalem/tema-fe.html"><span>⚡</span> Tema: Fé</a></li>
-        <li><a href="nova-jerusalem/tema-amor.html"><span>💛</span> Tema: Amor</a></li>
+        <li><a href="nova-jerusalem/Eternidade.html"><span>♾️</span> Eternidade</a></li>
+        <li><a href="nova-jerusalem/tema-graca.html"><span>🤍</span> Graça</a></li>
+        <li><a href="nova-jerusalem/tema-fe.html"><span>⚡</span> Fé</a></li>
+        <li><a href="nova-jerusalem/tema-amor.html"><span>💛</span> Amor</a></li>
         <li><a href="nova-jerusalem/tema-justificacao.html"><span>📜</span> Justificação</a></li>
       </ul>
     </div>
 
-    <!-- PROFECIA -->
-    <div class="proph-widget rv d2">
-      <div class="widget-title">✦ Profecia: Ezequiel</div>
-      <p>"E o nome da cidade desde aquele dia será: O SENHOR ESTÁ ALI."</p>
-      <cite>— Ezequiel 48:35</cite>
-      <p style="margin-top:.8rem">"Depois ele me levou de volta à entrada do santuário, e havia água saindo por debaixo do limiar do templo..."</p>
-      <cite>— Ezequiel 47:1</cite>
+    <div class="w prov-widget rv d2">
+      <div class="w-title">✦ Provérbio do Dia</div>
+      <div class="prov-text" id="prov-text"></div>
+      <div class="prov-cite" id="prov-cite"></div>
     </div>
 
-    <!-- NEWSLETTER -->
-    <div class="sidebar-widget subscribe-widget rv d3" id="sobre">
-      <div class="widget-title">✦ Receber Estudos</div>
-      <p>Insira seu e-mail para receber novos estudos e meditações diretamente na sua caixa de entrada.</p>
-      <div class="sub-input">
-        <input type="email" placeholder="seu@email.com">
-        <button>Quero Receber ✦</button>
+    <div class="w nl-w rv d3">
+      <div class="w-title">✦ Receber Estudos</div>
+      <p>Insira seu e-mail para receber os próximos estudos e meditações.</p>
+      <div class="nl-form">
+        <input type="email" id="nl-email" placeholder="seu@email.com">
+        <button onclick="submitNewsletter(this)">Receber ✦</button>
       </div>
     </div>
 
   </aside>
 </div><!-- /main -->
 
-<!-- NOVA JERUSALÉM INFO -->
-<div class="nj-section">
-  <div class="nj-banner rv">
-    <h2>Os Fundamentos da<br><em>Nova Jerusalém</em></h2>
-    <p>Apocalipse 21 descreve uma cidade com 12 fundamentos, cada um ornado com uma pedra preciosa diferente — como facetas da glória de Deus. Cada gemstone abaixo representa um aspecto teológico da cidade eterna.</p>
-    <div class="gems-grid">
-      <div class="gem-card rv"><div class="gem-ico">🔴</div><h4>Jaspe</h4><p>A glória de Deus — clara como cristal. O 1º fundamento. Ap 21:19</p></div>
-      <div class="gem-card rv d1"><div class="gem-ico">💙</div><h4>Safira</h4><p>Soberania divina. Trono celestial de Ezequiel 1:26. 2º fundamento.</p></div>
-      <div class="gem-card rv d2"><div class="gem-ico">💚</div><h4>Esmeralda</h4><p>Aliança eterna. O arco-íris ao redor do trono. 4º fundamento.</p></div>
-      <div class="gem-card rv d3"><div class="gem-ico">🟡</div><h4>Topázio</h4><p>Sabedoria e preciosidade. "O topázio da Etiópia não se iguala a ela." 9º fundamento.</p></div>
-      <div class="gem-card rv"><div class="gem-ico">🟣</div><h4>Ametista</h4><p>Realeza sacerdotal. A cor da majestade e do sacerdócio. 12º fundamento.</p></div>
-      <div class="gem-card rv d1"><div class="gem-ico">⚪</div><h4>Pérola</h4><p>As 12 portas — cada uma uma pérola. A graça que nasce da dor e da pressão.</p></div>
-    </div>
-  </div>
-</div>
-
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand">Nova Jerusalém ✦</div>
-        <p class="footer-desc">Uma escola bíblica online dedicada ao aprofundamento da Palavra de Deus, inspirada na cidade eterna descrita em Ezequiel e Apocalipse.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Estudos</h5>
-        <ul>
-          <li><a href="nova-jerusalem/estudo_espiritos.html">Espíritos Marinhos</a></li>
-          <li><a href="Eternidade.html">Eternidade</a></li>
-          <li><a href="nova-jerusalem/tema-graca.html">Graça</a></li>
-          <li><a href="nova-jerusalem/tema-fe.html">Fé</a></li>
-          <li><a href="nova-jerusalem/tema-justificacao.html">Justificação</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Recursos</h5>
-        <ul>
-          <li><a href="#">Meditações</a></li>
-          <li><a href="#">Adoração</a></li>
-          <li><a href="#">Orações</a></li>
-          <li><a href="#">Profecia</a></li>
-          <li><a href="#">Sobre</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 <span>Hub Educacional Bíblico</span> — Nova Jerusalém</p>
-      <p>Inspirado em <span>Ap 21–22</span> & <span>Ez 40–48</span></p>
-    </div>
-  </div>
+<footer style="position:relative;z-index:1;background:#080E1C;color:rgba(255,255,255,.45);text-align:center;padding:2.5rem 1.5rem;border-top:1px solid rgba(91,168,208,.15)">
+  <p style="font-family:'Cinzel',serif;font-size:.8rem;color:rgba(91,168,208,.6);margin-bottom:.4rem">Nova Jerusalém ✦ Escola Bíblica Online</p>
+  <p style="font-size:.72rem">© 2026 Hub Educacional Bíblico — Inspirado em <span style="color:rgba(255,229,102,.5)">Ap 21–22</span> & <span style="color:rgba(255,229,102,.5)">Ez 40–48</span></p>
 </footer>
 
 <script>
-// Reveal on scroll
-const rvEls = document.querySelectorAll('.rv');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
-},{threshold:0.08});
-rvEls.forEach(el => obs.observe(el));
-
-// 3D tilt cards
-document.querySelectorAll('.post-card,.med-item,.gem-card').forEach(el => {
-  el.addEventListener('mousemove', e => {
-    const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left)/r.width - .5;
-    const y = (e.clientY - r.top)/r.height - .5;
-    el.style.transform = `perspective(600px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`;
+// ── BACKGROUND RIVER CANVAS (soft subtle) ──
+const cv = document.getElementById('river-canvas');
+const ctx = cv.getContext('2d');
+let W,H;
+function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+let t=0;
+function bgLoop(){
+  ctx.clearRect(0,0,W,H);
+  t+=0.008;
+  // 5 subtle background wave bands
+  const bands=[
+    {y:0.58,amp:22,spd:0.28,w:260,col:'rgba(140,210,250,0.09)'},
+    {y:0.65,amp:16,spd:0.35,w:200,col:'rgba(91,168,208,0.07)'},
+    {y:0.72,amp:12,spd:0.42,w:170,col:'rgba(168,225,255,0.065)'},
+    {y:0.80,amp:8, spd:0.50,w:140,col:'rgba(91,168,208,0.055)'},
+    {y:0.88,amp:5, spd:0.60,w:110,col:'rgba(140,210,250,0.045)'},
+  ];
+  bands.forEach(b=>{
+    const yBase=H*b.y;
+    ctx.beginPath();
+    ctx.moveTo(0,yBase);
+    for(let x=0;x<=W;x+=3){
+      const dy=Math.sin((x/b.w)+t*b.spd+b.y*10)*b.amp
+             + Math.sin((x/(b.w*0.6))+t*b.spd*1.3)*b.amp*0.4;
+      ctx.lineTo(x,yBase+dy);
+    }
+    ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();
+    ctx.fillStyle=b.col;ctx.fill();
   });
-  el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  requestAnimationFrame(bgLoop);
+}
+resize();bgLoop();
+window.addEventListener('resize',resize);
+
+// ── RIVER DIVIDER CANVAS (3D perspective river) ──
+const dc=document.getElementById('river-divider-canvas');
+const dctx=dc.getContext('2d');
+let DW,DH;
+function resizeDiv(){DW=dc.width=dc.parentElement.offsetWidth;DH=dc.height=dc.parentElement.offsetHeight;}
+let dt=0;
+function divLoop(){
+  dctx.clearRect(0,0,DW,DH);
+  dt+=0.018;
+  // Perspective river: wide at bottom, narrow at top (3D effect)
+  // Draw multiple layered streams with perspective
+  const streams=[
+    {xCenter:0.5, spread:0.9, depth:0, alpha:0.55, colorA:'rgba(120,200,255,', colorB:'rgba(200,240,255,'},
+    {xCenter:0.5, spread:0.65, depth:1, alpha:0.6, colorA:'rgba(91,168,208,', colorB:'rgba(180,230,255,'},
+    {xCenter:0.5, spread:0.42, depth:2, alpha:0.65, colorA:'rgba(60,140,200,', colorB:'rgba(160,220,255,'},
+    {xCenter:0.5, spread:0.22, depth:3, alpha:0.7, colorA:'rgba(40,110,180,', colorB:'rgba(140,210,255,'},
+    {xCenter:0.5, spread:0.08, depth:4, alpha:0.8, colorA:'rgba(200,240,255,', colorB:'rgba(240,252,255,'},
+  ];
+  streams.forEach((s,si)=>{
+    const wBottom = DW * s.spread;
+    const wTop    = wBottom * 0.08;
+    const xBotL = DW*s.xCenter - wBottom/2;
+    const xBotR = DW*s.xCenter + wBottom/2;
+    const xTopL = DW*s.xCenter - wTop/2;
+    const xTopR = DW*s.xCenter + wTop/2;
+    // Animate ripples
+    const rip = Math.sin(dt*1.2 + si*0.8)*3;
+    const rip2= Math.sin(dt*0.9 + si*1.2)*2;
+    // Gradient fill: dark-blue at top, crystal at bottom
+    const grad=dctx.createLinearGradient(0,0,0,DH);
+    grad.addColorStop(0, s.colorA+'0.15)');
+    grad.addColorStop(0.4, s.colorA+s.alpha+')');
+    grad.addColorStop(1, s.colorB+s.alpha+')');
+    dctx.beginPath();
+    dctx.moveTo(xBotL+rip, DH);
+    // Left edge with ripple
+    dctx.bezierCurveTo(
+      xBotL+rip*0.7, DH*0.7,
+      xTopL+rip2, DH*0.2,
+      xTopL, 0
+    );
+    dctx.lineTo(xTopR,0);
+    // Right edge
+    dctx.bezierCurveTo(
+      xTopR+rip2, DH*0.2,
+      xBotR+rip*0.7, DH*0.7,
+      xBotR+rip, DH
+    );
+    dctx.closePath();
+    dctx.fillStyle=grad;
+    dctx.fill();
+    // Highlight (sparkle line down the center)
+    if(si===4){
+      const hx=DW*s.xCenter;
+      const hGrad=dctx.createLinearGradient(0,0,0,DH);
+      hGrad.addColorStop(0,'rgba(255,255,255,0)');
+      hGrad.addColorStop(0.3,'rgba(255,255,255,0.5)');
+      hGrad.addColorStop(1,'rgba(255,255,255,0.15)');
+      dctx.beginPath();
+      dctx.moveTo(hx,0);
+      for(let y=0;y<=DH;y+=2){
+        const off=Math.sin(dt*2+y*0.1)*1.5;
+        dctx.lineTo(hx+off,y);
+      }
+      dctx.strokeStyle=hGrad;
+      dctx.lineWidth=2;
+      dctx.stroke();
+    }
+  });
+  // Cite label
+  dctx.font='italic 11px Georgia,serif';
+  dctx.fillStyle='rgba(91,168,208,0.45)';
+  dctx.textAlign='center';
+  dctx.fillText('"límpido como cristal" — Apocalipse 22:1', DW/2, DH-8);
+  requestAnimationFrame(divLoop);
+}
+resizeDiv();divLoop();
+window.addEventListener('resize',resizeDiv);
+
+// ── PROVÉRBIOS ──
+const provs=[
+  {t:'"O temor do Senhor é o princípio da sabedoria."',r:'— Provérbios 9:10'},
+  {t:'"Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento."',r:'— Provérbios 3:5'},
+  {t:'"A morte e a vida estão no poder da língua."',r:'— Provérbios 18:21'},
+  {t:'"A esperança que se prolonga aflige o coração; mas o desejo cumprido é árvore de vida."',r:'— Provérbios 13:12'},
+  {t:'"O coração humano traça o seu caminho, mas o Senhor lhe dirige os passos."',r:'— Provérbios 16:9'},
+  {t:'"Melhor é o pobre que anda em integridade do que o perverso nos seus caminhos."',r:'— Provérbios 28:6'},
+  {t:'"A mulher virtuosa é a coroa de seu marido."',r:'— Provérbios 12:4'},
+];
+const dayProv=provs[new Date().getDay()%provs.length];
+document.getElementById('prov-text').textContent=dayProv.t;
+document.getElementById('prov-cite').textContent=dayProv.r;
+
+// Rotate sidebar proverbs
+let pi=0;
+setInterval(()=>{
+  const el=document.getElementById('prov-text');
+  el.classList.add('fade');
+  setTimeout(()=>{
+    pi=(pi+1)%provs.length;
+    el.textContent=provs[pi].t;
+    document.getElementById('prov-cite').textContent=provs[pi].r;
+    el.classList.remove('fade');
+  },500);
+},12000);
+
+// ── TICKER (Provérbios + Ap) ──
+const tickItems=[
+  '✦ Pv 3:5 — "Confia no Senhor de todo o teu coração."',
+  '✦ Ap 21:4 — "Deus enxugará de seus olhos toda lágrima."',
+  '✦ Pv 9:10 — "O temor do Senhor é o princípio da sabedoria."',
+  '✦ Ap 22:1 — "Rio puro de água da vida, límpido como cristal."',
+  '✦ Pv 18:21 — "A morte e a vida estão no poder da língua."',
+  '✦ Ez 48:35 — "O nome da cidade: O SENHOR ESTÁ ALI."',
+  '✦ Pv 16:9 — "O Senhor lhe dirige os passos."',
+  '✦ Ap 21:21 — "As ruas da cidade: ouro puro como vidro transparente."',
+];
+const tc=document.getElementById('ticker-content');
+const full=[...tickItems,...tickItems].map(t=>`<span>${t}</span><span class="t-sep">|</span>`).join('');
+tc.innerHTML=full;
+
+// ── FEATURED ROTATION (daily) ──
+const cards=document.querySelectorAll('.feat-card');
+const dayIdx=new Date().getDate()%cards.length;
+cards.forEach((c,i)=>c.classList.toggle('active',i===dayIdx));
+
+// ── DAILY VERSES ──
+const verses=[
+  {t:'"E reinarão pelos séculos dos séculos."',r:'— Apocalipse 22:5'},
+  {t:'"E Deus enxugará de seus olhos toda lágrima; e não haverá mais morte."',r:'— Apocalipse 21:4'},
+  {t:'"Eis que faço novas todas as coisas."',r:'— Apocalipse 21:5'},
+  {t:'"Eu sou o Alfa e o Ômega, o Primeiro e o Último."',r:'— Apocalipse 22:13'},
+  {t:'"E os remidos do Senhor voltarão e virão a Sião com cânticos."',r:'— Isaías 51:11'},
+  {t:'"Qual a grandeza do bem que reservaste para os que te temem."',r:'— Salmos 31:19'},
+  {t:'"O Senhor Deus Todo-Poderoso e o Cordeiro são o seu templo."',r:'— Apocalipse 21:22'},
+];
+const dv=verses[new Date().getDay()%verses.length];
+document.getElementById('daily-verse').textContent=dv.t;
+document.getElementById('daily-ref').textContent=dv.r;
+
+// ── FORMSPREE IDs ─────────────────────────────────────────────
+// IMPORTANTE: Substitua os IDs abaixo pelos seus IDs do Formspree
+// Passo 1: Acesse https://formspree.io e crie conta com vivobruno26@gmail.com
+// Passo 2: Crie 3 formulários: Comentários, Pedidos de Oração, Newsletter
+// Passo 3: Cole os IDs de cada formulário abaixo
+const FS_COMMENT  = 'xkgjrdla'; // ID do formulário "Comentários"
+const FS_PRAYER   = 'xkgjrdla'; // ID do formulário "Pedidos de Oração"
+const FS_NEWSLETTER = 'xkgjrdla'; // ID do formulário "Newsletter"
+// ────────────────────────────────────────────────────────────────
+
+// ── TOAST ──
+const toastEl = document.createElement('div');
+toastEl.className = 'toast';
+toastEl.innerHTML = '<span class="toast-ico"></span><div class="toast-msg"><strong></strong><span></span></div>';
+document.body.appendChild(toastEl);
+let toastTimer;
+function showToast(type, title, msg){
+  const ico = type==='success'?'✅':'❌';
+  toastEl.className = `toast ${type}`;
+  toastEl.querySelector('.toast-ico').textContent = ico;
+  toastEl.querySelector('strong').textContent = title;
+  toastEl.querySelector('span').textContent = msg;
+  clearTimeout(toastTimer);
+  requestAnimationFrame(()=>toastEl.classList.add('show'));
+  toastTimer = setTimeout(()=>toastEl.classList.remove('show'), 5000);
+}
+
+// ── SEND TO FORMSPREE ──
+async function sendForm(formId, data, btn){
+  const orig = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  try{
+    const res = await fetch(`https://formspree.io/f/${formId}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(data)
+    });
+    if(res.ok){
+      return true;
+    } else {
+      const err = await res.json();
+      throw new Error(err.error||'Erro ao enviar');
+    }
+  } catch(e){
+    showToast('error','Não foi possível enviar',e.message||'Verifique sua conexão.');
+    return false;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = orig;
+  }
+}
+
+// ── COMMENTS ──
+async function submitComment(btn){
+  const name=document.getElementById('c-name').value.trim()||'Anônimo';
+  const email=document.getElementById('c-email').value.trim();
+  const txt=document.getElementById('c-text').value.trim();
+  if(!txt){showToast('error','Campo vazio','Por favor escreva um comentário.');return;}
+  const ok = await sendForm(FS_COMMENT,{
+    _subject: `💬 Novo Comentário — ${name}`,
+    nome: name, email: email||'(não informado)', comentario: txt
+  }, btn);
+  if(ok){
+    // Show in page
+    const list=document.getElementById('comments-list');
+    const item=document.createElement('div');item.className='comment-item';
+    const today=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
+    item.innerHTML=`<div class="comment-avatar">${name[0].toUpperCase()}</div><div class="comment-body"><span class="comment-name">${name}</span><span class="comment-date">${today}</span><p class="comment-text">${txt}</p></div>`;
+    list.prepend(item);
+    document.getElementById('c-name').value='';
+    document.getElementById('c-email').value='';
+    document.getElementById('c-text').value='';
+    showToast('success','Comentário publicado!','Obrigado por compartilhar. Sua mensagem chegou ao administrador.');
+  }
+}
+
+// ── PRAYERS ──
+async function submitPrayer(btn){
+  const name=document.getElementById('prayer-name').value.trim()||'Anônimo';
+  const topic=document.getElementById('prayer-topic').value.trim();
+  const txt=document.getElementById('prayer-text').value.trim();
+  if(!txt){showToast('error','Campo vazio','Por favor descreva seu pedido de oração.');return;}
+  const ok = await sendForm(FS_PRAYER,{
+    _subject: `🙏 Pedido de Oração — ${name}`,
+    nome: name, assunto: topic||'(não informado)', pedido: txt
+  }, btn);
+  if(ok){
+    const list=document.getElementById('prayer-list');
+    const item=document.createElement('div');item.className='prayer-item';
+    item.innerHTML=`<div class="prayer-ico">🙏</div><div><div class="prayer-name">${name}</div><p class="prayer-text">${txt}</p></div>`;
+    list.prepend(item);
+    document.getElementById('prayer-name').value='';
+    document.getElementById('prayer-topic').value='';
+    document.getElementById('prayer-text').value='';
+    showToast('success','Pedido enviado!','Sua oração foi recebida. Intercessores serão notificados. 🙏');
+  }
+}
+
+// ── NEWSLETTER ──
+async function submitNewsletter(btn){
+  const email=document.getElementById('nl-email').value.trim();
+  if(!email){showToast('error','E-mail inválido','Por favor informe um e-mail válido.');return;}
+  const ok = await sendForm(FS_NEWSLETTER,{
+    _subject:'📧 Nova Inscrição — Newsletter Bíblica',
+    email: email
+  }, btn);
+  if(ok){
+    document.getElementById('nl-email').value='';
+    showToast('success','Inscrito com sucesso!','Você receberá os próximos estudos no seu e-mail.');
+  }
+}
+
+// ── REVEAL ──
+const rvEls=document.querySelectorAll('.rv');
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:0.08});
+rvEls.forEach(el=>obs.observe(el));
+
+// ── 3D TILT ──
+document.querySelectorAll('.tilt').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    el.style.transform=`perspective(600px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-4px)`;
+  });
+  el.addEventListener('mouseleave',()=>{el.style.transform='';});
 });
 </script>
 </body>
