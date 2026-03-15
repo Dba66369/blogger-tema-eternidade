@@ -268,7 +268,7 @@ textarea.fi{resize:vertical;min-height:80px}
         </div>
         <div class="feat-foot">
           <p class="feat-excerpt">Explore a dimensão da eternidade nas Escrituras e descubra como isso muda a forma de viver o presente.</p>
-          <a href="nova-jerusalem/Eternidade.html" class="feat-link">Ler o Estudo →</a>
+          <a href="Eternidade.html" class="feat-link">Ler o Estudo →</a>
         </div>
       </div>
 
@@ -281,7 +281,7 @@ textarea.fi{resize:vertical;min-height:80px}
         </div>
         <div class="feat-foot">
           <p class="feat-excerpt">Entenda o que é a graça, como ela opera e por que é a única esperança da humanidade.</p>
-          <a href="nova-jerusalem/tema-graca.html" class="feat-link">Ler o Estudo →</a>
+          <a href="Espirito_Marinho.html" class="feat-link">Ler o Estudo →</a>
         </div>
       </div>
 
@@ -400,11 +400,8 @@ textarea.fi{resize:vertical;min-height:80px}
       <div class="w-title">✦ Estudos Disponíveis</div>
       <ul class="qlinks">
         <li><a href="nova-jerusalem/estudo_espiritos.html"><span>🌊</span> Espíritos Marinhos</a></li>
-        <li><a href="nova-jerusalem/Eternidade.html"><span>♾️</span> Eternidade</a></li>
-        <li><a href="nova-jerusalem/tema-graca.html"><span>🤍</span> Graça</a></li>
-        <li><a href="nova-jerusalem/tema-fe.html"><span>⚡</span> Fé</a></li>
-        <li><a href="nova-jerusalem/tema-amor.html"><span>💛</span> Amor</a></li>
-        <li><a href="nova-jerusalem/tema-justificacao.html"><span>📜</span> Justificação</a></li>
+        <li><a href="Eternidade.html"><span>♾️</span> Eternidade</a></li>
+        <li><a href="Espirito_Marinho.html"><span>🌊</span> Espíritos (v2)</a></li>
       </ul>
     </div>
 
@@ -607,16 +604,6 @@ const dv=verses[new Date().getDay()%verses.length];
 document.getElementById('daily-verse').textContent=dv.t;
 document.getElementById('daily-ref').textContent=dv.r;
 
-// ── FORMSPREE IDs ─────────────────────────────────────────────
-// IMPORTANTE: Substitua os IDs abaixo pelos seus IDs do Formspree
-// Passo 1: Acesse https://formspree.io e crie conta com vivobruno26@gmail.com
-// Passo 2: Crie 3 formulários: Comentários, Pedidos de Oração, Newsletter
-// Passo 3: Cole os IDs de cada formulário abaixo
-const FS_COMMENT  = 'xkgjrdla'; // ID do formulário "Comentários"
-const FS_PRAYER   = 'xkgjrdla'; // ID do formulário "Pedidos de Oração"
-const FS_NEWSLETTER = 'xkgjrdla'; // ID do formulário "Newsletter"
-// ────────────────────────────────────────────────────────────────
-
 // ── TOAST ──
 const toastEl = document.createElement('div');
 toastEl.className = 'toast';
@@ -634,90 +621,83 @@ function showToast(type, title, msg){
   toastTimer = setTimeout(()=>toastEl.classList.remove('show'), 5000);
 }
 
-// ── SEND TO FORMSPREE ──
-async function sendForm(formId, data, btn){
-  const orig = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-  try{
-    const res = await fetch(`https://formspree.io/f/${formId}`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify(data)
-    });
-    if(res.ok){
-      return true;
-    } else {
-      const err = await res.json();
-      throw new Error(err.error||'Erro ao enviar');
-    }
-  } catch(e){
-    showToast('error','Não foi possível enviar',e.message||'Verifique sua conexão.');
-    return false;
-  } finally {
-    btn.disabled = false;
-    btn.textContent = orig;
-  }
-}
+// ── STORAGE HELPERS ──
+function saveToStorage(key, arr){ localStorage.setItem(key, JSON.stringify(arr)); }
+function loadFromStorage(key){ try{ return JSON.parse(localStorage.getItem(key)||'[]'); }catch(e){ return []; } }
+
+// ── LOAD SAVED COMMENTS ──
+(function loadComments(){
+  const saved = loadFromStorage('njb_comments');
+  const list = document.getElementById('comments-list');
+  saved.forEach(c=>{
+    const item=document.createElement('div');item.className='comment-item';
+    item.innerHTML=`<div class="comment-avatar">${c.name[0].toUpperCase()}</div><div class="comment-body"><span class="comment-name">${c.name}</span><span class="comment-date">${c.date}</span><p class="comment-text">${c.text}</p></div>`;
+    list.prepend(item);
+  });
+})();
+
+// ── LOAD SAVED PRAYERS ──
+(function loadPrayers(){
+  const saved = loadFromStorage('njb_prayers');
+  const list = document.getElementById('prayer-list');
+  saved.forEach(p=>{
+    const item=document.createElement('div');item.className='prayer-item';
+    item.innerHTML=`<div class="prayer-ico">🙏</div><div><div class="prayer-name">${p.name}</div><p class="prayer-text">${p.text}</p></div>`;
+    list.prepend(item);
+  });
+})();
 
 // ── COMMENTS ──
-async function submitComment(btn){
+function submitComment(btn){
   const name=document.getElementById('c-name').value.trim()||'Anônimo';
-  const email=document.getElementById('c-email').value.trim();
   const txt=document.getElementById('c-text').value.trim();
   if(!txt){showToast('error','Campo vazio','Por favor escreva um comentário.');return;}
-  const ok = await sendForm(FS_COMMENT,{
-    _subject: `💬 Novo Comentário — ${name}`,
-    nome: name, email: email||'(não informado)', comentario: txt
-  }, btn);
-  if(ok){
-    // Show in page
-    const list=document.getElementById('comments-list');
-    const item=document.createElement('div');item.className='comment-item';
-    const today=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
-    item.innerHTML=`<div class="comment-avatar">${name[0].toUpperCase()}</div><div class="comment-body"><span class="comment-name">${name}</span><span class="comment-date">${today}</span><p class="comment-text">${txt}</p></div>`;
-    list.prepend(item);
-    document.getElementById('c-name').value='';
-    document.getElementById('c-email').value='';
-    document.getElementById('c-text').value='';
-    showToast('success','Comentário publicado!','Obrigado por compartilhar. Sua mensagem chegou ao administrador.');
-  }
+  const today=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
+  // Save to storage
+  const saved=loadFromStorage('njb_comments');
+  saved.push({name,text:txt,date:today});
+  saveToStorage('njb_comments',saved);
+  // Show in page
+  const list=document.getElementById('comments-list');
+  const item=document.createElement('div');item.className='comment-item';
+  item.innerHTML=`<div class="comment-avatar">${name[0].toUpperCase()}</div><div class="comment-body"><span class="comment-name">${name}</span><span class="comment-date">${today}</span><p class="comment-text">${txt}</p></div>`;
+  list.prepend(item);
+  document.getElementById('c-name').value='';
+  document.getElementById('c-email').value='';
+  document.getElementById('c-text').value='';
+  showToast('success','Comentário publicado!','Obrigado por compartilhar sua reflexão! 🙏');
 }
 
 // ── PRAYERS ──
-async function submitPrayer(btn){
+function submitPrayer(btn){
   const name=document.getElementById('prayer-name').value.trim()||'Anônimo';
-  const topic=document.getElementById('prayer-topic').value.trim();
   const txt=document.getElementById('prayer-text').value.trim();
   if(!txt){showToast('error','Campo vazio','Por favor descreva seu pedido de oração.');return;}
-  const ok = await sendForm(FS_PRAYER,{
-    _subject: `🙏 Pedido de Oração — ${name}`,
-    nome: name, assunto: topic||'(não informado)', pedido: txt
-  }, btn);
-  if(ok){
-    const list=document.getElementById('prayer-list');
-    const item=document.createElement('div');item.className='prayer-item';
-    item.innerHTML=`<div class="prayer-ico">🙏</div><div><div class="prayer-name">${name}</div><p class="prayer-text">${txt}</p></div>`;
-    list.prepend(item);
-    document.getElementById('prayer-name').value='';
-    document.getElementById('prayer-topic').value='';
-    document.getElementById('prayer-text').value='';
-    showToast('success','Pedido enviado!','Sua oração foi recebida. Intercessores serão notificados. 🙏');
-  }
+  // Save to storage
+  const saved=loadFromStorage('njb_prayers');
+  saved.push({name,text:txt});
+  saveToStorage('njb_prayers',saved);
+  // Show in page
+  const list=document.getElementById('prayer-list');
+  const item=document.createElement('div');item.className='prayer-item';
+  item.innerHTML=`<div class="prayer-ico">🙏</div><div><div class="prayer-name">${name}</div><p class="prayer-text">${txt}</p></div>`;
+  list.prepend(item);
+  document.getElementById('prayer-name').value='';
+  document.getElementById('prayer-topic').value='';
+  document.getElementById('prayer-text').value='';
+  showToast('success','Pedido recebido!','Que Deus responda sua oração. A comunidade ora junto! 🙏');
 }
 
 // ── NEWSLETTER ──
-async function submitNewsletter(btn){
+function submitNewsletter(btn){
   const email=document.getElementById('nl-email').value.trim();
-  if(!email){showToast('error','E-mail inválido','Por favor informe um e-mail válido.');return;}
-  const ok = await sendForm(FS_NEWSLETTER,{
-    _subject:'📧 Nova Inscrição — Newsletter Bíblica',
-    email: email
-  }, btn);
-  if(ok){
-    document.getElementById('nl-email').value='';
-    showToast('success','Inscrito com sucesso!','Você receberá os próximos estudos no seu e-mail.');
-  }
+  if(!email||!email.includes('@')){showToast('error','E-mail inválido','Por favor informe um e-mail válido.');return;}
+  const saved=loadFromStorage('njb_newsletter');
+  if(saved.includes(email)){showToast('error','Já inscrito','Este e-mail já está na lista.');return;}
+  saved.push(email);
+  saveToStorage('njb_newsletter',saved);
+  document.getElementById('nl-email').value='';
+  showToast('success','Inscrito com sucesso!','Você receberá os próximos estudos no seu e-mail. ✦');
 }
 
 // ── REVEAL ──
