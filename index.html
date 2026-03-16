@@ -1,36 +1,8 @@
-Com certeza! Entendi perfeitamente o objetivo: adicionar camadas de profundidade e interação 3D sutis para enriquecer a experiência visual, **preservando integralmente todo o conteúdo e a estrutura original da página**.
-
-Analisei seu `index.html` e apliquei as melhorias solicitadas, focando em performance e responsividade. As alterações foram feitas diretamente no CSS e no JavaScript existentes, sem modificar a estrutura HTML.
-
-### O que foi feito:
-
-1.  **Efeito Tilt 3D Aprimorado:**
-    *   O efeito de inclinação no mouse (`mousemove`) foi aplicado não apenas aos livros (`.tilt-book`), mas também aos cards de estudo em destaque (`.feat-card`) e aos cards de curiosidades (`.curio`).
-    *   A transição de volta ao estado normal (`mouseleave`) foi suavizada com `cubic-bezier(0.25, 0.46, 0.45, 0.94)` para uma sensação mais natural.
-    *   O "lift" (elevação) foi mantido e integrado ao efeito de rotação.
-
-2.  **Profundidade Leve no Hero (Mouse Parallax):**
-    *   O título principal (`.hero h1`) e o contêiner dos botões (`.hero-btns`) agora respondem sutilmente ao movimento do mouse, criando um efeito de paralaxe que dá uma agradável sensação de profundidade. O movimento é pequeno e não interfere na leitura.
-
-3.  **Botões com Sensação 3D:**
-    *   Além do `lift` no hover que já existia, adicionei um efeito de "pressionamento" no clique (`:active`), reduzindo levemente a escala (`scale(0.98)`).
-    *   As sombras dos botões foram ajustadas para se tornarem mais profundas no hover, reforçando a ideia de elevação.
-
-4.  **Performance e Responsividade:**
-    *   **Muito importante:** Todos os efeitos 3D baseados em mouse (tilt e parallax) são **desativados automaticamente em telas menores que 768px**. Isso garante que a experiência em dispositivos móveis seja fluida, leve e focada no conteúdo, sem consumo desnecessário de bateria ou recursos.
-
-5.  **Preservação Total do Conteúdo:**
-    *   Nenhum texto, link, imagem ou estrutura lógica foi alterado. As mudanças são puramente cosméticas e de interação, implementadas através de classes CSS e lógica JavaScript, conforme sua diretriz.
-
-Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melhorias 3D.
-
-***
-
 <!DOCTYPE html>
 <html lang="pt" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Nova Jerusalém — Escola Bíblica & Leitura Profética</title>
   <meta name="description" content="Escola bíblica online inspirada na Nova Jerusalém e no Rio da Água da Vida de Apocalipse 22.">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
@@ -54,14 +26,16 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
       --card: rgba(255, 255, 255, 0.72);
     }
     
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--cream);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
 
     body::before {
@@ -81,8 +55,9 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0.6rem 1rem;
+      width: 100%;
     }
-    .nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1100px; margin: 0 auto; }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1100px; margin: 0 auto; width: 100%; }
     .nav-logo { font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 700; color: var(--river-d); text-decoration: none; }
     .nav-logo em { color: var(--gold); font-style: normal; }
     
@@ -94,20 +69,21 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
 
     .hero {
       position: relative; z-index: 1; text-align: center;
-      padding: 3rem 1rem 2rem; min-height: 80vh;
+      padding: 4rem 1.5rem 2rem; min-height: 70vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      overflow: hidden; /* Para conter o pseudo-elemento de parallax */
+      overflow: hidden;
+      width: 100%;
     }
     .hero-eyebrow {
       display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--river-d); border: 1px solid rgba(91, 168, 208, 0.35); padding: 0.3rem 0.8rem;
       border-radius: 999px; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.6);
     }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 4rem); font-weight: 700; line-height: 1.1; color: var(--text); margin-bottom: 0.8rem; transition: transform 0.2s ease-out; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem); font-weight: 700; line-height: 1.1; color: var(--text); margin-bottom: 0.8rem; transition: transform 0.2s ease-out; width: 100%; }
     .hero h1 em { font-style: italic; color: var(--gold); }
-    .hero-verse { font-size: 0.9rem; color: var(--text-m); max-width: 100%; margin: 0 auto 0.8rem; line-height: 1.6; font-style: italic; }
+    .hero-verse { font-size: 0.9rem; color: var(--text-m); max-width: 700px; margin: 0 auto 0.8rem; line-height: 1.6; font-style: italic; }
     .hero-cite { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(91, 168, 208, 0.8); }
-    .hero-btns { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; width: 100%; transition: transform 0.2s ease-out; }
+    .hero-btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; width: 100%; transition: transform 0.2s ease-out; }
     
     .btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.8rem; font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 999px; transition: all 0.3s; border: none; cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif; }
     .btn-river { background: linear-gradient(135deg, var(--river-d), #3A88BB); color: #fff; box-shadow: 0 4px 16px rgba(91, 168, 208, 0.3); }
@@ -117,166 +93,109 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
     .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(184, 134, 11, 0.35); }
     .btn-gold:active { transform: translateY(-1px) scale(0.98); box-shadow: 0 5px 18px rgba(184, 134, 11, 0.3); }
     .btn-outline { border: 1.5px solid var(--border); color: var(--text-m); background: rgba(255, 255, 255, 0.6); }
-    .btn-outline:hover { border-color: var(--river-d); color: var(--river-d); background: #fff; }
+    .btn-outline:hover { background: var(--river-d); color: #fff; border-color: var(--river-d); }
 
-    .river-divider { position: relative; z-index: 1; width: 100%; height: 120px; overflow: hidden; margin: 0; }
+    .river-divider { position: relative; z-index: 1; width: 100%; height: 100px; overflow: hidden; margin: 0; }
     .river-divider canvas { width: 100%; height: 100%; display: block; }
 
-    .ticker { background: linear-gradient(90deg, rgba(91, 168, 208, 0.9), rgba(41, 108, 158, 0.95), rgba(91, 168, 208, 0.9)); color: #fff; padding: 0.6rem 0; font-size: 0.75rem; overflow: hidden; position: relative; z-index: 1; }
-    .ticker-inner { display: flex; gap: 4rem; animation: tick 35s linear infinite; white-space: nowrap; }
+    .ticker { background: linear-gradient(90deg, rgba(91, 168, 208, 0.9), rgba(41, 108, 158, 0.95), rgba(91, 168, 208, 0.9)); color: #fff; padding: 0.6rem 0; font-size: 0.75rem; overflow: hidden; position: relative; z-index: 1; width: 100%; }
+    .ticker-inner { display: flex; gap: 4rem; animation: tick 35s linear infinite; white-space: nowrap; width: max-content; }
     .ticker-inner span { flex-shrink: 0; opacity: 0.92; }
-    .t-sep { color: var(--gold-ll); margin: 0 0.5rem; opacity: 0.7; }
     @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ESTILO BIBLIOTECA 3D */
-    .shelf-container { margin-bottom: 4rem; }
-    .shelf-nav { 
-        display: flex; gap: 0.5rem; overflow-x: auto; padding: 1rem 0; margin-bottom: 2rem;
-        scrollbar-width: none; -ms-overflow-style: none; position: sticky; top: 60px; z-index: 10;
-        background: rgba(248, 253, 255, 0.8); backdrop-filter: blur(8px);
+    .main { position: relative; z-index: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; display: flex; flex-direction: column; gap: 2.5rem; }
+    @media (min-width: 1024px) { .main { padding: 3rem 2rem; } }
+
+    .sec-lbl { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; width: 100%; }
+    .sec-lbl h2 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--river-d); white-space: nowrap; }
+    .sec-lbl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ESTUDOS GRID (Nova Estrutura Dinâmica) */
+    .studies-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; width: 100%; perspective: 1000px; }
+    @media (min-width: 768px) { .studies-grid { grid-template-columns: repeat(2, 1fr); } }
+    
+    .feat-card { 
+        border-radius: 16px; overflow: hidden; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+        transform-style: preserve-3d;
+        width: 100%; background: var(--card);
+        display: flex; flex-direction: column;
     }
-    .shelf-nav::-webkit-scrollbar { display: none; }
+    .feat-top { padding: 2rem 1.5rem; position: relative; overflow: hidden; background: linear-gradient(135deg, #12213A, #1A3A6A); color: #fff; flex-grow: 1; }
+    .feat-card h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 700; line-height: 1.3; margin-bottom: 0.8rem; }
+    .feat-foot { padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem; background: rgba(255, 255, 255, 0.8); border-top: 1px solid rgba(0,0,0,0.05); }
+    @media (min-width: 640px) { .feat-foot { flex-direction: row; justify-content: space-between; align-items: center; } }
+    .feat-excerpt { font-size: 0.85rem; color: var(--text-m); line-height: 1.6; }
+
+    /* BIBLIOTECA RESPONSIVA */
+    .shelf-nav { 
+        display: flex; gap: 0.6rem; overflow-x: auto; padding: 1rem 0; margin-bottom: 2rem;
+        scrollbar-width: none; position: sticky; top: 60px; z-index: 20;
+        background: rgba(248, 253, 255, 0.9); backdrop-filter: blur(8px);
+        width: 100%;
+    }
     .nav-pill { 
         background: white; border: 1px solid var(--border); padding: 0.5rem 1rem; 
         border-radius: 99px; font-size: 0.7rem; font-weight: 600; color: var(--text-m); 
         text-decoration: none; white-space: nowrap; transition: 0.3s;
     }
     .nav-pill:hover { border-color: var(--river-d); color: var(--river-d); background: var(--crystal); }
-
-    .book-grid { 
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-        gap: 2rem; perspective: 1000px;
-    }
-    .book-3d-card { 
-        background: var(--card); border: 1px solid rgba(255, 255, 255, 0.6); 
-        border-radius: 20px; padding: 1.5rem; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
-        display: flex; flex-direction: column; gap: 1rem; position: relative;
-        transform-style: preserve-3d; backdrop-filter: blur(10px);
-    }
-    .book-3d-card:hover { 
-        box-shadow: 0 25px 50px rgba(91, 168, 208, 0.2); 
-        border-color: var(--river-d);
-    }
-    .book-cover-wrapper {
-        width: 140px; margin: 0 auto; border-radius: 6px; overflow: hidden;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15); transform: translateZ(30px);
-        transition: 0.4s ease; border: 1px solid rgba(184,134,11,0.1);
-    }
-    .book-3d-card:hover .book-cover-wrapper { transform: translateZ(50px) scale(1.05); }
-    .book-info { transform: translateZ(20px); text-align: center; }
-    .book-cat-tag { 
-        font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; 
-        color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; display: block;
-    }
-    .book-title-3d { 
-        font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; 
-        color: var(--text); line-height: 1.3; margin-bottom: 0.3rem; height: 2.8rem; overflow: hidden;
-    }
-    .book-author { font-size: 0.75rem; color: var(--river-d); font-weight: 600; margin-bottom: 0.8rem; }
-    .book-desc-3d { font-size: 0.8rem; color: var(--text-m); line-height: 1.5; margin-bottom: 1.2rem; height: 4.8rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
-    
+    .shelf-container { margin-bottom: 4rem; }
     .category-header { margin-bottom: 2rem; border-left: 4px solid var(--gold); padding-left: 1rem; }
     .category-header h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--text); letter-spacing: 0.05em; }
     .category-header p { font-size: 0.8rem; color: var(--text-l); font-style: italic; }
 
-    .main { position: relative; z-index: 1; max-width: 100%; margin: 0 auto; padding: 2rem 1.2rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
-    @media (min-width: 900px) { .main { grid-template-columns: 1fr 280px; max-width: 1100px; padding: 3rem 1.5rem; } }
+    .book-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; width: 100%; }
+    @media (min-width: 600px) { .book-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .book-grid { grid-template-columns: repeat(3, 1fr); } }
 
-    .sec-lbl { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
-    .sec-lbl h2 { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--river-d); white-space: nowrap; }
-    .sec-lbl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-    .glass { background: var(--card); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 16px; backdrop-filter: blur(12px); box-shadow: 0 2px 16px rgba(91, 168, 208, 0.08); }
-
-    .featured { margin-bottom: 2rem; perspective: 1000px; }
-    .feat-card { 
-        display: none; border-radius: 16px; overflow: hidden; 
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
-        transform-style: preserve-3d;
+    .book-3d-card { 
+        background: var(--card); border: 1px solid rgba(255, 255, 255, 0.6); 
+        border-radius: 20px; padding: 1.5rem; transition: 0.4s;
+        display: flex; flex-direction: column; position: relative;
+        transform-style: preserve-3d; backdrop-filter: blur(10px);
+        width: 100%; height: 100%;
     }
-    .feat-card.active { display: block; }
-    .feat-card:hover { 
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); 
+    .book-cover-wrapper {
+        width: 130px; height: 190px; margin: 0 auto 1rem; border-radius: 6px; overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15); transform: translateZ(30px);
     }
-    .feat-top { padding: 2rem 1.5rem; position: relative; overflow: hidden; }
-    .feat-tag { display: inline-block; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; margin-bottom: 0.8rem; font-weight: 600; }
-    .feat-card h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 4vw, 1.8rem); font-weight: 700; line-height: 1.3; margin-bottom: 0.6rem; }
-    .feat-card .feat-desc { font-size: 0.85rem; line-height: 1.6; opacity: 0.85; }
-    .feat-meta { display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.7rem; opacity: 0.6; }
-    
-    .feat-foot { padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem; background: rgba(255, 255, 255, 0.7); border-top: 1px solid rgba(255, 255, 255, 0.5); }
-    @media (min-width: 640px) { .feat-foot { flex-direction: row; justify-content: space-between; align-items: center; } }
-    
-    .feat-excerpt { font-size: 0.8rem; color: var(--text-m); line-height: 1.5; }
-    .feat-link { text-decoration: none; font-size: 0.75rem; font-weight: 600; color: var(--river-d); border: 1.5px solid var(--border); padding: 0.6rem 1.2rem; border-radius: 999px; transition: all 0.3s; text-align: center; white-space: nowrap; }
-    .feat-link:hover { background: var(--river-d); color: #fff; border-color: var(--river-d); }
+    .book-cover-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+    .book-info { transform: translateZ(20px); text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+    .book-cat-tag { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; display: block; }
+    .book-author { font-size: 0.75rem; color: var(--river-d); font-weight: 600; margin-bottom: 0.8rem; }
+    .book-title-3d { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; min-height: 2.6rem; display: flex; align-items: center; justify-content: center; }
+    .book-desc-3d { font-size: 0.8rem; color: var(--text-m); line-height: 1.5; margin-bottom: 1.2rem; }
 
-    .theme-0 .feat-top { background: linear-gradient(135deg, #12213A, #1A3A6A); color: #fff; }
-    .theme-0 .feat-tag { background: rgba(255, 229, 102, 0.15); color: #FFE566; border: 1px solid rgba(255, 229, 102, 0.3); }
-
-    .curiosidades { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
+    /* CURIOSIDADES EM GRID */
+    .curiosidades { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2.5rem; width: 100%; }
+    @media (min-width: 640px) { .curiosidades { grid-template-columns: 1fr 1fr; } }
     .curio { 
-        background: var(--card); border: 1px solid var(--border-s); border-radius: 14px; padding: 1.1rem; 
-        display: flex; gap: 0.8rem; align-items: flex-start; 
-        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s;
+        background: var(--card); border: 1px solid var(--border-s); border-radius: 14px; padding: 1.2rem; 
+        display: flex; gap: 1rem; align-items: flex-start; transition: 0.3s;
     }
-    .curio:hover { 
-        transform: translateX(3px) translateY(-2px); 
-        border-color: var(--border); 
-        box-shadow: 0 8px 20px rgba(91, 168, 208, 0.1); 
-    }
-    .curio-ico { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
-    .curio-title { font-weight: 600; font-size: 0.85rem; color: var(--text); margin-bottom: 0.2rem; }
-    .curio-text { font-size: 0.78rem; color: var(--text-l); line-height: 1.5; }
-    .curio-ref { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--river-d); margin-top: 0.4rem; }
 
-    .prayer-box, .comment-box { border: 1px solid rgba(91, 168, 208, 0.25); border-radius: 16px; padding: 1.5rem; margin-bottom: 2.5rem; }
-    .prayer-box { background: linear-gradient(135deg, rgba(91, 168, 208, 0.12), rgba(41, 108, 158, 0.08)); }
-    .prayer-box h3, .comment-box h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); margin-bottom: 0.4rem; }
-    .sub-p { font-size: 0.8rem; color: var(--text-l); margin-bottom: 1.2rem; line-height: 1.55; }
+    /* GRID DO RODAPÉ */
+    .bottom-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; width: 100%; align-items: stretch; }
+    @media (min-width: 768px) { .bottom-grid { grid-template-columns: repeat(2, 1fr); } }
+    .w { background: var(--card); border: 1px solid var(--border-s); border-radius: 14px; padding: 1.5rem; width: 100%; display: flex; flex-direction: column; }
     
-    .comment-form { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.5rem; }
-    .comment-row { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
+    .fi { border: 1.5px solid var(--border); border-radius: 8px; padding: 0.7rem 1rem; font-size: 0.85rem; width: 100%; background: #fff; outline: none; }
+    .comment-row { display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin-bottom: 0.8rem; }
     @media (min-width: 640px) { .comment-row { grid-template-columns: 1fr 1fr; } }
-    
-    .fi { border: 1.5px solid var(--border); border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.8rem; font-family: 'Inter', sans-serif; color: var(--text); background: rgba(255, 255, 255, 0.8); outline: none; transition: border-color 0.25s; width: 100%; }
-    .fi:focus { border-color: var(--river-d); }
-    textarea.fi { resize: vertical; min-height: 80px; }
-    .btn-send { width: 100%; padding: 0.65rem 1.6rem; align-self: flex-end; }
-    @media (min-width: 640px) { .btn-send { width: auto; } }
 
-    .sidebar { display: flex; flex-direction: column; gap: 1.4rem; }
-    @media (max-width: 899px) { .sidebar { grid-column: 1; margin-top: 1rem; } }
-    
-    .w { background: var(--card); border: 1px solid var(--border-s); border-radius: 14px; padding: 1.4rem; backdrop-filter: blur(10px); }
-    .w-title { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--river-d); margin-bottom: 0.9rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-s); }
+    /* REVELAÇÃO */
+    .rv { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
+    .rv.on { opacity: 1; transform: translateY(0); }
 
-    .verse-widget { background: linear-gradient(135deg, #0C1E40, #1A3A6A); }
-    .verse-widget .w-title { color: rgba(255, 229, 102, 0.75); border-color: rgba(255, 255, 255, 0.08); }
-    .verse-widget blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: #fff; line-height: 1.75; margin-bottom: 0.7rem; }
-    .verse-widget cite { font-size: 0.65rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255, 229, 102, 0.6); }
-
-    .qlinks { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
-    .qlinks li a { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--text-m); font-size: 0.8rem; padding: 0.45rem 0.5rem; border-radius: 8px; transition: all 0.25s; }
-    .qlinks li a:hover { background: rgba(91, 168, 208, 0.1); color: var(--river-d); }
-
-    .nl-w { background: linear-gradient(135deg, rgba(180, 230, 255, 0.2), rgba(91, 168, 208, 0.1)); border: 1px solid var(--border) !important; }
-    .nl-w p { font-size: 0.8rem; color: var(--text-m); line-height: 1.6; margin-bottom: 0.9rem; }
-    .nl-form { display: flex; flex-direction: column; gap: 0.55rem; }
-    .nl-form input { border: 1.5px solid var(--border); border-radius: 8px; padding: 0.6rem 0.85rem; font-size: 0.8rem; font-family: 'Inter', sans-serif; color: var(--text); background: #fff; outline: none; transition: border-color 0.25s; }
-    .nl-form input:focus { border-color: var(--river-d); }
-    .nl-form button { background: linear-gradient(135deg, var(--river-d), #3A88BB); color: #fff; border: none; border-radius: 8px; padding: 0.65rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.25s; }
-    .nl-form button:hover { opacity: 0.88; }
-
-    .rv { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .rv.on { opacity: 1; transform: none; }
-    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
-    
-    .tilt { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-    
-    .lang-section { border-left: 3px solid var(--river-m); padding-left: 1rem; margin-bottom: 1rem; }
-    .lang-lbl { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--river-d); font-weight: 700; margin-bottom: 0.3rem; display: block; }
+    /* MOBILE */
+    @media (max-width: 480px) {
+      .hero { padding-top: 3rem; }
+      .feat-top { padding: 1.5rem 1rem; }
+      .book-3d-card { padding: 1rem; }
+      .nav-logo { font-size: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -290,7 +209,7 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
       <li><a href="#estudos">Estudos</a></li>
       <li><a href="#biblioteca">Livros</a></li>
       <li><a href="#curiosidades">Curiosidades</a></li>
-      <li><a href="#oracao">Oração</a></li>
+      <li><a href="#oracao">Comunhão</a></li>
     </ul>
   </div>
 </nav>
@@ -302,7 +221,7 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
   <p class="hero-cite">— Apocalipse 22:1</p>
   <div class="hero-btns">
     <a href="#estudos" class="btn btn-river">Explorar Estudos</a>
-    <a href="#oracao" class="btn btn-gold">Pedido de Oração</a>
+    <a href="#oracao" class="btn btn-gold">Comunhão & Interação</a>
   </div>
 </div>
 
@@ -313,26 +232,16 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
 </div>
 
 <div class="main">
+  
   <div>
-    <div id="estudos" class="sec-lbl rv"><h2>✦ Estudo em Destaque</h2></div>
-    <div class="featured rv d1">
-      <div class="feat-card theme-0 active" data-index="0">
-        <div class="feat-top">
-          <div class="feat-tag">🌊 Estudo Completo</div>
-          <h3>Espíritos Marinhos: Identificação e Libertação</h3>
-          <p class="feat-desc">Cônjuges espirituais, íncubos e súcubos à luz de Gênesis 6. Como identificar e se libertar dessa opressão.</p>
-          <div class="feat-meta"><span>📚 20 min</span><span>🔥 Destaque</span></div>
-        </div>
-        <div class="feat-foot">
-          <p class="feat-excerpt">Um estudo aprofundado sobre os sinais de opressão espiritual sexual, as armas bíblicas e as orações de renúncia eficazes.</p>
-          <a href="nova-jerusalem/estudo_espiritos.html" class="feat-link">Ler o Estudo →</a>
-        </div>
-      </div>
-    </div>
+    <div id="estudos" class="sec-lbl rv"><h2>✦ Estudos Disponíveis</h2></div>
+    <div id="container-estudos" class="studies-grid rv"></div>
+  </div>
 
+  <div>
     <div id="biblioteca" class="sec-lbl rv"><h2>✦ Biblioteca Leitura Profética</h2></div>
     
-    <div class="shelf-nav rv d1">
+    <div class="shelf-nav rv">
         <a href="#cat-guerra" class="nav-pill">Guerra & Libertação</a>
         <a href="#cat-financas" class="nav-pill">Finanças & Crypto</a>
         <a href="#cat-mente" class="nav-pill">Mente & Sucesso</a>
@@ -342,7 +251,7 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <a href="#cat-criatividade" class="nav-pill">Criatividade</a>
     </div>
 
-    <div id="cat-guerra" class="shelf-container rv d1">
+    <div id="cat-guerra" class="shelf-container rv">
         <div class="category-header">
             <h3>Guerra Espiritual & Libertação</h3>
             <p>Livros para entender altares, maldições e libertação sólida em Cristo.</p>
@@ -350,44 +259,38 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <div class="book-grid">
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Libertação</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://images-na.ssl-images-amazon.com/images/P/B093RP1VT2.01.LZZZZZZZ.jpg" alt="Marine Spirits" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://images-na.ssl-images-amazon.com/images/P/B093RP1VT2.01.LZZZZZZZ.jpg" alt="Marine Spirits"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Marine Spirits: Diagnosis and Deliverance</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Compreenda a fundo a atuação das entidades espirituais ligadas às águas e à opressão noturna (íncubos e súcubos). Guia prático com armas bíblicas essenciais.</p>
-                    <a href="https://amzn.to/4lv1joR" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Compreenda a fundo a atuação das entidades espirituais ligadas às águas e à opressão noturna (íncubos e súcubos).</p>
+                    <a href="https://amzn.to/4lv1joR" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Batalha</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61VZRtUidZL._SY425_.jpg" alt="Altar Satânico" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61VZRtUidZL._SY425_.jpg" alt="Altar Satânico"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Como Destruir o Altar Satânico</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">As verdades que ele revela são para você hoje; Ele vai ensinar como usar os princípios espirituais que trouxeram a vitória total. A voz do altar é ativada através do sacrifício.</p>
-                    <a href="https://amzn.to/4s8Uj3B" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">A voz do altar é ativada através do sacrifício. Ensina como usar os princípios espirituais para vitória total.</p>
+                    <a href="https://amzn.to/4s8Uj3B" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Libertação</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61FRIuaMwcL._SY425_.jpg" alt="Generational Curses" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61FRIuaMwcL._SY425_.jpg" alt="Generational Curses"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">How To Break Generational Curses</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">As maldições geracionais são um padrão negativo de comportamento que mantém uma família em cativeiro espiritual. Aprenda como quebrá-las definitivamente.</p>
-                    <a href="https://www.amazon.com.br/Break-Generational-Curses-Henry-Otasowere/dp/147755677X/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">As maldições geracionais são um padrão negativo. Aprenda como quebrá-las definitivamente da sua família.</p>
+                    <a href="https://www.amazon.com.br/Break-Generational-Curses-Henry-Otasowere/dp/147755677X/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="cat-financas" class="shelf-container rv d2">
+    <div id="cat-financas" class="shelf-container rv">
         <div class="category-header">
             <h3>Finanças Bíblicas, Investimento & Criptomoedas</h3>
             <p>Princípios de prosperidade, mordomia e novas tecnologias financeiras.</p>
@@ -395,68 +298,58 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <div class="book-grid">
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Finanças</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61Yysb5c0eL._SY425_.jpg" alt="Conta Bancária" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61Yysb5c0eL._SY425_.jpg" alt="Conta Bancária"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">A Conta Bancária Espiritual</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Como fazer depósitos e levantamentos da sua conta bancária espiritual. O dinheiro assume a natureza de quem o possui. Comande ao diabo para liberar o seu dinheiro.</p>
-                    <a href="https://amzn.to/4doDVrb" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Como fazer depósitos e levantamentos da sua conta espiritual. Comande ao diabo para liberar o seu dinheiro.</p>
+                    <a href="https://amzn.to/4doDVrb" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Crypto</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/6101mGF4aJL._SY425_.jpg" alt="Airdrops Bible" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/6101mGF4aJL._SY425_.jpg" alt="Airdrops Bible"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">The Airdrops Bible</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Este guia abrangente fornece uma abordagem passo-a-passo para entender os airdrops e lucrar com tokens gratuitos no mundo das criptomoedas.</p>
-                    <a href="https://amzn.to/4ryHSwS" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Este guia abrangente fornece uma abordagem passo-a-passo para entender os airdrops e lucrar com tokens gratuitos.</p>
+                    <a href="https://amzn.to/4ryHSwS" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Investimento</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61l5z45qVmL._SY425_.jpg" alt="Compounding" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61l5z45qVmL._SY425_.jpg" alt="Compounding"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Power of Compounding</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">O Poder dos Juros Compostos: Alcançando o Crescimento Exponencial da Riqueza através de Estratégias de Investimento para o sucesso financeiro.</p>
-                    <a href="https://www.amazon.com.br/POWER-COMPOUNDING-Exponential-Investment-Strategies/dp/B0BW341975/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">O Poder dos Juros Compostos: Alcançando o Crescimento Exponencial da Riqueza através de Estratégias.</p>
+                    <a href="https://www.amazon.com.br/POWER-COMPOUNDING-Exponential-Investment-Strategies/dp/B0BW341975/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Mordomia</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61xIj3WQmrL._SY425_.jpg" alt="Lei da Contribuição" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61xIj3WQmrL._SY425_.jpg" alt="Lei da Contribuição"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">A Lei da Contribuição</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">O que é dízimo? Dízimo salva a gente? Quem deve dar o dízimo? Princípios espirituais testados para combater a pobreza e a falta em sua vida.</p>
-                    <a href="https://www.amazon.com.br/Lei-Contribui%C3%A7%C3%A3o-Henry-Otasowere/dp/1451560001/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Princípios espirituais testados para combater a pobreza e a falta em sua vida entendendo o dízimo.</p>
+                    <a href="https://www.amazon.com.br/Lei-Contribui%C3%A7%C3%A3o-Henry-Otasowere/dp/1451560001/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Rendimento Passivo</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/71A2Zf-8zuL._SY425_.jpg" alt="Crypto Staking" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/71A2Zf-8zuL._SY425_.jpg" alt="Crypto Staking"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Crypto Staking</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Ganhe rendimento passivo no excitante mundo das criptomoedas. Aprenda tudo o que precisa de saber sobre staking e geração de renda automática.</p>
-                    <a href="https://www.amazon.com.br/Crypto-Staking-Passive-Income-Another/dp/B0BW23B2NB/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Ganhe rendimento passivo no excitante mundo das criptomoedas. Aprenda tudo sobre geração de renda automática.</p>
+                    <a href="https://www.amazon.com.br/Crypto-Staking-Passive-Income-Another/dp/B0BW23B2NB/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="cat-mente" class="shelf-container rv d3">
+    <div id="cat-mente" class="shelf-container rv">
         <div class="category-header">
             <h3>Mente, Pensamento & Mentalidade</h3>
             <p>A renovação da mente como chave para a transformação da vida.</p>
@@ -464,56 +357,48 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <div class="book-grid">
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Psicologia Bíblica</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61JfAyXgUcL._AC_UY218_.jpg" alt="Lei do Pensamento" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61JfAyXgUcL._AC_UY218_.jpg" alt="Lei do Pensamento"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">A Lei do Pensamento</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Toda a libertação espiritual começa na mente. Descubra os princípios para governar seus pensamentos e quebrar fortalezas mentais.</p>
-                    <a href="https://amzn.to/4ltwxwJ" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Toda a libertação começa na mente. Descubra os princípios para governar seus pensamentos.</p>
+                    <a href="https://amzn.to/4ltwxwJ" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Mentalidade</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61GF3S2uIJL._SY425_.jpg" alt="Millionaire Mindset" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61GF3S2uIJL._SY425_.jpg" alt="Millionaire Mindset"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">The Millionaire's Mindset</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Como reprogramar o seu cérebro para o sucesso no rendimento passivo e desenvolver a mentalidade de um indivíduo bem-sucedido e rico.</p>
-                    <a href="https://www.amazon.com.br/Millionaires-Mindset-Reprogram-Passive-Success/dp/B0BYLSCPVJ/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Como reprogramar o seu cérebro para o sucesso e desenvolver a mentalidade de um indivíduo próspero.</p>
+                    <a href="https://www.amazon.com.br/Millionaires-Mindset-Reprogram-Passive-Success/dp/B0BYLSCPVJ/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Foco</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61iwpWsnwVL._SY425_.jpg" alt="Focus" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61iwpWsnwVL._SY425_.jpg" alt="Focus"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Focus</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">O segredo do foco para alcançar o seu pleno potencial. Aquilo para onde olha diariamente é naquilo em que se torna. Mude o que pensa.</p>
-                    <a href="https://www.amazon.com.br/Focus-Henry-Otasowere/dp/1070917818/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Aquilo para onde olha diariamente é naquilo em que se torna. Mude o que pensa com o segredo do foco.</p>
+                    <a href="https://www.amazon.com.br/Focus-Henry-Otasowere/dp/1070917818/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Inteligência Emocional</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61oZMBSKPnS._SY425_.jpg" alt="Self-Pity" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61oZMBSKPnS._SY425_.jpg" alt="Self-Pity"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Overcoming The Spirit of Self-Pity</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">A autocomiseração tem as propriedades viciantes de uma droga! Aprenda a não se permitir ser uma vítima das circunstâncias do passado.</p>
-                    <a href="https://www.amazon.com.br/Overcoming-spirit-self-pity-Henry-Otasowere/dp/B096TL886T/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">A autocomiseração é um vício. Aprenda a não se permitir ser uma vítima das circunstâncias do passado.</p>
+                    <a href="https://www.amazon.com.br/Overcoming-spirit-self-pity-Henry-Otasowere/dp/B096TL886T/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="cat-familia" class="shelf-container rv d1">
+    <div id="cat-familia" class="shelf-container rv">
         <div class="category-header">
             <h3>Família, Casamento & Relacionamentos</h3>
             <p>Sabedoria para construir lares firmes e relacionamentos saudáveis.</p>
@@ -521,56 +406,48 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <div class="book-grid">
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Matrimônio</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/71rfceMnxXL._SY425_.jpg" alt="Casamento Feliz" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/71rfceMnxXL._SY425_.jpg" alt="Casamento Feliz"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Segredos de um Casamento Feliz</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Aprenda os segredos para reacender sua vida sexual e seguir as leis do amor que tornam qualquer relacionamento bom e estável.</p>
-                    <a href="https://amzn.to/4sPX4qE" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Siga as leis do amor que tornam qualquer relacionamento bom e estável, reacendendo sua vida.</p>
+                    <a href="https://amzn.to/4sPX4qE" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Honra</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61h0cO2nAgL._SY425_.jpg" alt="Rei e Rainha" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61h0cO2nAgL._SY425_.jpg" alt="Rei e Rainha"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Rei trate sua mulher como uma rainha</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">O segredo que transformou muitas relações: comunicação e conversas honestas. Experimente níveis mais profundos de intimidade.</p>
-                    <a href="https://amzn.to/4lFAzlN" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">O segredo de muitas relações: comunicação honesta. Experimente níveis mais profundos de intimidade.</p>
+                    <a href="https://amzn.to/4lFAzlN" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Caráter</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61R0csVT4ML._SY425_.jpg" alt="Pessoas Difíceis" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61R0csVT4ML._SY425_.jpg" alt="Pessoas Difíceis"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Como Lidar Com Pessoas Difíceis</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Você não pode agradar a todos. Aprenda a manter o foco, terminar conversas negativas e não se envolver em lutas infrutíferas.</p>
-                    <a href="https://amzn.to/3NgaL2Z" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Aprenda a manter o foco, terminar conversas negativas e não se envolver em lutas infrutíferas.</p>
+                    <a href="https://amzn.to/3NgaL2Z" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Amor</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61n-DusQW9L._SY425_.jpg" alt="Receita do Amor" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61n-DusQW9L._SY425_.jpg" alt="Receita do Amor"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Receita do Amor</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Como construir um relacionamento seguindo as leis do amor que tornam os relacionamentos fracassados em bons e estáveis.</p>
-                    <a href="https://amzn.to/4720BcY" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Como construir um relacionamento seguindo as leis do amor que restauram relações fracassadas.</p>
+                    <a href="https://amzn.to/4720BcY" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="cat-oracao" class="shelf-container rv d2">
+    <div id="cat-oracao" class="shelf-container rv">
         <div class="category-header">
             <h3>Oração, Fé & Anjos</h3>
             <p>O acesso ao sobrenatural de Deus através da intercessão e do ministério angélico.</p>
@@ -578,56 +455,48 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <div class="book-grid">
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Intimidade</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/81uAoqW2pHL._SY425_.jpg" alt="Chave Mestre" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/81uAoqW2pHL._SY425_.jpg" alt="Chave Mestre"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">A Chave Mestre da Oração</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Tenha confiança no nome de Jesus e intimidade com Deus. A capacidade de falar e de escutar para trazer bênçãos em todas as áreas.</p>
-                    <a href="https://amzn.to/4urhuYJ" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Tenha confiança no nome de Jesus. A capacidade de falar e escutar para trazer bênçãos.</p>
+                    <a href="https://amzn.to/4urhuYJ" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Sobrenatural</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/71CUPZP3WSL._SY425_.jpg" alt="Vida dos Anjos" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/71CUPZP3WSL._SY425_.jpg" alt="Vida dos Anjos"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">A Vida e Obras Inegáveis dos Anjos</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Atividade dos anjos no louvor, adoração e evangelização. Anjos mensageiros, de proteção, libertação e que trazem respostas de oração.</p>
-                    <a href="https://amzn.to/4smwpll" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Atividade dos anjos no louvor, adoração, evangelização, proteção e libertação.</p>
+                    <a href="https://amzn.to/4smwpll" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Fé</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/51IwW0K8ZOL._SY425_.jpg" alt="SOS Numbers" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/51IwW0K8ZOL._SY425_.jpg" alt="SOS Numbers"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">SOS Numbers For God</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Números de Emergência do Céu. Nenhuma assistência de operador é necessária. Todas as linhas para o Céu estão abertas 24 horas por dia!</p>
-                    <a href="https://www.amazon.com.br/sos-Numbers-God-Emergency-numbers/dp/1477454187/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Números de Emergência do Céu. Todas as linhas para o Céu estão abertas 24 horas por dia!</p>
+                    <a href="https://www.amazon.com.br/sos-Numbers-God-Emergency-numbers/dp/1477454187/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Ministério Angélico</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61Xn2OS9TAL._SY425_.jpg" alt="Caminhada Anjos" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61Xn2OS9TAL._SY425_.jpg" alt="Caminhada Anjos"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Uma Caminhada Com Os Anjos</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Aprenda a usar o ministério angélico para proteção e refocalizar a sua mente. Deus quer que você ande e fale com os anjos.</p>
-                    <a href="https://www.amazon.com.br/Uma-Caminhada-Com-OS-Anjos/dp/1546821759/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Aprenda a usar o ministério angélico para proteção e refocalizar a sua mente em Deus.</p>
+                    <a href="https://www.amazon.com.br/Uma-Caminhada-Com-OS-Anjos/dp/1546821759/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="cat-crescimento" class="shelf-container rv d3">
+    <div id="cat-crescimento" class="shelf-container rv">
         <div class="category-header">
             <h3>Crescimento Espiritual & Restauração</h3>
             <p>O fundamento da fé, altares de Deus e a vitória do novo nascimento.</p>
@@ -635,56 +504,48 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <div class="book-grid">
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Poder</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61KGKLCUt2L._SY425_.jpg" alt="Poder Altar" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61KGKLCUt2L._SY425_.jpg" alt="Poder Altar"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">O Poder de Um Altar</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">A verdade bíblica sobre o poder de um altar. O altar é o lugar onde o seu destino é trocado, restaurado e firmado em Deus.</p>
-                    <a href="https://amzn.to/4sfRw90" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">A verdade bíblica sobre o poder de um altar, o lugar onde o seu destino é trocado e firmado.</p>
+                    <a href="https://amzn.to/4sfRw90" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Vitória</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61QygmV9kdL._SY425_.jpg" alt="Deus Terminar" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/61QygmV9kdL._SY425_.jpg" alt="Deus Terminar"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Deus Terminar o Que Ele Começou</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">A vida no altar é o lugar onde tudo é trocado. A sua vida é feita ou destruída no altar. O altar de Deus limpa o seu nome.</p>
-                    <a href="https://amzn.to/4svuqvj" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">A vida no altar é o lugar onde tudo é trocado. O altar de Deus limpa o seu nome.</p>
+                    <a href="https://amzn.to/4svuqvj" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Fé</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/71hGi0x6z6L._SY425_.jpg" alt="Homem de Fé" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/71hGi0x6z6L._SY425_.jpg" alt="Homem de Fé"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">O Homem de Fé</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">O homem de fé é o homem de coragem. Quem tem fé não questiona, não murmura e não coloca pontos de interrogação nas promessas.</p>
-                    <a href="https://amzn.to/4lPajFT" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">O homem de fé é o homem de coragem, que não questiona e não murmura nas promessas.</p>
+                    <a href="https://amzn.to/4lPajFT" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Salvação</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/41w8FUOEwgL._SY445_SX342_ML2_.jpg" alt="Novo Nascimento" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/41w8FUOEwgL._SY445_SX342_ML2_.jpg" alt="Novo Nascimento"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Salvação, um novo nascimento</h4>
                     <p class="book-author">Por Henry Otasowere</p>
-                    <p class="book-desc-3d">Chaves para a vitória através da experiência do novo nascimento. Revelações para uma vida cristã vitoriosa e fundamentada.</p>
-                    <a href="https://www.amazon.com.br/Salva%C3%A7%C3%A3o-um-novo-nascimento-Portuguese/dp/1453808833/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Chaves para a vitória através da experiência do novo nascimento. Revelações fundamentais.</p>
+                    <a href="https://www.amazon.com.br/Salva%C3%A7%C3%A3o-um-novo-nascimento-Portuguese/dp/1453808833/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="cat-criatividade" class="shelf-container rv d1">
+    <div id="cat-criatividade" class="shelf-container rv">
         <div class="category-header">
             <h3>Criatividade & Entretenimento</h3>
             <p>Expressão artística e inspiração para momentos de lazer e reflexão.</p>
@@ -692,257 +553,213 @@ Abaixo está o seu arquivo `index.html` completo e atualizado com todas as melho
         <div class="book-grid">
             <div class="book-3d-card tilt-book">
                 <span class="book-cat-tag">Arte</span>
-                <div class="book-cover-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/71QbdFtxPsL._SY342_.jpg" alt="Dança Comigo" style="width:100%">
-                </div>
+                <div class="book-cover-wrapper"><img src="https://m.media-amazon.com/images/I/71QbdFtxPsL._SY342_.jpg" alt="Dança Comigo"></div>
                 <div class="book-info">
                     <h4 class="book-title-3d">Dança Comigo</h4>
                     <p class="book-author">Por Katy Cipri (com Henry Otasowere)</p>
-                    <p class="book-desc-3d">Livro de colorir inspirado no filme "Dirty Dancing". Dê asas à sua imaginação e colora cenas marcantes e criativas.</p>
-                    <a href="https://www.amazon.com.br/Dan%C3%A7a-Comigo-Portuguese-katy-Cipri/dp/B0FCMMLMQB/" class="btn btn-gold" style="width:100%; font-size:0.7rem;">Ver na Amazon →</a>
+                    <p class="book-desc-3d">Livro de colorir inspirado no filme "Dirty Dancing". Dê asas à sua imaginação e colora.</p>
+                    <a href="https://www.amazon.com.br/Dan%C3%A7a-Comigo-Portuguese-katy-Cipri/dp/B0FCMMLMQB/" class="btn btn-gold" style="width:100%; font-size:0.7rem; margin-top:auto;">Ver na Amazon →</a>
                 </div>
             </div>
         </div>
     </div>
-    <div id="curiosidades" class="sec-lbl rv"><h2>✦ Você Sabia?</h2></div>
-    <div class="curiosidades">
-      <div class="curio rv tilt">
-        <div class="curio-ico">💧</div>
-        <div>
-          <div class="curio-title">O Rio tem apenas UMA origem</div>
-          <p class="curio-text">Diferente dos rios da Terra que têm diversas nascentes e afluentes, o Rio da Água da Vida de Apc 22 tem uma única origem: o próprio trono de Deus.</p>
-          <div class="curio-ref">Apocalipse 22:1</div>
-        </div>
-      </div>
-      <div class="curio rv d1 tilt">
-        <div class="curio-ico">🌳</div>
-        <div>
-          <div class="curio-title">A Árvore da Vida produz 12 frutos diferentes</div>
-          <p class="curio-text">Em Apocalipse 22:2, a Árvore da Vida produz 12 frutos, dando o seu fruto em cada mês. Ou seja, na eternidade haverá um calendário e plenitude de nutrição espiritual.</p>
-          <div class="curio-ref">Apocalipse 22:2</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="oracao" class="sec-lbl rv"><h2>✦ Pedidos de Oração</h2></div>
-    <div class="prayer-box rv">
-      <h3>🙏 Deixe seu Pedido de Oração</h3>
-      <p class="sub-p">Ore junto conosco. Deixe seu pedido abaixo — cada pedido será levado em intercessão pela comunidade.</p>
-      <div class="comment-form">
-        <div class="comment-row">
-          <input class="fi" type="text" id="prayer-name" placeholder="Seu nome (opcional)">
-          <input class="fi" type="text" id="prayer-topic" placeholder="Assunto (ex: cura, família...)">
-        </div>
-        <textarea class="fi" id="prayer-text" placeholder="Descreva brevemente seu pedido de oração..."></textarea>
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
-          <span style="font-size:.7rem;color:var(--text-l);font-style:italic">"Confessai as vossas faltas uns aos outros e orai uns pelos outros." — Tiago 5:16</span>
-          <button class="btn btn-river btn-send">Enviar Pedido ✦</button>
-        </div>
-      </div>
-    </div>
-
   </div>
-  
-  <aside class="sidebar">
-    <div class="w verse-widget rv">
-      <div class="w-title">✦ Versículo do Dia</div>
-      <blockquote id="daily-verse">"E reinarão pelos séculos dos séculos."</blockquote>
-      <cite id="daily-ref">— Apocalipse 22:5</cite>
-    </div>
 
-    <div class="w rv d1">
-      <div class="w-title">✦ Estudos Disponíveis</div>
-      <ul class="qlinks">
-        <li><a href="nova-jerusalem/estudo_espiritos.html"><span>🌊</span> Espíritos Marinhos</a></li>
-        <li><a href="Eternidade.html"><span>♾️</span> Eternidade</a></li>
-      </ul>
-    </div>
-
-    <div class="w nl-w rv d3">
-      <div class="w-title">✦ Receber Estudos</div>
-      <p>Insira seu e-mail para receber os próximos estudos e meditações.</p>
-      <div class="nl-form">
-        <input type="email" id="nl-email" placeholder="seu@email.com">
-        <button>Receber ✦</button>
+  <div>
+    <div id="curiosidades" class="sec-lbl rv" style="margin-top:2rem;"><h2>✦ Você Sabia?</h2></div>
+    <div class="curiosidades">
+      <div class="curio rv">
+        <div style="font-size:1.5rem;">💧</div>
+        <div>
+          <div style="font-weight:600; font-size:0.85rem; margin-bottom:0.2rem;">Origem Única</div>
+          <p style="font-size:0.78rem; color:var(--text-l); line-height:1.5;">O Rio da Água da Vida tem uma única origem: o próprio trono de Deus e do Cordeiro.</p>
+          <div style="font-size:0.65rem; color:var(--river-d); margin-top:0.4rem;">Apocalipse 22:1</div>
+        </div>
+      </div>
+      <div class="curio rv">
+        <div style="font-size:1.5rem;">🌳</div>
+        <div>
+          <div style="font-weight:600; font-size:0.85rem; margin-bottom:0.2rem;">12 Frutos</div>
+          <p style="font-size:0.78rem; color:var(--text-l); line-height:1.5;">A Árvore da Vida produz frutos diferentes, dando o seu fruto em cada mês.</p>
+          <div style="font-size:0.65rem; color:var(--river-d); margin-top:0.4rem;">Apocalipse 22:2</div>
+        </div>
       </div>
     </div>
-  </aside>
+  </div>
+
+  <div id="oracao">
+    <div class="sec-lbl rv" style="margin-top:2rem;"><h2>✦ Comunhão & Interação</h2></div>
+    
+    <div class="bottom-grid">
+      
+      <div class="w rv" style="background: linear-gradient(135deg, rgba(91, 168, 208, 0.1), rgba(41, 108, 158, 0.05)); border: 1px solid var(--border);">
+        <h3 style="font-family:'Playfair Display'; font-size:1.1rem; margin-bottom:0.5rem;">🙏 Deixe seu Pedido</h3>
+        <p style="font-size:0.8rem; color:var(--text-l); margin-bottom:1.5rem;">Ore junto conosco. Cada pedido é levado em intercessão pela comunidade.</p>
+        <div class="comment-form" style="margin-top: auto;">
+          <div class="comment-row">
+            <input class="fi" type="text" placeholder="Seu nome">
+            <input class="fi" type="text" placeholder="Assunto (Cura, Família...)">
+          </div>
+          <textarea class="fi" style="min-height:90px; margin-bottom:1rem;" placeholder="Descreva seu pedido..."></textarea>
+          <button class="btn btn-river" style="width:100%;">Enviar Pedido ✦</button>
+        </div>
+      </div>
+
+      <div class="w rv" style="background: linear-gradient(135deg, #0C1E40, #1A3A6A); color:#fff; justify-content: center;">
+        <div style="font-family:'Cinzel'; font-size:0.65rem; letter-spacing:0.15em; margin-bottom:1rem; color:var(--gold-ll);">✦ Versículo do Dia</div>
+        <blockquote style="font-family:'Playfair Display'; font-style:italic; font-size:1.05rem; line-height:1.7;">"E reinarão pelos séculos dos séculos."</blockquote>
+        <cite style="font-size:0.7rem; opacity:0.6; display:block; margin-top:0.8rem;">— Apocalipse 22:5</cite>
+      </div>
+
+      <div class="w rv" style="justify-content: center;">
+        <div style="font-family:'Cinzel'; font-size:0.65rem; letter-spacing:0.15em; margin-bottom:1rem; color:var(--river-d);">✦ Links Rápidos</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
+          <li><a href="nova-jerusalem/estudo_espiritos.html" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:var(--text-m); font-size:0.85rem; transition:0.2s;"><span style="font-size:1.1rem;">🌊</span> Espíritos Marinhos</a></li>
+          <li><a href="Eternidade.html" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:var(--text-m); font-size:0.85rem; transition:0.2s;"><span style="font-size:1.1rem;">♾️</span> Tempo & Eternidade</a></li>
+        </ul>
+      </div>
+
+      <div class="w rv" style="background: linear-gradient(135deg, rgba(180, 230, 255, 0.2), rgba(91, 168, 208, 0.1)); justify-content: center;">
+        <div style="font-family:'Cinzel'; font-size:0.65rem; letter-spacing:0.15em; margin-bottom:1rem; color:var(--river-d);">✦ Newsletter</div>
+        <p style="font-size:0.8rem; margin-bottom:1.5rem; color:var(--text-m);">Insira o seu e-mail para receber os próximos estudos e atualizações.</p>
+        <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:auto;">
+          <input class="fi" type="email" placeholder="seu@email.com">
+          <button class="btn btn-river" style="padding:0.7rem;">Inscrever ✦</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
-<footer style="position:relative;z-index:1;background:#080E1C;color:rgba(255,255,255,.5);text-align:center;padding:3rem 1.5rem;border-top:1px solid rgba(91,168,208,.15)">
-  <h4 style="font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);margin-bottom:.8rem;letter-spacing:.1em;">Projeto Leitura Profética</h4>
-  
-  <p style="font-size:.85rem; max-width: 600px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
-    Convidamos o leitor a visitar a nossa página do blog para mais conteúdos edificantes e a estar connosco presencialmente na nossa igreja local.
-    <br><br>
-    <strong style="color:rgba(255,255,255,.8);">Rua Diogo Brandão 63, Porto, PT</strong>
+<footer style="background:#080E1C; color:rgba(255,255,255,.5); text-align:center; padding:4rem 1.5rem; border-top:1px solid rgba(255,255,255,.05); position:relative; z-index:1;">
+  <h4 style="font-family:'Cinzel'; color:var(--gold); margin-bottom:1rem;">Projeto Leitura Profética</h4>
+  <p style="font-size:0.85rem; max-width:600px; margin:0 auto 2rem; line-height:1.6;">
+    Visite o nosso blog para mais conteúdos edificantes e nossa igreja local:<br>
+    <strong style="color:#fff;">Rua Diogo Brandão 63, Porto, PT</strong>
   </p>
-  
-  <div style="height: 1px; background: rgba(255,255,255,0.1); max-width: 300px; margin: 0 auto 1.5rem auto;"></div>
-  <p style="font-size:.72rem">© 2026 Hub Educacional Bíblico — Estudos, Automação & Literatura.</p>
+  <p style="font-size:0.7rem;">© 2026 Hub Educacional Bíblico — Todos os direitos reservados.</p>
 </footer>
 
 <script>
+// ==========================================
+// 1. LISTA DINÂMICA DE ESTUDOS (FÁCIL ADIÇÃO)
+// ==========================================
+// Para adicionar um novo estudo, basta copiar e colar um bloco {...} dentro da lista abaixo.
+const listaDeEstudos = [
+  {
+    etiqueta: "🌊 Estudo Completo",
+    titulo: "Espíritos Marinhos: Identificação e Libertação",
+    descricao: "Cônjuges espirituais, íncubos e súcubos à luz de Gênesis 6. Como identificar e se libertar dessa opressão.",
+    resumo: "Um estudo aprofundado sobre os sinais de opressão espiritual sexual, as armas bíblicas e as orações de renúncia eficazes.",
+    link: "nova-jerusalem/estudo_espiritos.html"
+  },
+  {
+    etiqueta: "♾️ Série Escatologia",
+    titulo: "Tempo & Eternidade",
+    descricao: "Uma análise bíblica sobre a diferença entre o tempo cronológico humano e a eternidade no trono de Deus.",
+    resumo: "Entenda o conceito do 'Kairós' de Deus e como as promessas proféticas se encaixam na linha do tempo celestial.",
+    link: "Eternidade.html"
+  }
+  // Para adicionar mais estudos, insira uma vírgula no bloco acima e cole um novo bloco de estudo.
+];
+
+// Função que cria os estudos na página automaticamente
+function renderizarEstudos() {
+  const container = document.getElementById('container-estudos');
+  listaDeEstudos.forEach(estudo => {
+    const cardHTML = `
+      <div class="feat-card theme-0 tilt-book">
+        <div class="feat-top">
+          <div style="display:inline-block; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; padding:0.25rem 0.6rem; border-radius:999px; margin-bottom:0.8rem; font-weight:600; background:rgba(255,229,102,0.15); color:#FFE566; border:1px solid rgba(255,229,102,0.3);">${estudo.etiqueta}</div>
+          <h3 style="color:#fff;">${estudo.titulo}</h3>
+          <p style="color:rgba(255,255,255,0.85); font-size:0.9rem; line-height:1.6;">${estudo.descricao}</p>
+        </div>
+        <div class="feat-foot">
+          <p class="feat-excerpt">${estudo.resumo}</p>
+          <a href="${estudo.link}" class="feat-link btn-outline btn" style="padding: 0.6rem 1.2rem; border-radius:999px; text-decoration:none; color:var(--river-d);">Ler o Estudo →</a>
+        </div>
+      </div>
+    `;
+    container.innerHTML += cardHTML;
+  });
+}
+renderizarEstudos();
+
+// ==========================================
+// 2. EFEITOS VISUAIS E CANVAS
+// ==========================================
 const cv = document.getElementById('river-canvas');
 const ctx = cv.getContext('2d');
-let W,H;
-function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+let W, H;
+function resize(){ W=cv.width=window.innerWidth; H=cv.height=window.innerHeight; }
 let t=0;
 function bgLoop(){
-  ctx.clearRect(0,0,W,H);
-  t+=0.008;
+  ctx.clearRect(0,0,W,H); t+=0.008;
   const bands=[
-    {y:0.58,amp:22,spd:0.28,w:260,col:'rgba(140,210,250,0.09)'},
-    {y:0.65,amp:16,spd:0.35,w:200,col:'rgba(91,168,208,0.07)'},
-    {y:0.72,amp:12,spd:0.42,w:170,col:'rgba(168,225,255,0.065)'},
-    {y:0.80,amp:8, spd:0.50,w:140,col:'rgba(91,168,208,0.055)'},
-    {y:0.88,amp:5, spd:0.60,w:110,col:'rgba(140,210,250,0.045)'},
+    {y:0.6, amp:20, spd:0.3, w:250, col:'rgba(140,210,250,0.08)'},
+    {y:0.75, amp:15, spd:0.4, w:180, col:'rgba(91,168,208,0.06)'},
+    {y:0.9, amp:10, spd:0.5, w:120, col:'rgba(140,210,250,0.04)'}
   ];
   bands.forEach(b=>{
-    const yBase=H*b.y;
-    ctx.beginPath();
-    ctx.moveTo(0,yBase);
-    for(let x=0;x<=W;x+=3){
-      const dy=Math.sin((x/b.w)+t*b.spd+b.y*10)*b.amp + Math.sin((x/(b.w*0.6))+t*b.spd*1.3)*b.amp*0.4;
-      ctx.lineTo(x,yBase+dy);
+    const yB=H*b.y; ctx.beginPath(); ctx.moveTo(0,yB);
+    for(let x=0; x<=W; x+=5){
+      const dy=Math.sin((x/b.w)+t*b.spd)*b.amp; ctx.lineTo(x,yB+dy);
     }
-    ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();
-    ctx.fillStyle=b.col;ctx.fill();
+    ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath(); ctx.fillStyle=b.col; ctx.fill();
   });
   requestAnimationFrame(bgLoop);
 }
-resize();bgLoop();
-window.addEventListener('resize',resize);
+resize(); bgLoop();
+window.addEventListener('resize', resize);
 
 const dc=document.getElementById('river-divider-canvas');
 const dctx=dc.getContext('2d');
-let DW,DH;
-function resizeDiv(){DW=dc.width=dc.parentElement.offsetWidth;DH=dc.height=dc.parentElement.offsetHeight;}
+let DW, DH;
+function resDiv(){ DW=dc.width=dc.parentElement.offsetWidth; DH=dc.height=dc.parentElement.offsetHeight; }
 let dt=0;
 function divLoop(){
-  dctx.clearRect(0,0,DW,DH);
-  dt+=0.018;
-  const streams=[
-    {xCenter:0.5, spread:0.9, depth:0, alpha:0.55, colorA:'rgba(120,200,255,', colorB:'rgba(200,240,255,'},
-    {xCenter:0.5, spread:0.65, depth:1, alpha:0.6, colorA:'rgba(91,168,208,', colorB:'rgba(180,230,255,'},
-    {xCenter:0.5, spread:0.42, depth:2, alpha:0.65, colorA:'rgba(60,140,200,', colorB:'rgba(160,220,255,'},
-    {xCenter:0.5, spread:0.22, depth:3, alpha:0.7, colorA:'rgba(40,110,180,', colorB:'rgba(140,210,255,'},
-    {xCenter:0.5, spread:0.08, depth:4, alpha:0.8, colorA:'rgba(200,240,255,', colorB:'rgba(240,252,255,'},
-  ];
-  streams.forEach((s,si)=>{
-    const wBottom = DW * s.spread;
-    const wTop    = wBottom * 0.08;
-    const xBotL = DW*s.xCenter - wBottom/2;
-    const xBotR = DW*s.xCenter + wBottom/2;
-    const xTopL = DW*s.xCenter - wTop/2;
-    const xTopR = DW*s.xCenter + wTop/2;
-    const rip = Math.sin(dt*1.2 + si*0.8)*3;
-    const rip2= Math.sin(dt*0.9 + si*1.2)*2;
-    const grad=dctx.createLinearGradient(0,0,0,DH);
-    grad.addColorStop(0, s.colorA+'0.15)');
-    grad.addColorStop(0.4, s.colorA+s.alpha+')');
-    grad.addColorStop(1, s.colorB+s.alpha+')');
-    dctx.beginPath();
-    dctx.moveTo(xBotL+rip, DH);
-    dctx.bezierCurveTo(xBotL+rip*0.7, DH*0.7, xTopL+rip2, DH*0.2, xTopL, 0);
-    dctx.lineTo(xTopR,0);
-    dctx.bezierCurveTo(xTopR+rip2, DH*0.2, xBotR+rip*0.7, DH*0.7, xBotR+rip, DH);
-    dctx.closePath();
-    dctx.fillStyle=grad;
-    dctx.fill();
-    if(si===4){
-      const hx=DW*s.xCenter;
-      const hGrad=dctx.createLinearGradient(0,0,0,DH);
-      hGrad.addColorStop(0,'rgba(255,255,255,0)');
-      hGrad.addColorStop(0.3,'rgba(255,255,255,0.5)');
-      hGrad.addColorStop(1,'rgba(255,255,255,0.15)');
-      dctx.beginPath();
-      dctx.moveTo(hx,0);
-      for(let y=0;y<=DH;y+=2){
-        const off=Math.sin(dt*2+y*0.1)*1.5;
-        dctx.lineTo(hx+off,y);
-      }
-      dctx.strokeStyle=hGrad;
-      dctx.lineWidth=2;
-      dctx.stroke();
-    }
-  });
-  dctx.font='italic 11px Georgia,serif';
-  dctx.fillStyle='rgba(91,168,208,0.45)';
-  dctx.textAlign='center';
-  dctx.fillText('"límpido como cristal" — Apocalipse 22:1', DW/2, DH-8);
+  dctx.clearRect(0,0,DW,DH); dt+=0.02;
+  const grad=dctx.createLinearGradient(0,0,0,DH);
+  grad.addColorStop(0, 'rgba(91,168,208,0)'); grad.addColorStop(0.5, 'rgba(91,168,208,0.3)'); grad.addColorStop(1, 'rgba(91,168,208,0)');
+  dctx.fillStyle=grad; dctx.fillRect(0,0,DW,DH);
   requestAnimationFrame(divLoop);
 }
-resizeDiv();divLoop();
-window.addEventListener('resize',resizeDiv);
+resDiv(); divLoop();
+window.addEventListener('resize', resDiv);
 
-const tickItems=[
-  '✦ Pv 3:5 — "Confia no Senhor de todo o teu coração."',
-  '✦ Ap 21:4 — "Deus enxugará de seus olhos toda lágrima."',
-  '✦ Pv 9:10 — "O temor do Senhor é o princípio da sabedoria."',
-  '✦ Ap 22:1 — "Rio puro de água da vida, límpido como cristal."',
-];
-const tc=document.getElementById('ticker-content');
-const full=[...tickItems,...tickItems,...tickItems].map(t=>`<span>${t}</span><span class="t-sep">|</span>`).join('');
-tc.innerHTML=full;
+const tickItems=['✦ Pv 3:5 — "Confia no Senhor."', '✦ Ap 21:4 — "Deus enxugará toda lágrima."', '✦ Pv 9:10 — "O temor é o princípio."', '✦ Ap 22:1 — "Rio puro de água."'];
+document.getElementById('ticker-content').innerHTML = [...tickItems, ...tickItems, ...tickItems].map(i => `<span>${i}</span>`).join('<span style="color:var(--gold-ll); opacity:0.5;">|</span>');
 
-const rvEls=document.querySelectorAll('.rv');
-const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:0.08});
-rvEls.forEach(el=>obs.observe(el));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('on'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// Inicializa efeitos 3D apenas em desktop
-function init3DEffects() {
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        return;
-    }
+function init3D() {
+  if (window.innerWidth < 1024) return;
+  
+  const hero = document.querySelector('.hero');
+  const h1 = hero.querySelector('h1');
+  hero.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    h1.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  });
 
-    // Efeito de Tilt 3D em cards (livros, estudos, curiosidades)
-    const tiltElements = document.querySelectorAll('.tilt-book, .feat-card, .curio');
-    tiltElements.forEach(el => {
-        el.addEventListener('mousemove', e => {
-            const r = el.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width - 0.5;
-            const y = (e.clientY - r.top) / r.height - 0.5;
-            
-            // Rotação suave e elevação
-            const rotateY = x * 12;
-            const rotateX = -y * 12;
-            const translateY = -10;
-
-            el.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateY(${translateY}px) scale(1.02)`;
-        });
-
-        el.addEventListener('mouseleave', () => {
-            el.style.transform = '';
-        });
+  // Aplica o efeito 3D também aos estudos que foram gerados via JS dinamicamente
+  document.querySelectorAll('.tilt-book').forEach(b => {
+    b.addEventListener('mousemove', e => {
+      const rect = b.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      b.style.transform = `perspective(1000px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-5px)`;
     });
-
-    // Efeito de Parallax no Hero com base no mouse
-    const hero = document.querySelector('.hero');
-    const heroTitle = hero.querySelector('h1');
-    const heroBtns = hero.querySelector('.hero-btns');
-
-    hero.addEventListener('mousemove', (e) => {
-        const r = hero.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width;
-        const y = (e.clientY - r.top) / r.height;
-
-        // Movimento sutil e inverso para dar profundidade
-        const moveX = (x - 0.5) * -20;
-        const moveY = (y - 0.5) * -20;
-
-        heroTitle.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        heroBtns.style.transform = `translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
-    });
-
-    hero.addEventListener('mouseleave', () => {
-        heroTitle.style.transform = '';
-        heroBtns.style.transform = '';
-    });
+    b.addEventListener('mouseleave', () => b.style.transform = '');
+  });
 }
-
-// Chama a função quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', init3DEffects);
+// Dá um pequeno atraso para garantir que os estudos dinâmicos renderizaram antes de aplicar o evento 3D
+window.addEventListener('load', () => setTimeout(init3D, 100));
 </script>
 </body>
 </html>
