@@ -36,7 +36,6 @@
       overflow-x: hidden;
     }
 
-    /* ── RIVER BACKGROUND ── */
     body::before {
       content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background:
@@ -48,7 +47,6 @@
 
     #river-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .55; }
 
-    /* ── NAV - Otimizado para mobile ── */
     nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(248, 253, 255, 0.95);
@@ -66,7 +64,6 @@
     nav a { color: var(--text-m); text-decoration: none; font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.6rem; border-radius: 6px; transition: all 0.25s; }
     nav a:hover { color: var(--river-d); background: rgba(91, 168, 208, 0.1); }
 
-    /* ── HERO - Mobile first ── */
     .hero {
       position: relative; z-index: 1; text-align: center;
       padding: 3rem 1rem 2rem; min-height: 80vh;
@@ -91,30 +88,24 @@
     .btn-outline { border: 1.5px solid var(--border); color: var(--text-m); background: rgba(255, 255, 255, 0.6); }
     .btn-outline:hover { border-color: var(--river-d); color: var(--river-d); background: #fff; }
 
-    /* ── RIVER DIVIDER ── */
     .river-divider { position: relative; z-index: 1; width: 100%; height: 120px; overflow: hidden; margin: 0; }
     .river-divider canvas { width: 100%; height: 100%; display: block; }
 
-    /* ── TICKER ── */
     .ticker { background: linear-gradient(90deg, rgba(91, 168, 208, 0.9), rgba(41, 108, 158, 0.95), rgba(91, 168, 208, 0.9)); color: #fff; padding: 0.6rem 0; font-size: 0.75rem; overflow: hidden; position: relative; z-index: 1; }
     .ticker-inner { display: flex; gap: 4rem; animation: tick 35s linear infinite; white-space: nowrap; }
     .ticker-inner span { flex-shrink: 0; opacity: 0.92; }
     .t-sep { color: var(--gold-ll); margin: 0 0.5rem; opacity: 0.7; }
     @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ── MAIN LAYOUT - Mobile Grid ── */
     .main { position: relative; z-index: 1; max-width: 100%; margin: 0 auto; padding: 2rem 1.2rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
     @media (min-width: 900px) { .main { grid-template-columns: 1fr 280px; max-width: 1100px; padding: 3rem 1.5rem; } }
 
-    /* ── SECTION LABELS ── */
     .sec-lbl { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
     .sec-lbl h2 { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--river-d); white-space: nowrap; }
     .sec-lbl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-    /* ── GLASS CARD ── */
     .glass { background: var(--card); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 16px; backdrop-filter: blur(12px); box-shadow: 0 2px 16px rgba(91, 168, 208, 0.08); }
 
-    /* ── FEATURED CARDS ── */
     .featured { margin-bottom: 2rem; }
     .feat-card { display: none; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); transition: box-shadow 0.3s; }
     .feat-card.active { display: block; }
@@ -134,12 +125,7 @@
 
     .theme-0 .feat-top { background: linear-gradient(135deg, #12213A, #1A3A6A); color: #fff; }
     .theme-0 .feat-tag { background: rgba(255, 229, 102, 0.15); color: #FFE566; border: 1px solid rgba(255, 229, 102, 0.3); }
-    .theme-1 .feat-top { background: linear-gradient(135deg, #0E3020, #14522E); color: #fff; }
-    .theme-1 .feat-tag { background: rgba(100, 230, 150, 0.15); color: #80EAA0; border: 1px solid rgba(100, 230, 150, 0.3); }
-    .theme-2 .feat-top { background: linear-gradient(135deg, #3A1060, #5A1890); color: #fff; }
-    .theme-2 .feat-tag { background: rgba(200, 150, 255, 0.15); color: #D0A0FF; border: 1px solid rgba(200, 150, 255, 0.3); }
 
-    /* ── CURIOSIDADES ── */
     .curiosidades { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
     .curio { background: var(--card); border: 1px solid var(--border-s); border-radius: 14px; padding: 1.1rem; display: flex; gap: 0.8rem; align-items: flex-start; transition: all 0.3s; }
     .curio:hover { transform: translateX(3px); border-color: var(--border); box-shadow: 0 4px 16px rgba(91, 168, 208, 0.08); }
@@ -148,7 +134,6 @@
     .curio-text { font-size: 0.78rem; color: var(--text-l); line-height: 1.5; }
     .curio-ref { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--river-d); margin-top: 0.4rem; }
 
-    /* ── FORMS & BOXES (Prayer & Comments) ── */
     .prayer-box, .comment-box { border: 1px solid rgba(91, 168, 208, 0.25); border-radius: 16px; padding: 1.5rem; margin-bottom: 2.5rem; }
     .prayer-box { background: linear-gradient(135deg, rgba(91, 168, 208, 0.12), rgba(41, 108, 158, 0.08)); }
     .prayer-box h3, .comment-box h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); margin-bottom: 0.4rem; }
@@ -164,7 +149,6 @@
     .btn-send { width: 100%; padding: 0.65rem 1.6rem; align-self: flex-end; }
     @media (min-width: 640px) { .btn-send { width: auto; } }
 
-    /* ── LISTS (Prayers & Comments) ── */
     .prayer-requests { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.2rem; }
     .prayer-item { background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border-s); border-radius: 10px; padding: 0.85rem 1rem; display: flex; gap: 0.8rem; align-items: flex-start; }
     .prayer-ico { font-size: 1.1rem; flex-shrink: 0; }
@@ -178,14 +162,12 @@
     .comment-date { font-size: 0.65rem; color: var(--text-l); margin-left: 0.5rem; }
     .comment-text { font-size: 0.8rem; color: var(--text-m); line-height: 1.55; margin-top: 0.2rem; }
 
-    /* ── SIDEBAR ── */
     .sidebar { display: flex; flex-direction: column; gap: 1.4rem; }
     @media (max-width: 899px) { .sidebar { grid-column: 1; margin-top: 1rem; } }
     
     .w { background: var(--card); border: 1px solid var(--border-s); border-radius: 14px; padding: 1.4rem; backdrop-filter: blur(10px); }
     .w-title { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--river-d); margin-bottom: 0.9rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-s); }
 
-    /* WIDGET THEMES */
     .verse-widget { background: linear-gradient(135deg, #0C1E40, #1A3A6A); }
     .verse-widget .w-title { color: rgba(255, 229, 102, 0.75); border-color: rgba(255, 255, 255, 0.08); }
     .verse-widget blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: #fff; line-height: 1.75; margin-bottom: 0.7rem; }
@@ -201,7 +183,6 @@
     .qlinks li a { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--text-m); font-size: 0.8rem; padding: 0.45rem 0.5rem; border-radius: 8px; transition: all 0.25s; }
     .qlinks li a:hover { background: rgba(91, 168, 208, 0.1); color: var(--river-d); }
 
-    /* NEWSLETTER */
     .nl-w { background: linear-gradient(135deg, rgba(180, 230, 255, 0.2), rgba(91, 168, 208, 0.1)); border: 1px solid var(--border) !important; }
     .nl-w p { font-size: 0.8rem; color: var(--text-m); line-height: 1.6; margin-bottom: 0.9rem; }
     .nl-form { display: flex; flex-direction: column; gap: 0.55rem; }
@@ -210,7 +191,6 @@
     .nl-form button { background: linear-gradient(135deg, var(--river-d), #3A88BB); color: #fff; border: none; border-radius: 8px; padding: 0.65rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.25s; }
     .nl-form button:hover { opacity: 0.88; }
 
-    /* ── ANIMATIONS & UTILS ── */
     .rv { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .rv.on { opacity: 1; transform: none; }
     .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
@@ -230,6 +210,9 @@
       .toast { right: 1rem; left: 1rem; bottom: 1rem; width: auto; max-width: 100%; flex-direction: column; text-align: center; }
       .toast-ico { margin-bottom: 0.5rem; }
     }
+    
+    .lang-section { border-left: 3px solid var(--river-m); padding-left: 1rem; margin-bottom: 1rem; }
+    .lang-lbl { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--river-d); font-weight: 700; margin-bottom: 0.3rem; display: block; }
   </style>
 </head>
 <body>
@@ -263,8 +246,7 @@
 <div class="river-divider"><canvas id="river-divider-canvas"></canvas></div>
 
 <div class="ticker">
-  <div class="ticker-inner" id="ticker-content">
-  </div>
+  <div class="ticker-inner" id="ticker-content"></div>
 </div>
 
 <div class="main">
@@ -291,26 +273,12 @@
       <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
         <img src="https://m.media-amazon.com/images/I/61JfAyXgUcL._AC_UY218_.jpg" alt="A Lei do Pensamento" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
       </div>
-      
       <div style="flex: 2; min-width: 260px; text-align: left;">
-        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">
-          Obra em Destaque
-        </div>
-        
-        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">
-          A Lei do Pensamento
-        </h3>
-        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">
-          Por Henry Otasowere
-        </p>
-        
-        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">
-          Toda a libertação espiritual e alinhamento de vida começam na mente. Descubra os princípios fundamentais para governar os seus pensamentos, quebrar fortalezas mentais e fechar as portas para influências indesejadas. Uma leitura profunda e essencial para edificar a sua estrutura interior.
-        </p>
-        
-        <a href="https://amzn.to/4ltwxwJ" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;">
-          <span>Adquirir na Amazon</span> <span>→</span>
-        </a>
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Obra em Destaque</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">A Lei do Pensamento</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Toda a libertação espiritual e alinhamento de vida começam na mente. Descubra os princípios fundamentais para governar os seus pensamentos, quebrar fortalezas mentais e fechar as portas para influências indesejadas.</p>
+        <a href="https://amzn.to/4ltwxwJ" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
       </div>
     </div>
 
@@ -318,53 +286,25 @@
       <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
         <img src="https://images-na.ssl-images-amazon.com/images/P/B093RP1VT2.01.LZZZZZZZ.jpg" alt="Marine Spirits: Diagnosis and Deliverance" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
       </div>
-      
       <div style="flex: 2; min-width: 260px; text-align: left;">
-        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">
-          Estudo Profundo
-        </div>
-        
-        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">
-          Marine Spirits: Diagnosis and Deliverance
-        </h3>
-        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">
-          Por Henry Otasowere
-        </p>
-        
-        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">
-          Compreenda a fundo a atuação das entidades espirituais ligadas às águas e à opressão noturna (íncubos e súcubos). Este guia prático oferece um diagnóstico claro e as armas bíblicas essenciais para quebrar fortalezas e alcançar a verdadeira libertação.
-        </p>
-        
-        <a href="https://amzn.to/4lv1joR" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;">
-          <span>Adquirir na Amazon</span> <span>→</span>
-        </a>
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Estudo Profundo</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Marine Spirits: Diagnosis and Deliverance</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Compreenda a fundo a atuação das entidades espirituais ligadas às águas e à opressão noturna (íncubos e súcubos). Este guia prático oferece um diagnóstico claro e as armas bíblicas essenciais para quebrar fortalezas e alcançar a verdadeira libertação.</p>
+        <a href="https://amzn.to/4lv1joR" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
       </div>
     </div>
 
     <div class="glass rv d3" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
       <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
-        <img src="https://m.media-amazon.com/images/I/61KGKLCUt2L._SY425_.jpg" alt="O Poder de Um Altar: Destino" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="https://m.media-amazon.com/images/I/61KGKLCUt2L._SY425_.jpg" alt="O Poder de Um Altar" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
       </div>
-      
       <div style="flex: 2; min-width: 260px; text-align: left;">
-        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">
-          O Altar: Destino
-        </div>
-        
-        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">
-          O Poder de Um Altar
-        </h3>
-        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">
-          Por Henry Otasowere
-        </p>
-        
-        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">
-          Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro é para você. Henry Otasowere revela a verdade da experiência de vida dos crentes passado e do presente da Bíblia sobre o poder de um altar. As verdades que ele revela são para você hoje; Ele vai ensinar como usar os princípios espirituais que foram testados por muitos, que trouxeram a vitória total para as suas vidas. Este livro vai lhe trazer a mudança na sua vida e vitória celeste. No meio do altar, o sacrifício é o que define o seu destino. O altar é o lugar onde o destino é trocado ou restaurado e levantado. O altar é o lugar de transição ou de troca. O inimigo troca o destino, muda o destino.
-        </p>
-        
-        <a href="https://amzn.to/4sfRw90" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;">
-          <span>Adquirir na Amazon</span> <span>→</span>
-        </a>
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">O Altar: Destino</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">O Poder de Um Altar</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro é para você. Henry Otasowere revela a verdade da experiência de vida dos crentes passado e do presente da Bíblia sobre o poder de um altar. O altar é o lugar onde o destino é trocado ou restaurado.</p>
+        <a href="https://amzn.to/4sfRw90" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
       </div>
     </div>
 
@@ -372,26 +312,12 @@
       <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
         <img src="https://m.media-amazon.com/images/I/61TyzgFWN9L._SY425_.jpg" alt="O Encontro com a Paz no Altar" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
       </div>
-      
       <div style="flex: 2; min-width: 260px; text-align: left;">
-        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">
-          O Altar: Paz
-        </div>
-        
-        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">
-          O Encontro com a Paz no Altar
-        </h3>
-        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">
-          Por Henry Otasowere
-        </p>
-        
-        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">
-          Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro é para você. Henry Otasowere revela a verdade da experiência de vida dos crentes passado e do presente da Bíblia sobre o poder de um altar. As verdades que ele revela são para você hoje; Ele vai ensinar como usar os princípios espirituais que foram testados por muitos, que trouxeram a vitória total para as suas vidas. Este livro vai lhe trazer a mudança na sua vida e vitória celeste. O altar é o lugar onde você tem encontro com a paz. A falta de alegria não deixa o fogo do altar impactar na sua vida. É o lugar do portão entre o mundo físico e o mundo espiritual. O altar onde se encontra a definição e destino da geração. Não há sucesso sem altar.
-        </p>
-        
-        <a href="https://amzn.to/4bb65ob" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;">
-          <span>Adquirir na Amazon</span> <span>→</span>
-        </a>
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">O Altar: Paz</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">O Encontro com a Paz no Altar</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro é para você. O altar é o lugar onde você tem encontro com a paz. A falta de alegria não deixa o fogo do altar impactar na sua vida.</p>
+        <a href="https://amzn.to/4bb65ob" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
       </div>
     </div>
 
@@ -399,26 +325,12 @@
       <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
         <img src="https://m.media-amazon.com/images/I/61VZRtUidZL._SY425_.jpg" alt="Como Destruir o Altar Satânico" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
       </div>
-      
       <div style="flex: 2; min-width: 260px; text-align: left;">
-        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">
-          Libertação
-        </div>
-        
-        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">
-          Como Destruir o Altar Satânico
-        </h3>
-        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">
-          Por Henry Otasowere
-        </p>
-        
-        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">
-          Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro (Como destruir o altar satânico) é para você. Henry Otasowere revela a verdade da experiência de vida dos crentes passado e do presente da Bíblia sobre o poder de um altar. Este livro vai lhe trazer a mudança na sua vida e vitória celeste. As verdades que ele revela são para você hoje; Ele vai ensinar como usar os princípios espirituais que foram testados por muitos, que trouxeram a vitória total para as suas vidas. A voz do altar é ativada através do sacrifício que você faz para ele. Todas as coisas negativas, que andam na sua linhagem do sangue, não vão tocar em si, a partir de hoje. Deus quer separá-lo do problema da família.
-        </p>
-        
-        <a href="https://amzn.to/4s8Uj3B" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;">
-          <span>Adquirir na Amazon</span> <span>→</span>
-        </a>
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Libertação</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Como Destruir o Altar Satânico</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">As verdades que ele revela são para você hoje; Ele vai ensinar como usar os princípios espirituais que foram testados por muitos, que trouxeram a vitória total para as suas vidas. A voz do altar é ativada através do sacrifício que você faz para ele.</p>
+        <a href="https://amzn.to/4s8Uj3B" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
       </div>
     </div>
 
@@ -426,26 +338,308 @@
       <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
         <img src="https://m.media-amazon.com/images/I/61QygmV9kdL._SY425_.jpg" alt="Deus Terminar o Que Ele Começou" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
       </div>
-      
       <div style="flex: 2; min-width: 260px; text-align: left;">
-        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">
-          Restauração
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Restauração</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Deus Terminar o Que Ele Começou</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro é para você. A vida no altar, é o lugar onde tudo é trocado. A sua vida é feita ou destruída no altar. O altar de Deus limpa o seu nome.</p>
+        <a href="https://amzn.to/4svuqvj" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d1" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61Yysb5c0eL._SY425_.jpg" alt="A Conta Bancária Espiritual" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Edificação</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">A Conta Bancária Espiritual</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Como Funciona a Conta Bancária Espiritual. Como fazer depósitos e levantamentos da sua conta bancária espiritual. O dinheiro assume a natureza de quem o possui. Esteja disposto a ser um receptor e comande ao diabo para liberar o seu dinheiro.</p>
+        <a href="https://amzn.to/4doDVrb" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d2" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61l5z45qVmL._SY425_.jpg" alt="Power of Compounding" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Finanças / Investimento</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Power of Compounding</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <div class="lang-section">
+          <span class="lang-lbl">🇵🇹 Português</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:0;">O Poder dos Juros Compostos: Alcançando o Crescimento Exponencial da Riqueza através de Estratégias de Investimento. Os leitores descobrirão os segredos para maximizar os seus investimentos e alcançar o sucesso financeiro a longo prazo.</p>
         </div>
-        
-        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">
-          Deus Terminar o Que Ele Começou
-        </h3>
-        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">
-          Por Henry Otasowere
-        </p>
-        
-        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">
-          Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro (Deus terminar o que ele começou) é para você. Henry Otasowere revela a verdade da experiência de vida dos crentes passado e do presente da Bíblia sobre o poder de um altar. As verdades que ele revela são para você hoje; Ele vai ensinar como usar os princípios espirituais que foram testados por muitos, que trouxeram a vitória total para as suas vidas. Este livro vai lhe trazer a mudança na sua vida e vitória celeste. A vida no altar, é o lugar onde tudo é trocado. A sua vida é feita ou destruída no altar. Todos os contratos têm os benefícios. O altar de Deus limpa o seu nome.
-        </p>
-        
-        <a href="https://amzn.to/4svuqvj" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;">
-          <span>Adquirir na Amazon</span> <span>→</span>
-        </a>
+        <div class="lang-section">
+          <span class="lang-lbl">🇬🇧 English</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:1.5rem;">The Power of Compounding: Achieving Exponential Wealth Growth through Investment Strategies. Readers will discover the secrets to maximizing their investments and achieving long-term financial success.</p>
+        </div>
+        <a href="https://www.amazon.com.br/POWER-COMPOUNDING-Exponential-Investment-Strategies/dp/B0BW341975/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d3" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/6101mGF4aJL._SY425_.jpg" alt="The Airdrops Bible" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Criptomoedas</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">The Airdrops Bible</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <div class="lang-section">
+          <span class="lang-lbl">🇵🇹 Português</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:0;">Está interessado em criptomoedas e quer aprender como lucrar com tokens gratuitos? Não procure mais, A Bíblia dos Airdrops é a resposta. Este guia abrangente fornece uma abordagem passo-a-passo para entender os airdrops.</p>
+        </div>
+        <div class="lang-section">
+          <span class="lang-lbl">🇬🇧 English</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:1.5rem;">Are you interested in cryptocurrency and want to learn how to profit from free tokens? Look no further than The Airdrops Bible. This comprehensive guide provides a step-by-step approach to understanding airdrops.</p>
+        </div>
+        <a href="https://amzn.to/4ryHSwS" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d1" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/71A2Zf-8zuL._SY425_.jpg" alt="Crypto Staking" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Rendimento Passivo</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Crypto Staking</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <div class="lang-section">
+          <span class="lang-lbl">🇵🇹 Português</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:0;">Está à procura de uma forma de ganhar rendimento passivo no excitante mundo das criptomoedas? Não procure mais além do crypto staking! Neste guia abrangente, aprenderá tudo o que precisa de saber sobre staking.</p>
+        </div>
+        <div class="lang-section">
+          <span class="lang-lbl">🇬🇧 English</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:1.5rem;">Are you looking for a way to earn passive income in the exciting world of cryptocurrency? Look no further than crypto staking! In this comprehensive guide, you'll learn everything you need to know about staking.</p>
+        </div>
+        <a href="https://www.amazon.com.br/Crypto-Staking-Passive-Income-Another/dp/B0BW23B2NB/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d2" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61GF3S2uIJL._SY425_.jpg" alt="The Millionaire's Mindset" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Mentalidade / Finanças</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">The Millionaire's Mindset</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <div class="lang-section">
+          <span class="lang-lbl">🇵🇹 Português</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:0;">"A Mentalidade Milionária: Como Reprogramar o Seu Cérebro para o Sucesso no Rendimento Passivo" é um guia abrangente para desenvolver a mentalidade de um indivíduo bem-sucedido e rico.</p>
+        </div>
+        <div class="lang-section">
+          <span class="lang-lbl">🇬🇧 English</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:1.5rem;">"The Millionaire's Mindset: How to Reprogram Your Brain for Passive Income Success" is a comprehensive guide to developing the mindset of a successful and wealthy individual.</p>
+        </div>
+        <a href="https://www.amazon.com.br/Millionaires-Mindset-Reprogram-Passive-Success/dp/B0BYLSCPVJ/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d3" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61R0csVT4ML._SY425_.jpg" alt="Como lidar com pessoas difíceis" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Relacionamentos</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Como Lidar Com Pessoas Difíceis</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Este livro vai lhe trazer a mudança na sua vida e vitória celeste. Neste livro, você aprenderá que Você não pode agradar a todos, Deixe que as críticas sejam o campo de treinamento para si, O seu sonho não deve morrer, Mantenha-se calado, Os seus olhos devem estar fixados no sítio onde você quer ir, Procure primeiro o reino de Deus, Termine as conversas negativas, Não se envolva numa luta com pessoas difíceis, Concentre-se nas suas alegrias, Você deve descansar e Aprenda a descansar.</p>
+        <a href="https://amzn.to/3NgaL2Z" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d1" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/71CUPZP3WSL._SY425_.jpg" alt="Anjos" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Espiritualidade</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">A Vida e Obras Inegáveis dos Anjos</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Henry Otasowere compartilha vida e obras inegáveis dos Anjos, que o ajudarão a alcançar seu pleno potencial e alcançar novos níveis de sucesso em todas as áreas de sua vida. Quem são os anjos? Os anjos têm nome? Atividade dos anjos no louvor e na adoração. Anjos mensageiros. Os anjos acompanham na evangelização. Anjos que trazem as bênçãos. Anjos de proteção. Anjos da libertação. Anjos que trazem a resposta de oração.</p>
+        <a href="https://amzn.to/4smwpll" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d2" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/41RR85uOfKL._SY425_.jpg" alt="Chaves Para a Vitória" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Crescimento Espiritual</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Chaves Para a Vitória</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se você precisa de chaves para ganhar a vitória e andar com Deus em sua vida, então este livro é para você. Bispo Henry Otasowere revela a verdade a partir da experiência de vida dos crentes o passado e o presente da Bíblia. Ele vai ensinar como usar os princípios espirituais testado para combater o insucesso, a pobreza, a falta e todos a lutar em sua vida. O que acontece quando recebemos o Senhor Jesus Cristo? Por que precisamos de Jesus Cristo?</p>
+        <a href="https://amzn.to/3PmmEF4" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d3" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/71rfceMnxXL._SY425_.jpg" alt="Segredos de um Casamento Feliz" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Família e Casamento</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Segredos de um Casamento Feliz</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se você quer aprender os segredos de um casamento feliz e como você pode reacender sua vida sexual em seu casamento, em seguida, este livro vai ajudá-lo a construir o seu relacionamento, seguindo as leis de amor que vai fazer qualquer relacionamento tornar-se bom e estável.</p>
+        <a href="https://amzn.to/4sPX4qE" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d1" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/81uAoqW2pHL._SY425_.jpg" alt="A Chave Mestre da Oração" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Oração</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">A Chave Mestre da Oração</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Profeta Henry Otasowere compartilha o segredo da chave mestre da oração, que o ajudará a alcançar seu pleno potencial e alcançar novos níveis de sucesso em todas as áreas de sua vida. Este livro ensina como ter confiança no nome de Jesus e Intimidade com Deus, para trazer bênçãos em todas as áreas da sua vida e na sua família. A capacidade de falar e de escutar. Deixe as coisas acontecer no tempo de Deus.</p>
+        <a href="https://amzn.to/4urhuYJ" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d2" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/51IwW0K8ZOL._SY425_.jpg" alt="SOS Numbers For God" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Oração / Fé</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">SOS Numbers For God</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <div class="lang-section">
+          <span class="lang-lbl">🇵🇹 Português</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:0;">Se deseja aprender como receber e manter a sua fé, então este livro é para si. NÚMEROS SOS. Os números de emergência podem ser marcados diretamente. Nenhuma assistência de operador é necessária. Todas as linhas para o Céu estão abertas 24 horas por dia! Os Números SOS de Deus: Números de Emergência do Céu.</p>
+        </div>
+        <div class="lang-section">
+          <span class="lang-lbl">🇬🇧 English</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:1.5rem;">If you want to learn how to receive your believe and keep it, then this book is for you. SOS NUMBERS Emergency numbers may be dialed direct. No operator assistance is necessary. All lines to Heaven are open 24 hours a day! The sos Numbers For God: Heaven Emergency numbers.</p>
+        </div>
+        <a href="https://www.amazon.com.br/sos-Numbers-God-Emergency-numbers/dp/1477454187/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d3" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/610S9Juzf6L._SY425_.jpg" alt="As Promessas Biblicas" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Fé</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">As Promessas Bíblicas</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">As Promessas Bíblicas. Se você precisa de chaves para ganhar a vitória e andar com Deus em sua vida, então este livro é para você.</p>
+        <a href="https://www.amazon.com.br/As-Promessas-Biblicas-Henry-Otasowere/dp/1475246676/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d1" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/41w8FUOEwgL._SY445_SX342_ML2_.jpg" alt="Salvação, um novo nascimento" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Salvação</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Salvação, um novo nascimento</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Salvação, um novo nascimento. Se você precisa de chaves para a vitória em sua vida, então este livro é para você. Bispo Henry Otasowere revela a verdade a partir da experiência de vida dos crentes o passado e o presente da Bíblia.</p>
+        <a href="https://www.amazon.com.br/Salva%C3%A7%C3%A3o-um-novo-nascimento-Portuguese/dp/1453808833/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d2" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61xIj3WQmrL._SY425_.jpg" alt="A Lei da Contribuição" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Finanças Bíblicas</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">A Lei da Contribuição</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se você precisa de chaves para ganhar a vitória em sua vida, então este livro é para você. Bispo Henry Otasowere revela a verdade a partir da experiência de vida dos crentes o passado e o presente da Bíblia. As verdades que ele revela são para você hoje, Ele vai ensinar como usar os princípios espirituais testado para combater o insucesso, a pobreza, a falta e todos a lutar em sua vida. O QUE É DÍZIMO? Dízimo salva a gente? O que são ofertas? Quem deve dar o dízimo? Os pobres devem dar o dízimo?</p>
+        <a href="https://www.amazon.com.br/Lei-Contribui%C3%A7%C3%A3o-Henry-Otasowere/dp/1451560001/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d3" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61FRIuaMwcL._SY425_.jpg" alt="How To Break Generational Curses" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Libertação</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">How To Break Generational Curses</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <div class="lang-section">
+          <span class="lang-lbl">🇵🇹 Português</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:0;">As maldições geracionais são um padrão negativo de comportamento que mantém uma família em cativeiro espiritual. Como Quebrar Maldições Geracionais.</p>
+        </div>
+        <div class="lang-section">
+          <span class="lang-lbl">🇬🇧 English</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:1.5rem;">The generational curses are a negative pattern of behavior that is thought to keep a family in spiritual bondage. How To Break Generational Curses.</p>
+        </div>
+        <a href="https://www.amazon.com.br/Break-Generational-Curses-Henry-Otasowere/dp/147755677X/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d1" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61rxIx6BPwL._SY425_.jpg" alt="O seu passado está no passado" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Restauração</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">O seu passado está no passado</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Henry Otasowere revela a verdade da experiência de vida dos crentes passado e do presente da Bíblia sobre a capacidade de Deus. Este livro vai lhe trazer a mudança na sua vida e vitória celeste. Se você já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro é para você. Aquele que espera no Senhor renova as suas forças. Não entregue o seu destino na mão do inimigo. Mas esse crescimento não vem até que primeiro receba a libertação.</p>
+        <a href="https://www.amazon.com.br/seu-passado-est%C3%A1/dp/1523839880/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d2" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61OUOjau4YL._SY425_.jpg" alt="Da Dor a Vitória" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Superação</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Da Dor a Vitória</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se vocè já tentou de tudo na vida, e ainda não há nenhuma mudança em sua vida, então este livro é para vocè. Henry Otasowere revela a verdade da experiència de vida dos crentes passado e do presente da Bíblia. As verdades que ele revela são para vocè hoje; Ele vai ensinar como usar os princípios espirituais que foram testados por muitos, que trouxeram a vitória total para as suas vidas. Este livro vai lhe trazer a mudança na sua vida e vitória celeste.</p>
+        <a href="https://www.amazon.com.br/dor-vit%C3%B3ria-Henry-Otasowere/dp/1546434402/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d3" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/51wBmqMkOPL._SY425_.jpg" alt="Chaves para a vitória" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Vitória Espiritual</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Chaves para a Vitória</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <p style="font-size:.85rem; color:var(--text-m); line-height:1.7; margin-bottom:1.5rem;">Se você precisa de chaves para ganhar a vitória e andar com Deus em sua vida, então este livro é para você. Aprenda a alinhar o seu percurso com a vontade divina e a ultrapassar os obstáculos do dia-a-dia através dos princípios revelados na Palavra.</p>
+        <a href="https://amzn.to/3P7xRte" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="glass rv d1" style="padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.15); border: 1px solid rgba(184,134,11,0.2); background: #fff; display: flex; align-items: center; justify-content: center;">
+        <img src="https://m.media-amazon.com/images/I/61iwpWsnwVL._SY425_.jpg" alt="Focus" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="flex: 2; min-width: 260px; text-align: left;">
+        <div style="display:inline-block; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,134,11,.3); padding:.3rem .8rem; border-radius:999px; margin-bottom:1rem; background:rgba(255,229,102,.1); font-weight:600;">Direcionamento</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem, 4vw, 1.85rem); font-weight:700; color:var(--text); line-height:1.2; margin-bottom:.4rem;">Focus</h3>
+        <p style="font-size:.9rem; color:var(--river-d); font-weight:600; margin-bottom:1.2rem; font-family:'Cinzel', serif; letter-spacing:.05em;">Por Henry Otasowere</p>
+        <div class="lang-section">
+          <span class="lang-lbl">🇵🇹 Português</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:0;">O Profeta Henry Otasowere partilha o segredo do foco, que o ajudará a alcançar o seu pleno potencial e novos níveis de sucesso. Este livro ensina como focar-se na vida, porque aquilo para onde olha diariamente é naquilo em que se torna. Mude o que pensa. Sacrifício sem dor não é sacrifício. O que os olhos não veem, o coração não sente.</p>
+        </div>
+        <div class="lang-section">
+          <span class="lang-lbl">🇬🇧 English</span>
+          <p style="font-size:.85rem; color:var(--text-m); line-height:1.6; margin-bottom:1.5rem;">Prophet Henry Otasowere shares the secret of focus, which will help you reach your full potential and reach new levels of success in all areas of your life. This book teaches you how to focus on life, because what you look at daily is what you become. Change what you think. Sacrifice without pain is not sacrifice. What the eyes do not see the heart does not feel.</p>
+        </div>
+        <a href="https://www.amazon.com.br/Focus-Henry-Otasowere/dp/1070917818/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.8rem;"><span>Adquirir na Amazon</span> <span>→</span></a>
       </div>
     </div>
 
@@ -455,7 +649,7 @@
         <div class="curio-ico">💧</div>
         <div>
           <div class="curio-title">O Rio tem apenas UMA origem</div>
-          <p class="curio-text">Diferente dos rios da Terra que têm diversas nascentes e afluentes, o Rio da Água da Vida de Apc 22 tem uma única origem: o próprio trono de Deus. Isso simboliza que toda graça e vida têm uma fonte exclusiva — Deus mesmo.</p>
+          <p class="curio-text">Diferente dos rios da Terra que têm diversas nascentes e afluentes, o Rio da Água da Vida de Apc 22 tem uma única origem: o próprio trono de Deus.</p>
           <div class="curio-ref">Apocalipse 22:1</div>
         </div>
       </div>
@@ -463,24 +657,8 @@
         <div class="curio-ico">🌳</div>
         <div>
           <div class="curio-title">A Árvore da Vida produz 12 frutos diferentes</div>
-          <p class="curio-text">Em Apocalipse 22:2, a Árvore da Vida produz 12 frutos, dando o seu fruto em cada mês. Ou seja, na eternidade haverá um calendário — e a plenitude da nutrição espiritual para cada "estação" da vida eterna.</p>
+          <p class="curio-text">Em Apocalipse 22:2, a Árvore da Vida produz 12 frutos, dando o seu fruto em cada mês. Ou seja, na eternidade haverá um calendário e plenitude de nutrição espiritual.</p>
           <div class="curio-ref">Apocalipse 22:2</div>
-        </div>
-      </div>
-      <div class="curio rv d2 tilt">
-        <div class="curio-ico">🌙</div>
-        <div>
-          <div class="curio-title">Na Nova Jerusalém não existe noite</div>
-          <p class="curio-text">Ap 21:25 diz que as portas "não se fecharão de dia, pois não haverá noite". A presença de Deus substitui completamente o sol e a lua. Isso é paralelo com Ezequiel 43:2: "a terra resplandecia da sua glória".</p>
-          <div class="curio-ref">Apocalipse 21:23-25 • Ezequiel 43:2</div>
-        </div>
-      </div>
-      <div class="curio rv d3 tilt">
-        <div class="curio-ico">🔱</div>
-        <div>
-          <div class="curio-title">Os Espíritos Marinhos existem há milênios</div>
-          <p class="curio-text">O Êncubo e o Súcubo são mencionados em textos sumérios de mais de 4.000 anos atrás — muito antes do Novo Testamento. A Bíblia em Gênesis 6 já descreve este fenômeno como uma invasão demoníaca real que motivou o Dilúvio.</p>
-          <div class="curio-ref">Gênesis 6:1-4 • 2 Pedro 2:4</div>
         </div>
       </div>
     </div>
@@ -500,48 +678,6 @@
           <button class="btn btn-river btn-send" onclick="submitPrayer(this)">Enviar Pedido ✦</button>
         </div>
       </div>
-      <div class="prayer-requests" id="prayer-list">
-        <div class="prayer-item">
-          <div class="prayer-ico">🙏</div>
-          <div><div class="prayer-name">Maria S.</div><p class="prayer-text">Peço oração pela cura da minha mãe e pela paz no meu lar. Deus abençoe a cada um.</p></div>
-        </div>
-        <div class="prayer-item">
-          <div class="prayer-ico">🙏</div>
-          <div><div class="prayer-name">João P.</div><p class="prayer-text">Preciso de sabedoria e discernimento espiritual. Estou passando por guerra espiritual intensa e preciso de cobertura em oração.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="comentarios" class="sec-lbl rv"><h2>✦ Comunidade</h2></div>
-    <div class="comment-box rv glass">
-      <h3>💬 Deixe seu Comentário</h3>
-      <p class="sub-p">Compartilhe sua reflexão, testemunho ou pergunta sobre os estudos. A comunidade cresce com cada voz.</p>
-      <div class="comment-form">
-        <div class="comment-row">
-          <input class="fi" type="text" id="c-name" placeholder="Seu nome">
-          <input class="fi" type="email" id="c-email" placeholder="E-mail (não publicado)">
-        </div>
-        <textarea class="fi" id="c-text" placeholder="Compartilhe sua reflexão ou pergunta sobre os estudos..."></textarea>
-        <div style="display:flex; justify-content:flex-end;">
-          <button class="btn btn-outline btn-send" onclick="submitComment(this)">Publicar Comentário →</button>
-        </div>
-      </div>
-      <div class="comments-list" id="comments-list">
-        <div class="comment-item">
-          <div class="comment-avatar">A</div>
-          <div class="comment-body">
-            <span class="comment-name">Ana R.</span><span class="comment-date">14 Mar 2026</span>
-            <p class="comment-text">O estudo sobre Espíritos Marinhos me abriu os olhos para o que estava acontecendo em minha vida. Muito obrigada pela clareza bíblica!</p>
-          </div>
-        </div>
-        <div class="comment-item">
-          <div class="comment-avatar">C</div>
-          <div class="comment-body">
-            <span class="comment-name">Carlos M.</span><span class="comment-date">13 Mar 2026</span>
-            <p class="comment-text">As meditações sobre a Nova Jerusalém são simplesmente transformadoras. Cada detalhe de Apocalipse 21-22 tem uma profundidade incrível.</p>
-          </div>
-        </div>
-      </div>
     </div>
 
   </div>
@@ -558,14 +694,7 @@
       <ul class="qlinks">
         <li><a href="nova-jerusalem/estudo_espiritos.html"><span>🌊</span> Espíritos Marinhos</a></li>
         <li><a href="Eternidade.html"><span>♾️</span> Eternidade</a></li>
-        <li><a href="Espirito_Marinho.html"><span>🌊</span> Espíritos (v2)</a></li>
       </ul>
-    </div>
-
-    <div class="w prov-widget rv d2">
-      <div class="w-title">✦ Provérbio do Dia</div>
-      <div class="prov-text" id="prov-text"></div>
-      <div class="prov-cite" id="prov-cite"></div>
     </div>
 
     <div class="w nl-w rv d3">
@@ -589,12 +718,10 @@
   </p>
   
   <div style="height: 1px; background: rgba(255,255,255,0.1); max-width: 300px; margin: 0 auto 1.5rem auto;"></div>
-  
   <p style="font-size:.72rem">© 2026 Hub Educacional Bíblico — Estudos, Automação & Literatura.</p>
 </footer>
 
 <script>
-// ── BACKGROUND RIVER CANVAS (soft subtle) ──
 const cv = document.getElementById('river-canvas');
 const ctx = cv.getContext('2d');
 let W,H;
@@ -615,8 +742,7 @@ function bgLoop(){
     ctx.beginPath();
     ctx.moveTo(0,yBase);
     for(let x=0;x<=W;x+=3){
-      const dy=Math.sin((x/b.w)+t*b.spd+b.y*10)*b.amp
-             + Math.sin((x/(b.w*0.6))+t*b.spd*1.3)*b.amp*0.4;
+      const dy=Math.sin((x/b.w)+t*b.spd+b.y*10)*b.amp + Math.sin((x/(b.w*0.6))+t*b.spd*1.3)*b.amp*0.4;
       ctx.lineTo(x,yBase+dy);
     }
     ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();
@@ -627,7 +753,6 @@ function bgLoop(){
 resize();bgLoop();
 window.addEventListener('resize',resize);
 
-// ── RIVER DIVIDER CANVAS (3D perspective river) ──
 const dc=document.getElementById('river-divider-canvas');
 const dctx=dc.getContext('2d');
 let DW,DH;
@@ -690,161 +815,20 @@ function divLoop(){
 resizeDiv();divLoop();
 window.addEventListener('resize',resizeDiv);
 
-// ── PROVÉRBIOS ──
-const provs=[
-  {t:'"O temor do Senhor é o princípio da sabedoria."',r:'— Provérbios 9:10'},
-  {t:'"Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento."',r:'— Provérbios 3:5'},
-  {t:'"A morte e a vida estão no poder da língua."',r:'— Provérbios 18:21'},
-  {t:'"A esperança que se prolonga aflige o coração; mas o desejo cumprido é árvore de vida."',r:'— Provérbios 13:12'},
-  {t:'"O coração humano traça o seu caminho, mas o Senhor lhe dirige os passos."',r:'— Provérbios 16:9'},
-  {t:'"Melhor é o pobre que anda em integridade do que o perverso nos seus caminhos."',r:'— Provérbios 28:6'},
-  {t:'"A mulher virtuosa é a coroa de seu marido."',r:'— Provérbios 12:4'},
-];
-const dayProv=provs[new Date().getDay()%provs.length];
-document.getElementById('prov-text').textContent=dayProv.t;
-document.getElementById('prov-cite').textContent=dayProv.r;
-
-let pi=0;
-setInterval(()=>{
-  const el=document.getElementById('prov-text');
-  el.classList.add('fade');
-  setTimeout(()=>{
-    pi=(pi+1)%provs.length;
-    el.textContent=provs[pi].t;
-    document.getElementById('prov-cite').textContent=provs[pi].r;
-    el.classList.remove('fade');
-  },500);
-},12000);
-
-// ── TICKER ──
 const tickItems=[
   '✦ Pv 3:5 — "Confia no Senhor de todo o teu coração."',
   '✦ Ap 21:4 — "Deus enxugará de seus olhos toda lágrima."',
   '✦ Pv 9:10 — "O temor do Senhor é o princípio da sabedoria."',
   '✦ Ap 22:1 — "Rio puro de água da vida, límpido como cristal."',
-  '✦ Pv 18:21 — "A morte e a vida estão no poder da língua."',
-  '✦ Ez 48:35 — "O nome da cidade: O SENHOR ESTÁ ALI."',
-  '✦ Pv 16:9 — "O Senhor lhe dirige os passos."',
-  '✦ Ap 21:21 — "As ruas da cidade: ouro puro como vidro transparente."',
 ];
 const tc=document.getElementById('ticker-content');
-const full=[...tickItems,...tickItems].map(t=>`<span>${t}</span><span class="t-sep">|</span>`).join('');
+const full=[...tickItems,...tickItems,...tickItems].map(t=>`<span>${t}</span><span class="t-sep">|</span>`).join('');
 tc.innerHTML=full;
 
-// ── FEATURED ROTATION ──
-const cards=document.querySelectorAll('.feat-card');
-const dayIdx=new Date().getDate()%cards.length;
-cards.forEach((c,i)=>c.classList.toggle('active',i===dayIdx));
-
-// ── DAILY VERSES ──
-const verses=[
-  {t:'"E reinarão pelos séculos dos séculos."',r:'— Apocalipse 22:5'},
-  {t:'"E Deus enxugará de seus olhos toda lágrima; e não haverá mais morte."',r:'— Apocalipse 21:4'},
-  {t:'"Eis que faço novas todas as coisas."',r:'— Apocalipse 21:5'},
-  {t:'"Eu sou o Alfa e o Ômega, o Primeiro e o Último."',r:'— Apocalipse 22:13'},
-  {t:'"E os remidos do Senhor voltarão e virão a Sião com cânticos."',r:'— Isaías 51:11'},
-  {t:'"Qual a grandeza do bem que reservaste para os que te temem."',r:'— Salmos 31:19'},
-  {t:'"O Senhor Deus Todo-Poderoso e o Cordeiro são o seu templo."',r:'— Apocalipse 21:22'},
-];
-const dv=verses[new Date().getDay()%verses.length];
-document.getElementById('daily-verse').textContent=dv.t;
-document.getElementById('daily-ref').textContent=dv.r;
-
-// ── TOAST ──
-const toastEl = document.createElement('div');
-toastEl.className = 'toast';
-toastEl.innerHTML = '<span class="toast-ico"></span><div class="toast-msg"><strong></strong><span></span></div>';
-document.body.appendChild(toastEl);
-let toastTimer;
-function showToast(type, title, msg){
-  const ico = type==='success'?'✅':'❌';
-  toastEl.className = `toast ${type}`;
-  toastEl.querySelector('.toast-ico').textContent = ico;
-  toastEl.querySelector('strong').textContent = title;
-  toastEl.querySelector('span').textContent = msg;
-  clearTimeout(toastTimer);
-  requestAnimationFrame(()=>toastEl.classList.add('show'));
-  toastTimer = setTimeout(()=>toastEl.classList.remove('show'), 5000);
-}
-
-// ── STORAGE HELPERS ──
-function saveToStorage(key, arr){ localStorage.setItem(key, JSON.stringify(arr)); }
-function loadFromStorage(key){ try{ return JSON.parse(localStorage.getItem(key)||'[]'); }catch(e){ return []; } }
-
-// ── LOAD SAVED DATA ──
-(function loadComments(){
-  const saved = loadFromStorage('njb_comments');
-  const list = document.getElementById('comments-list');
-  saved.forEach(c=>{
-    const item=document.createElement('div');item.className='comment-item';
-    item.innerHTML=`<div class="comment-avatar">${c.name[0].toUpperCase()}</div><div class="comment-body"><span class="comment-name">${c.name}</span><span class="comment-date">${c.date}</span><p class="comment-text">${c.text}</p></div>`;
-    list.prepend(item);
-  });
-})();
-
-(function loadPrayers(){
-  const saved = loadFromStorage('njb_prayers');
-  const list = document.getElementById('prayer-list');
-  saved.forEach(p=>{
-    const item=document.createElement('div');item.className='prayer-item';
-    item.innerHTML=`<div class="prayer-ico">🙏</div><div><div class="prayer-name">${p.name}</div><p class="prayer-text">${p.text}</p></div>`;
-    list.prepend(item);
-  });
-})();
-
-// ── ACTIONS ──
-function submitComment(btn){
-  const name=document.getElementById('c-name').value.trim()||'Anônimo';
-  const txt=document.getElementById('c-text').value.trim();
-  if(!txt){showToast('error','Campo vazio','Por favor escreva um comentário.');return;}
-  const today=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
-  const saved=loadFromStorage('njb_comments');
-  saved.push({name,text:txt,date:today});
-  saveToStorage('njb_comments',saved);
-  const list=document.getElementById('comments-list');
-  const item=document.createElement('div');item.className='comment-item';
-  item.innerHTML=`<div class="comment-avatar">${name[0].toUpperCase()}</div><div class="comment-body"><span class="comment-name">${name}</span><span class="comment-date">${today}</span><p class="comment-text">${txt}</p></div>`;
-  list.prepend(item);
-  document.getElementById('c-name').value='';
-  document.getElementById('c-email').value='';
-  document.getElementById('c-text').value='';
-  showToast('success','Comentário publicado!','Obrigado por compartilhar sua reflexão! 🙏');
-}
-
-function submitPrayer(btn){
-  const name=document.getElementById('prayer-name').value.trim()||'Anônimo';
-  const txt=document.getElementById('prayer-text').value.trim();
-  if(!txt){showToast('error','Campo vazio','Por favor descreva seu pedido de oração.');return;}
-  const saved=loadFromStorage('njb_prayers');
-  saved.push({name,text:txt});
-  saveToStorage('njb_prayers',saved);
-  const list=document.getElementById('prayer-list');
-  const item=document.createElement('div');item.className='prayer-item';
-  item.innerHTML=`<div class="prayer-ico">🙏</div><div><div class="prayer-name">${name}</div><p class="prayer-text">${txt}</p></div>`;
-  list.prepend(item);
-  document.getElementById('prayer-name').value='';
-  document.getElementById('prayer-topic').value='';
-  document.getElementById('prayer-text').value='';
-  showToast('success','Pedido recebido!','Que Deus responda sua oração. A comunidade ora junto! 🙏');
-}
-
-function submitNewsletter(btn){
-  const email=document.getElementById('nl-email').value.trim();
-  if(!email||!email.includes('@')){showToast('error','E-mail inválido','Por favor informe um e-mail válido.');return;}
-  const saved=loadFromStorage('njb_newsletter');
-  if(saved.includes(email)){showToast('error','Já inscrito','Este e-mail já está na lista.');return;}
-  saved.push(email);
-  saveToStorage('njb_newsletter',saved);
-  document.getElementById('nl-email').value='';
-  showToast('success','Inscrito com sucesso!','Você receberá os próximos estudos no seu e-mail. ✦');
-}
-
-// ── REVEAL SCROLL ──
 const rvEls=document.querySelectorAll('.rv');
 const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:0.08});
 rvEls.forEach(el=>obs.observe(el));
 
-// ── 3D TILT ──
 document.querySelectorAll('.tilt').forEach(el=>{
   el.addEventListener('mousemove',e=>{
     const r=el.getBoundingClientRect();
