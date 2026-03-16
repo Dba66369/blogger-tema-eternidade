@@ -822,10 +822,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       const body    = encodeURIComponent(`Olá,\n\nGostaria de inscrever o seguinte e‑mail na newsletter:\n${email}\n\nAtt.,\n[Seu nome]`);
 const formData = new FormData(); formData.append('email', email); formData.append('subject', 'Inscrição Newsletter – Nova Jerusalém'); fetch('https://formsubmit.co/vivobruno26@gmail.com', { method: 'POST', body: formData }).then(res => res.ok ? Promise.resolve() : Promise.reject()).then(() => { localStorage.setItem('newsletter_email_' + Date.now(), email); alert('✅ Obrigado! Seu e-mail será enviado ao administrador.'); emailInput.value = ''; }).catch(err => alert('❌ Erro ao enviar. Tente novamente.'));
 
-      // ---------- 2️⃣ Guardar localmente (opcional) ----------
-      localStorage.setItem('newsletter_email_' + Date.now(), email);
-      alert('✅ Obrigado! Seu e‑mail será enviado ao administrador.');
-      emailInput.value = '';
+
     });
   }
 
@@ -854,8 +851,7 @@ const formData = new FormData(); formData.append('email', email); formData.appen
         `Data: ${new Date().toLocaleString('pt-BR')}`
       );
 
-      // abre cliente de e‑mail
-      window.location.href = `mailto:vivobruno26@gmail.com?subject=${subject}&body=${body}`;
+const pedForm = new FormData(); pedForm.append('nome', nome); pedForm.append('assunto', assunto); pedForm.append('pedido', texto); fetch('https://formsubmit.co/vivobruno26@gmail.com', { method: 'POST', body: pedForm }).then(res => res.ok ? Promise.resolve() : Promise.reject()).then(() => { localStorage.setItem('pedido_' + Date.now(), JSON.stringify({nome, assunto, texto})); alert('✅ Obrigado! Seu pedído de oração foi enviado.'); formInputs.forEach(input => input.value = ''); }).catch(err => alert('❌ Erro ao enviar pedído. Tente novamente.'));
 
       // guarda localmente (opcional)
       const registro = {nome, assunto, texto, data:new Date().toLocaleString('pt-BR')};
