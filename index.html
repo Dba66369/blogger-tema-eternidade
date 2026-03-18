@@ -7,6 +7,7 @@
   <meta name="description" content="Escola bíblica online inspirada na Nova Jerusalém e no Rio da Água da Vida de Apocalipse 22.">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518556229546726" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/chatbot.css">
   <style>
     :root{
       --river:rgba(180,230,255,.35);
@@ -626,14 +627,14 @@
         </ul>
       </div>
 
-      <!-- 4 – NEWSLETTER -->
       <div class="w rv" style="background:linear-gradient(135deg,rgba(180,230,255,.2),rgba(91,168,208,.1));justify-content:center;">
-        <div style="font-family:'Cinzel';font-size:0.65rem;letter-spacing:0.15em;margin-bottom:1rem;color:var(--river-d);">✦ Newsletter</div>
-        <p style="font-size:.8rem;margin-bottom:1.5rem;color:var(--text-m);">Insira o seu e‑mail para receber os próximos estudos e atualizações.</p>
-        <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:auto;">
-          <input id="newsletter-email" class="fi" type="email" placeholder="seu@email.com">
-          <button id="newsletter-submit" type="button" class="btn btn-river" style="padding:.7rem;">Inscrever ✦</button>
-        </div>
+        <div style="font-family:'Cinzel';font-size:0.65rem;letter-spacing:0.15em;margin-bottom:1rem;color:var(--river-d);">✦ Newsletter & Estudos</div>
+        <p style="font-size:.8rem;margin-bottom:1.5rem;color:var(--text-m);">Insira o seu e‑mail para receber os próximos estudos e o PDF grátis.</p>
+        <form action="https://YOUR_MAILCHIMP_URL" method="POST" style="display:flex;flex-direction:column;gap:.6rem;margin-top:auto;">
+          <input name="EMAIL" class="fi" type="email" placeholder="seu@email.com" required>
+          <input type="hidden" name="MMERGE3" value="home_hub">
+          <button type="submit" class="btn btn-river" style="padding:.7rem;">Inscrever & Receber PDF ✦</button>
+        </form>
       </div>
 
     </div>
@@ -641,6 +642,7 @@
 
 </div>
 
+    <div id="gemini-chat"></div>
 <footer style="background:#080E1C;color:rgba(255,255,255,.5);text-align:center;padding:4rem 1.5rem;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1;">
   <h4 style="font-family:'Cinzel';color:var(--gold);margin-bottom:1rem;">Projeto Leitura Profética</h4>
   <p style="font-size:.85rem;max-width:600px;margin:0 auto 2rem;line-height:1.6;">
@@ -801,7 +803,29 @@ function initTilt(){
 window.addEventListener('load',()=>setTimeout(initTilt,100));
 
 /* =========================================================
-   6️⃣  NEWSLETTER – ENVIAR POR MAILTO
+   6️⃣  GEMINI CHATBOT
+   ========================================================= */
+(function() {
+    const script = document.createElement('script');
+    script.src = "https://storage.googleapis.com/blogger_estudos_assets/gemini-widget.js"; // Substituir pelo seu URL final se necessário
+    script.onload = function() {
+        initializeGeminiChatbot({
+            containerId: 'gemini-chat',
+            model: 'gemini-1.5-pro',
+            systemPrompt: "Você é o assistente sábio da Escola Bíblica Nova Jerusalém. Responda com base na Bíblia e encoraje o estudo.",
+            jsonConfigUrl: "https://storage.googleapis.com/blogger_estudos_assets/faq_home.json",
+            onMessage: (msg) => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'chatbot_interaction', { 'message': msg });
+                }
+            }
+        });
+    };
+    document.head.appendChild(script);
+})();
+
+/* =========================================================
+   7️⃣  NEWSLETTER – ENVIAR POR MAILTO
    ========================================================= */
 document.addEventListener('DOMContentLoaded', ()=>{
   const emailInput = document.getElementById('newsletter-email');

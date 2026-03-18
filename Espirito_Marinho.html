@@ -6,6 +6,7 @@
     <title>Espíritos Marinhos | Estudo Profético Bíblico</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/chatbot.css">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518556229546726" crossorigin="anonymous"></script>
     <style>
         :root {
@@ -147,7 +148,7 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
-            color: #4050708;
+            color: #405070;
             font-size: 0.65rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -750,14 +751,19 @@
             <div class="dl-card reveal" style="max-width: 420px; width: 100%;">
                 <div class="dl-icon">📄</div>
                 <div class="dl-title">Guia de Estudo em PDF</div>
-                <p class="dl-desc">Faça o download do material completo de apoio com todos os detalhes bíblicos, raízes hebraicas e os pilares práticos deste estudo.</p>
-                <a href="https://drive.google.com/file/d/13qkhZumCwSRlUbYBvvgrZbOA_tselT6S/view?usp=drive_link" target="_blank" class="dl-btn">Download PDF</a>
+                <p class="dl-desc">Insira seu e-mail para receber o material completo de apoio com todos os detalhes bíblicos e as orações de libertação.</p>
+                <form action="https://YOUR_MAILCHIMP_URL" method="POST" style="display:flex;flex-direction:column;gap:0.8rem;">
+                    <input type="email" name="EMAIL" placeholder="Seu e-mail" required style="padding:0.8rem;border-radius:8px;background:#0a1028;border:1px solid rgba(201,168,76,0.2);color:white;outline:none;">
+                    <input type="hidden" name="MMERGE3" value="marine_spirits_v2">
+                    <button type="submit" class="dl-btn" style="width:100%;cursor:pointer;">Receber PDF por E-mail →</button>
+                </form>
             </div>
         </div>
 
     </div>
 </section>
 
+    <div id="gemini-chat"></div>
 <footer>
     <p>&copy; 2026 <span>Hub Educacional Bíblico</span> — Todos os direitos reservados.</p>
     <p style="margin-top:0.5rem;">Baseado em: <span>Os Espíritos Marinhos</span> • Gênesis 6 • Efésios 6</p>
@@ -799,6 +805,28 @@
             if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
         }
     }
+
+    /* =========================================================
+       GEMINI CHATBOT 
+       ========================================================= */
+    (function() {
+        const script = document.createElement('script');
+        script.src = "https://storage.googleapis.com/blogger_estudos_assets/gemini-widget.js";
+        script.onload = function() {
+            initializeGeminiChatbot({
+                containerId: 'gemini-chat',
+                model: 'gemini-1.5-pro',
+                systemPrompt: "Você é o assistente sábio focado no estudo dos espíritos marinhos e libertação.",
+                jsonConfigUrl: "https://storage.googleapis.com/blogger_estudos_assets/faq_marinhos.json",
+                onMessage: (msg) => {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'chatbot_interaction', { 'message': msg });
+                    }
+                }
+            });
+        };
+        document.head.appendChild(script);
+    })();
 
     function initParticles() {
         particles = Array.from({length: 160}, () => new Particle());

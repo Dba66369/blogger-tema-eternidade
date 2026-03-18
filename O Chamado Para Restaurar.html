@@ -17,6 +17,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <link rel="stylesheet" href="assets/css/chatbot.css">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518556229546726" crossorigin="anonymous"></script>
 
     <!-- ============================================================= -->
@@ -187,11 +188,17 @@
             Das <span class="gold-text">Ruínas</span> à <span class="gold-text">Redenção</span>
         </h1>
 
-<!-- Botão de Download -->
-<div style="margin: 20px 0; text-align: center;">
-  <a href="https://drive.google.com/uc?export=download&id=1xqA_jX1mKArbWgSCcxv_H3-KF29ambSC" style="display: inline-block; background: linear-gradient(135deg, #2196F3, #1976D2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.boxShadow='0 4px 15px rgba(33, 150, 243, 0.5)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='0 2px 8px rgba(33, 150, 243, 0.3)'; this.style.transform='translateY(0)';">
-    ⬇️ Baixar Estudo em PDF
-  </a>
+<!-- Formulário de Captura (Lead Capture) -->
+<div class="glass p-8 rounded-xl max-w-md mx-auto my-10 border-yellow-500/30">
+    <h3 class="text-xl font-bold mb-4 text-yellow-500">Receber Estudo Completo</h3>
+    <p class="text-sm text-slate-300 mb-6">Insira seu e-mail para receber o PDF com todos os detalhes proféticos do Chamado para Restaurar.</p>
+    <form action="https://YOUR_MAILCHIMP_URL" method="POST" class="flex flex-col gap-4">
+        <input type="email" name="EMAIL" placeholder="Seu melhor e-mail" required class="bg-slate-900 border border-white/10 p-3 rounded-lg text-white outline-none focus:border-yellow-500">
+        <input type="hidden" name="MMERGE3" value="restoration_call">
+        <button type="submit" class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-slate-950 font-bold py-3 rounded-lg hover:scale-105 transition-transform">
+            ⬇️ Enviar PDF para meu e-mail
+        </button>
+    </form>
 </div>
 
         <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-10 high-contrast-text">
@@ -608,6 +615,7 @@
             © 2026 Comunidade Local | Todos os direitos reservados.
         </p>
     </footer>
+    <div id="gemini-chat"></div>
 
     <!-- --------------------------------------------------------------- -->
     <!-- 11️⃣ SCRIPT – Interatividade (ESM‑like, porém sem bundler)       -->
@@ -658,57 +666,79 @@
                 dirLight.position.set(5,5,5);
                 scene.add(dirLight);
 
-                // PARTICULAS – ponto de luz sutil
+                // PARTICULAS – Poeira Angelical / Estrelas
                 const particlesGeo = new THREE.BufferGeometry();
-                const count = 500;
+                const count = 3000;
                 const positions = new Float32Array(count * 3);
-                for (let i = 0; i < count * 3; i++) {
-                    positions[i] = (Math.random() - 0.5) * 100;
+                const colors = new Float32Array(count * 3);
+                
+                for (let i = 0; i < count * 3; i += 3) {
+                    // Distribuição esférica para um efeito de "glória"
+                    const r = 20 + Math.random() * 80;
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.acos(2 * Math.random() - 1);
+                    
+                    positions[i] = r * Math.sin(phi) * Math.cos(theta);
+                    positions[i+1] = r * Math.sin(phi) * Math.sin(theta);
+                    positions[i+2] = r * Math.cos(phi);
+
+                    // Cores: Branco, Ouro e Azul celestial
+                    colors[i] = 1.0; 
+                    colors[i+1] = 0.9 + Math.random() * 0.1; 
+                    colors[i+2] = 0.7 + Math.random() * 0.3;
                 }
+                
                 particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                const particlesMat = new THREE.PointsMaterial({size:0.12, color:0xd4af37, transparent:true, opacity:0.5});
+                particlesGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                
+                const particlesMat = new THREE.PointsMaterial({
+                    size: 0.25, 
+                    vertexColors: true,
+                    transparent: true, 
+                    opacity: 0.8,
+                    blending: THREE.AdditiveBlending
+                });
+                
                 const pts = new THREE.Points(particlesGeo, particlesMat);
                 scene.add(pts);
 
-                // GEOMETRIAS FLUTUANTES (cubo, tetraedro, etc.)
-                const geoms = [
-                    new THREE.TorusGeometry(5,1,16,100),
-                    new THREE.IcosahedronGeometry(3,0),
-                    new THREE.OctahedronGeometry(4,0),
-                    new THREE.TetrahedronGeometry(3,0)
-                ];
-                const mats = [
-                    new THREE.MeshStandardMaterial({color:0xd4af37, wireframe:true}),
-                    new THREE.MeshStandardMaterial({color:0x1e293b, wireframe:true}),
-                    new THREE.MeshStandardMaterial({color:0x475569, wireframe:true}),
-                    new THREE.MeshStandardMaterial({color:0x64748b, wireframe:true})
-                ];
-                for (let i = 0; i < 8; i++) {
-                    const mesh = new THREE.Mesh(
-                        geoms[Math.floor(Math.random()*geoms.length)],
-                        mats[Math.floor(Math.random()*mats.length)]
-                    );
-                    mesh.position.set(
-                        (Math.random()-0.5)*50,
-                        (Math.random()-0.5)*50,
-                        (Math.random()-0.5)*50
-                    );
-                    mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, 0);
-                    scene.add(mesh);
-                    particles.push({ mesh, rot:{x:Math.random()*0.02-0.01, y:Math.random()*0.02-0.01, z:Math.random()*0.02-0.01} });
+                // ELEMENTO CENTRAL: AURA ANGELICAL
+                const auraGroup = new THREE.Group();
+                scene.add(auraGroup);
+
+                // Criar anéis de glória
+                for(let i=0; i<3; i++) {
+                    const ringGeo = new THREE.TorusGeometry(8 + i*2, 0.05, 16, 100);
+                    const ringMat = new THREE.MeshBasicMaterial({
+                        color: 0xd4af37, 
+                        transparent: true, 
+                        opacity: 0.3 - (i*0.08),
+                        blending: THREE.AdditiveBlending
+                    });
+                    const ring = new THREE.Mesh(ringGeo, ringMat);
+                    ring.rotation.x = Math.PI / 2;
+                    auraGroup.add(ring);
                 }
 
                 // ANIMAÇÃO
                 const animate = () => {
                     if (!animating) return;
                     requestAnimationFrame(animate);
-                    particles.forEach(p => {
-                        p.mesh.rotation.x += p.rot.x;
-                        p.mesh.rotation.y += p.rot.y;
-                        p.mesh.rotation.z += p.rot.z;
-                        // pequeno “flutuar” vertical
-                        p.mesh.position.y += Math.sin(Date.now()*0.001 + p.mesh.position.x) * 0.01;
+                    
+                    const time = Date.now() * 0.0005;
+                    
+                    // Rotação suave das partículas
+                    pts.rotation.y += 0.001;
+                    pts.rotation.z += 0.0005;
+                    
+                    // Pulsação da aura
+                    auraGroup.children.forEach((ring, i) => {
+                        ring.rotation.z += 0.01 * (i + 1);
+                        ring.scale.setScalar(1 + Math.sin(time * 2 + i) * 0.05);
                     });
+
+                    auraGroup.rotation.x = Math.sin(time) * 0.2;
+
                     controls.update();
                     renderer.render(scene, camera);
                 };
@@ -799,6 +829,28 @@
             card.style.setProperty('--rotateY', '0deg');
             card.style.setProperty('--rotateX', '0deg');
         }
+
+        /* =========================================================
+           GEMINI CHATBOT
+           ========================================================= */
+        (function() {
+            const script = document.createElement('script');
+            script.src = "https://storage.googleapis.com/blogger_estudos_assets/gemini-widget.js";
+            script.onload = function() {
+                initializeGeminiChatbot({
+                    containerId: 'gemini-chat',
+                    model: 'gemini-1.5-pro',
+                    systemPrompt: "Você é o assistente sábio focado no estudo de Neemias: O Chamado para Restaurar.",
+                    jsonConfigUrl: "https://storage.googleapis.com/blogger_estudos_assets/faq_restaurar.json",
+                    onMessage: (msg) => {
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'chatbot_interaction', { 'message': msg });
+                        }
+                    }
+                });
+            };
+            document.head.appendChild(script);
+        })();
 
         // --------------------------------------------------------------- //
         // 11.8  ATALHO DE TECLADO: ESC para fechar o 3‑D (se aberto)  //

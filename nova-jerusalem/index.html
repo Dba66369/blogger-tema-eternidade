@@ -6,6 +6,7 @@
     <title>Estudos Bíblicos — Índice</title>
     <meta name="description" content="Página de índice dos estudos bíblicos em HTML. Uma coleção de estudos aprofundados baseados na Palavra de Deus, inspirados na Nova Jerusalém.">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518556229546726" crossorigin="anonymous"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -125,12 +126,13 @@
             font-style: normal;
             background: linear-gradient(135deg, var(--gold), var(--gold-shine), var(--gold-light));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .header-verse {
             font-size: 0.9rem;
-            color: #6070908;
+            color: #607090;
             color: #607090;
             max-width: 520px;
             margin: 0 auto 0.5rem;
@@ -484,27 +486,34 @@
         <p>© 2026 <span>Hub Educacional Bíblico</span> — Todos os direitos reservados.</p>
         <p style="margin-top:0.4rem;">Inspirado em <span>Apocalipse 21 & 22</span> — A Nova Jerusalém</p>
     </footer>
+    <div id="gemini-chat"></div>
 
 </div>
 
-<script>
-    // Reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => obs.observe(el));
-
-    // 3D tilt on cards
-    document.querySelectorAll('.study-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const r = card.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width - 0.5;
-            const y = (e.clientY - r.top) / r.height - 0.5;
-            card.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
-        });
         card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
+
+    /* =========================================================
+       GEMINI CHATBOT 
+       ========================================================= */
+    (function() {
+        const script = document.createElement('script');
+        script.src = "https://storage.googleapis.com/blogger_estudos_assets/gemini-widget.js";
+        script.onload = function() {
+            initializeGeminiChatbot({
+                containerId: 'gemini-chat',
+                model: 'gemini-1.5-pro',
+                systemPrompt: "Você é o assistente sábio da Escola Bíblica Nova Jerusalém. Ajude os alunos a encontrar os estudos.",
+                jsonConfigUrl: "https://storage.googleapis.com/blogger_estudos_assets/faq_index.json",
+                onMessage: (msg) => {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'chatbot_interaction', { 'message': msg });
+                    }
+                }
+            });
+        };
+        document.head.appendChild(script);
+    })();
 </script>
 </body>
 </html>

@@ -32,7 +32,8 @@ AFFILIATE_LINKS = {
 }
 
 STUDY_LINKS = {
-    "marine_spirits_diagnosis_and_deliverance": "",
+    "marine_spirits": "https://drive.google.com/file/d/13qkhZumCwSRlUbYBvvgrZbOA_tselT6S/view?usp=drive_link",
+    "marine_spirits_diagnosis_and_deliverance": "https://drive.google.com/file/d/13qkhZumCwSRlUbYBvvgrZbOA_tselT6S/view?usp=drive_link",
     "como_destruir_o_altar_satanico": "",
     "how_to_break_generational_curses": "",
     "a_conta_bancaria_espiritual": "",

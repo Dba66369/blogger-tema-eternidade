@@ -7,6 +7,7 @@
     <title>Eternidade, Tempo e a Cruz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518556229546726" crossorigin="anonymous"></script>
     <style>
         :root {
@@ -630,79 +631,6 @@
 
         .app-item p { font-size: 0.88rem; color: var(--mist); line-height: 1.8; }
 
-        /* ─── DOWNLOADS ─── */
-        #downloads { background: rgba(15,10,25,0.5); }
-
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: rgba(201,168,76,0.1);
-        }
-
-        .download-card {
-            background: rgba(10,6,18,0.95);
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: background 0.3s;
-            overflow: hidden;
-        }
-
-        .download-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--wine), var(--gold));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .download-card:hover { background: rgba(26,18,37,0.95); }
-        .download-card:hover::before { transform: scaleX(1); }
-
-        .dl-icon {
-            width: 44px;
-            height: 44px;
-            border: 1px solid rgba(201,168,76,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .dl-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-
-        .download-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .download-card p { font-size: 0.82rem; color: rgba(212,207,200,0.6); flex: 1; margin-bottom: 2rem; line-height: 1.7; }
-
-        .btn-download {
-            font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            padding: 0.75rem 0;
-            text-align: center;
-            background: transparent;
-            color: var(--gold);
-            border: 1px solid rgba(201,168,76,0.3);
-            text-decoration: none;
-            transition: all 0.3s;
-            display: block;
-        }
-
-        .btn-download:hover {
-            background: rgba(201,168,76,0.1);
-            border-color: var(--gold);
-        }
-
         /* ─── FOOTER ─── */
         footer {
             position: relative;
@@ -772,24 +700,6 @@
         .ornament-line.rev { background: linear-gradient(to left, transparent, rgba(201,168,76,0.4)); }
         .ornament-dot { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); }
     </style>
-</head>
-<body>
-
-    <!-- 3D CANVAS BACKGROUND -->
-    <canvas id="cosmos-canvas"></canvas>
-
-    <!-- NAV -->
-    <nav>
-        <a href="#" class="nav-brand">Eternidade &amp; Tempo</a>
-        <ul class="nav-links">
-            <li><a href="#visao-geral">Visão Geral</a></li>
-            <li><a href="#chronos-kairos">Chronos × Kairos</a></li>
-            <li><a href="#joao-apocalipse">Apocalipse</a></li>
-            <li><a href="#abraao">Abraão</a></li>
-            <li><a href="#a-cruz">A Cruz</a></li>
-            <li><a href="#downloads">Downloads</a></li>
-        </ul>
-    </nav>
 
     <!-- HERO -->
     <section id="hero">

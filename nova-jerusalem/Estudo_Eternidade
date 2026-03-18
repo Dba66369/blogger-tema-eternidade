@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eternidade, Tempo e a Cruz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518556229546726" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
@@ -772,6 +773,7 @@
         .ornament-line.rev { background: linear-gradient(to left, transparent, rgba(201,168,76,0.4)); }
         .ornament-dot { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); }
     </style>
+    <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
 
