@@ -843,5 +843,27 @@
         });
     });
 </script>
+<!-- Gemini Chatbot Widget -->
+<div id="gemini-chat"></div>
+<script>
+  if (typeof window.GeminiChatWidget !== "undefined") {
+    window.GeminiChatWidget.init({
+      containerId: "gemini-chat",
+      model: "gemini-1.5-pro",
+      systemPrompt: "You are a helpful assistant specialized in the book: Espíritos Marinhos.",
+      jsonConfigUrl: "https://storage.googleapis.com/<SEU_BUCKET_AQUI>/faq_espiritos-marinhos.json",
+      onMessage: function(userQuery) {
+        if (typeof gtag === "function") {
+          gtag("event", "chatbot_interaction", {
+            "book": "espiritos-marinhos",
+            "question": userQuery
+          });
+        } else {
+          console.warn("GA4 gtag not defined. Event not tracked: chatbot_interaction", userQuery);
+        }
+      }
+    });
+  }
+</script>
 </body>
 </html>
