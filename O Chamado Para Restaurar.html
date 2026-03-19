@@ -1,388 +1,227 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- ==== META ==== -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>O Chamado Para Restaurar – Estudo Profundo sobre a Reconstrução de Neemias</title>
-  <meta name="description" content="Descubra as 4 atitudes do restaurador e o mistério das portas de Jerusalém neste estudo profundo sobre o livro de Neemias para sua vida espiritual.">
-  <meta property="og:title" content="O Chamado Para Restaurar">
-  <meta property="og:description" content="Um guia profético sobre a restauração dos muros e a reparação das brechas na alma humana.">
-  <meta property="og:image" content="https://primeiromilhao.github.io/blogger_Estudos/assets/img/study-banner.jpg">
-  <meta property="og:type" content="article">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>O Chamado Para Restaurar – Estudo Bíblico Profundo</title>
+  <meta name="description" content="Um guia profético sobre a restauração dos muros e a reparação das brechas na alma humana baseada no livro de Neemias.">
   
-  <!-- Fonts & Icons -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="O Chamado Para Restaurar">
+  <meta property="og:description" content="Reflexão sobre o chamado divino à restauração pessoal e comunitária.">
+  <meta property="og:image" content="https://primeiromilhao.github.io/blogger_Estudos/img/restaurar-og.jpg">
+  <meta property="og:url" content="https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html">
+  <meta property="og:type" content="article">
+
+  <!-- ==== FONTS & ICONS ==== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <style>
-    /* ==================== RESET & BASE ==================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --primary: #ff7e5f;
-      --secondary: #feb47b;
-      --text-dark: #222;
-      --text-muted: #555;
-      --bg-light: #fafafa;
-      --white: #ffffff;
-      --focus-color: #ffbf00;
-    }
-    
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--text-dark);
-      line-height: 1.6;
-      background: var(--bg-light);
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+  <!-- ==== CSS ==== -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/tocbot@4.13.0/dist/tocbot.css">
+  <link rel="stylesheet" href="assets/css/chatbot.css">
 
-    /* ==================== ACCESSIBILITY ==================== */
-    .skip-link {
-      position: absolute;
-      top: -100px;
-      left: 0;
-      background: var(--primary);
-      color: #fff;
-      padding: 1rem;
-      z-index: 1000;
-      transition: top 0.3s;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .skip-link:focus { top: 0; }
-    
-    :focus-visible {
-      outline: 3px solid var(--focus-color);
-      outline-offset: 2px;
-    }
-
-    /* ==================== TYPOGRAPHY ==================== */
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-    h1 { font-size: 2.8rem; color: var(--primary); text-align: center; margin-top: 4rem; }
-    h2 { font-size: 2rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem; }
-    h3 { font-size: 1.5rem; color: var(--text-muted); }
-    
-    p { margin-bottom: 1.5rem; font-size: 1.125rem; }
-    strong { font-weight: 700; color: var(--primary); }
-    em { font-style: italic; }
-
-    blockquote {
-      margin: 3rem 0;
-      padding: 2rem;
-      background: #fff;
-      border-left: 5px solid var(--primary);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      font-style: italic;
-      font-size: 1.25rem;
-      border-radius: 0 8px 8px 0;
-    }
-    blockquote footer {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* ==================== BUTTONS ==================== */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.9rem 2rem;
-      margin: 1rem 0.5rem 1rem 0;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      font-weight: 700;
-      text-decoration: none;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 4px 15px rgba(255, 126, 95, 0.3);
-      text-align: center;
-      min-width: 200px;
-    }
-    .btn-primary:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 12px 25px rgba(255, 126, 95, 0.4);
-    }
-    .btn-primary:focus {
-      outline: 3px solid var(--focus-color);
-      outline-offset: 2px;
-    }
-    .btn-primary:active {
-      transform: translateY(-1px);
-    }
-
-    /* ==================== IMAGES ==================== */
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      display: block;
-      margin: 2rem auto;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    /* ==================== SECTIONS & REVEAL ==================== */
-    section { margin-bottom: 5rem; }
-    
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-      transition: transform 0.3s ease;
-    }
-    .card:hover { transform: translateY(-5px); }
-    .card h4 { font-family: 'Inter', sans-serif; font-weight: 700; margin-bottom: 1rem; color: var(--primary); }
-
-    /* ==================== FORM ==================== */
-    .form-container {
-      background: #fff;
-      padding: 3rem;
-      border-radius: 20px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-      margin: 4rem 0;
-      text-align: center;
-    }
-    .form-container input {
-      width: 100%;
-      max-width: 400px;
-      padding: 1rem 1.5rem;
-      border: 2px solid #eee;
-      border-radius: 50px;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-    .form-container input:focus {
-      border-color: var(--secondary);
-      outline: none;
-    }
-
-    /* ==================== FOOTER ==================== */
-    footer {
-      background: #222;
-      color: #eee;
-      padding: 4rem 1.5rem;
-      text-align: center;
-      margin-top: 5rem;
-    }
-    footer a { color: var(--secondary); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    /* ==================== MOBILE ADJUSTMENTS ==================== */
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.6rem; }
-      .form-container { padding: 2rem 1.5rem; }
-      .btn-primary { width: 100%; margin: 0.5rem 0; }
-    }
-  </style>
+  <!-- ==== JSON-LD (Schema.org) ==== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "O Chamado Para Restaurar",
+    "image": ["https://primeiromilhao.github.io/blogger_Estudos/assets/img/study-banner.jpg"],
+    "author": {
+      "@type": "Person",
+      "name": "Biblioteca Profética"
+    },
+    "datePublished": "2024-02-14",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Biblioteca Profética",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://primeiromilhao.github.io/blogger_Estudos/assets/img/logo.png"
+      }
+    },
+    "description": "Estudo profundo sobre a reconstrução de Jerusalém por Neemias e sua aplicação na vida cristã."
+  }
+  </script>
 </head>
+
 <body>
-  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
-
-  <div class="container" id="main-content">
-    <header>
-      <h1 class="reveal">Das Ruínas à Redenção</h1>
-      <p class="reveal" style="text-align: center; color: var(--text-muted); font-style: italic;">
-        Um guia profético sobre a restauração baseada no livro de Neemias.
-      </p>
-
-      <div style="text-align: center; margin-top: 2rem;" class="reveal">
-        <a href="#atitudes" class="btn-primary" aria-label="Ler sobre as 4 Atitudes do Restaurador">As 4 Atitudes</a>
-        <a href="#portas" class="btn-primary" aria-label="Ver o Mistério das Portas de Jerusalém">O Mistério das Portas</a>
-      </div>
-    </header>
-
-    <main>
-      <section id="contexto" class="reveal">
-        <h2>O Retorno Profético</h2>
-        <p>
-          A história da restauração de Jerusalém não é apenas um relato arquitetónico ou político; é o espelho do agir de Deus na alma humana. O retorno aconteceu em três fases distintas, cada uma revelando um aspecto do caráter restaurador de Deus.
-        </p>
-        <p>
-          Na <strong>primeira fase</strong>, o foco foi a reconstrução do Templo (Adoração). Na <strong>segunda fase</strong>, o foco foi a Palavra. Contudo, faltavam os muros e as portas. A ausência de muros significa ausência de limites, de defesa e de identidade.
-        </p>
-        
-        <blockquote class="reveal">
-          “Deus nos chama a encarar nossas ruínas com esperança. Ele não apenas reconstrói o que foi quebrado, mas redime nossa história.”
-          <footer>— O Chamado Para Restaurar</footer>
-        </blockquote>
-      </section>
-
-      <section id="atitudes" class="reveal">
-        <h2>As 4 Atitudes do Restaurador</h2>
-        <p>Neemias nos ensina que a verdadeira restauração começa no oculto, através de quatro passos cruciais:</p>
-        
-        <div class="card-grid">
-          <div class="card">
-            <h4>1. Assentar-se</h4>
-            <p>Antes de agir, Neemias parou. O assentar-se fala de reflexão e do fim da autoconfiança.</p>
-          </div>
-          <div class="card">
-            <h4>2. Chorar</h4>
-            <p>Empatia divina. Ter o coração quebrado por aquilo que quebra o coração de Deus.</p>
-          </div>
-          <div class="card">
-            <h4>3. Lamentar</h4>
-            <p>O reconhecimento verbal do estado atual. "Nós pecamos, nós falhamos".</p>
-          </div>
-          <div class="card">
-            <h4>4. Orar e Jejuar</h4>
-            <p>A batalha é espiritual. O jejum foca o espírito e prepara para a ação profética.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="portas" class="reveal">
-        <h2>Deus Ama as Portas</h2>
-        <p>A ordem da reconstrução das portas revela o processo de restauração na vida do cristão:</p>
-        
-        <div class="card-grid">
-          <div class="card">
-            <h4>Porta das Ovelhas</h4>
-            <p>Onde tudo começa: na Cruz, no Sacrifício, na Graça.</p>
-          </div>
-          <div class="card">
-            <h4>Porta do Peixe</h4>
-            <p>Nosso testemunho no mundo. Ser pescadores de homens.</p>
-          </div>
-          <div class="card">
-            <h4>Porta Velha</h4>
-            <p>A volta às veredas antigas e aos fundamentos da Palavra.</p>
-          </div>
-          <div class="card">
-            <h4>Porta do Vale</h4>
-            <p>Onde o orgulho morre através da provação e humilhação.</p>
-          </div>
-          <div class="card">
-            <h4>Porta do Monturo</h4>
-            <p>O momento da purificação, de jogar fora o lixo interior.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="formulario" class="reveal">
-        <div class="form-container">
-          <h3>Receba o Estudo Completo (PDF)</h3>
-          <p>Insira seu e-mail para receber o guia detalhado deste estudo bíblico diretamente na sua caixa de entrada.</p>
-          <form action="/api/redirect?book=restaurar_pdf" method="POST" target="_blank">
-            <input type="email" id="email" name="EMAIL" placeholder="seu@melhor-email.com" required aria-label="Seu melhor e-mail">
-            <input type="hidden" name="MMERGE3" value="o_chamado_para_restaurar">
-            <button type="submit" class="btn-primary" aria-label="Enviar PDF gratuito para meu e-mail">Baixar PDF Grátis</button>
-          </form>
-          <p style="margin-top:1rem; font-size:0.8rem; opacity:0.6;">Ou aceda diretamente: <a href="https://drive.google.com/file/d/1xqA_jX1mKArbWgSCcxv_H3-KF29ambSC/view?usp=drive_link" target="_blank">Link Alternativo</a></p>
-        </div>
-      </section>
-
-      <section id="oposicao" class="reveal">
-        <h2>Lidando com a Oposição</h2>
-        <p>
-          "Estou a fazer uma grande obra, de modo que não poderei descer." Neemias não cedeu à distração nem ao medo. Ele entendeu que a alegria do Senhor é a nossa força, mesmo em meio às zombarias de Sambalate e Tobias.
-        </p>
-        <div style="text-align: center; margin-top: 3rem;">
-           <a href="/api/redirect?book=pessoas_dificeis" class="btn-primary" aria-label="Comprar o livro Como Lidar com Pessoas Difíceis na Amazon">Adquirir Livro na Amazon</a>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <footer>
+  <!-- ==== HEADER ==== -->
+  <header class="site-header" role="banner">
     <div class="container">
-      <p>© 2026 <strong>Biblioteca Profética</strong>. Todos os direitos reservados.</p>
-      <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
-        Rua Diogo Brandão, 63 • Porto, Portugal | Desenvolvido por <a href="https://github.com/Primeiromilhao" target="_blank">primeiromilhao</a>
-      </p>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="site-title"><a href="index.html">Biblioteca Profética</a></h1>
+        <nav class="site-nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="Eternidade.html">Eternidade</a></li>
+            <li><a href="O%20Chamado%20Para%20Restaurar.html" class="active">Restaurar</a></li>
+          </ul>
+          <button id="themeToggle" aria-label="Alternar modo escuro" title="Modo escuro/claro">🌙</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==== PROGRESS BAR ==== -->
+  <div id="readingProgress" aria-hidden="true"></div>
+
+  <!-- ==== MAIN CONTENT ==== -->
+  <main class="site-content container" role="main">
+    <article class="post">
+
+      <!-- HERO IMAGE -->
+      <figure class="post-hero">
+        <picture>
+          <img src="https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?auto=format&fit=crop&q=80&w=1200"
+               alt="Antigas ruínas sendo restauradas"
+               loading="lazy">
+        </picture>
+        <figcaption>A restauração exige coragem para encarar as ruínas</figcaption>
+      </figure>
+
+      <!-- POST HEADER -->
+      <header class="post-header">
+        <h1 class="post-title">O Chamado Para Restaurar</h1>
+        <p class="post-meta">
+          <time datetime="2024-02-14">14 de fevereiro de 2024</time> •
+          <span class="post-category">Estudo Bíblico de Neemias</span>
+        </p>
+      </header>
+
+      <!-- TABLE OF CONTENTS -->
+      <nav class="toc" id="toc"></nav>
+
+      <!-- INTRODUÇÃO -->
+      <section class="post-intro">
+        <p>Vivemos num tempo em que muitos clamam por mudança, mas poucos respondem ao <strong>chamado</strong> de restaurar aquilo que já foi quebrado. A história da restauração de Jerusalém não é apenas arquitetónica; é o espelho do agir de Deus na alma humana.</p>
+      </section>
+
+      <!-- PRINCIPAL BODY -->
+      <section class="post-body">
+
+        <h2 id="atitudes">1. As 4 Atitudes do Restaurador</h2>
+        <p>Antes de carregar uma única pedra, Neemias nos ensina que a verdadeira restauração começa no oculto:</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+          <div style="padding: 1.5rem; background: rgba(13, 110, 253, 0.05); border-radius: 8px;">
+            <strong style="display:block; margin-bottom: 0.5rem;">1. Assentar-se</strong>
+            Reflexão e fim da autoconfiança.
+          </div>
+          <div style="padding: 1.5rem; background: rgba(13, 110, 253, 0.05); border-radius: 8px;">
+            <strong style="display:block; margin-bottom: 0.5rem;">2. Chorar</strong>
+            Ter o coração quebrado pelo que quebra o de Deus.
+          </div>
+          <div style="padding: 1.5rem; background: rgba(13, 110, 253, 0.05); border-radius: 8px;">
+            <strong style="display:block; margin-bottom: 0.5rem;">3. Lamentar</strong>
+            O reconhecimento verbal do pecado e falha.
+          </div>
+          <div style="padding: 1.5rem; background: rgba(13, 110, 253, 0.05); border-radius: 8px;">
+            <strong style="display:block; margin-bottom: 0.5rem;">4. Orar e Jejuar</strong>
+            A batalha que acontece no espiritual.
+          </div>
+        </div>
+
+        <h2 id="misterio-das-portas">2. O Mistério das Portas de Jerusalém</h2>
+        <p>A ordem da reconstrução das portas revela o processo de cura na vida do cristão:</p>
+        <ul>
+          <li><strong>Porta das Ovelhas:</strong> Onde tudo começa, no Sacrifício da Cruz.</li>
+          <li><strong>Porta do Peixe:</strong> O nosso testemunho e evangelização.</li>
+          <li><strong>Porta Velha:</strong> A volta às veredas antigas da Palavra.</li>
+          <li><strong>Porta do Vale:</strong> O lugar da provação e morte do orgulho.</li>
+          <li><strong>Porta do Monturo:</strong> A purificação do lixo interior.</li>
+        </ul>
+
+        <blockquote>
+          “E os teus renovarão as antigas ruínas; e levantarás os fundamentos de muitas gerações; e chamar-te-ão reparador das brechas, e restaurador de caminhos para morar.”
+          <footer>— <cite>Isaías 58:12</cite></footer>
+        </blockquote>
+
+        <h2 id="oposicao">3. Lidando com a Oposição</h2>
+        <p>Neemias entendeu que a alegria do Senhor era a sua força ante as zombarias de Sambalate. Ele recusou-se a "descer do muro" por distrações vãs.</p>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+           <a href="/api/redirect?book=pessoas_dificeis" class="btn-primary" aria-label="Adquirir livro Como Lidar com Pessoas Difíceis na Amazon">Adquirir Livro sobre Oposição na Amazon</a>
+        </div>
+
+        <h2 id="material">4. Material de Estudo (PDF)</h2>
+        <p>Receba o guia detalhado e as notas complementares deste estudo diretamente no seu e-mail:</p>
+        
+        <div style="background: rgba(13, 110, 253, 0.05); padding: 2rem; border-radius: 12px; text-align: center; margin: 2rem 0;">
+          <form action="/api/redirect?book=restaurar_pdf" method="POST" target="_blank">
+            <input type="email" name="EMAIL" placeholder="seu@melhor-email.com" required style="padding: 0.8rem 1.5rem; border-radius: 50px; border: 1px solid #ddd; width: 100%; max-width: 300px; margin-bottom: 1rem;">
+            <button type="submit" class="btn-primary">Baixar PDF Grátis</button>
+          </form>
+          <p style="font-size: 0.8rem; margin-top: 1rem;">Ou: <a href="https://drive.google.com/file/d/1xqA_jX1mKArbWgSCcxv_H3-KF29ambSC/view?usp=drive_link" target="_blank">Link Direto</a></p>
+        </div>
+
+      </section>
+
+      <!-- CONCLUSÃO -->
+      <section class="post-conclusion">
+        <p>Responder ao chamado de restaurar não é opcional; é a essência do Evangelho em movimento.</p>
+      </section>
+
+      <!-- SHARE BUTTONS -->
+      <section class="post-share">
+        <p>Partilhe este Estudo:</p>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html"
+           target="_blank" rel="noopener" aria-label="Compartilhar no Facebook" class="share-btn fb">Facebook</a>
+        <a href="https://twitter.com/intent/tweet?url=https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html&text=O%20Chamado%20Para%20Restaurar"
+           target="_blank" rel="noopener" aria-label="Compartilhar no Twitter" class="share-btn tw">Twitter</a>
+        <a href="whatsapp://send?text=O%20Chamado%20Para%20Restaurar%20https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html"
+           target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp" class="share-btn wa">WhatsApp</a>
+      </section>
+
+      <!-- COMMENTS -->
+      <section id="comments" class="post-comments">
+        <script src="https://utteranc.es/client.js"
+                repo="primeiromilhao/blogger_Estudos"
+                issue-term="pathname"
+                label="comment"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </section>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar related-posts" aria-label="Posts relacionados">
+      <h2>Estudos Relacionados</h2>
+      <ul>
+        <li><a href="Espirito_Marinho.html">Os Espíritos Marinhos e a Libertação</a></li>
+        <li><a href="Eternidade.html">Eternidade, Tempo e a Cruz</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- ==== FOOTER ==== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© 2026 Biblioteca Profética • Desenvolvido por <a href="https://github.com/Primeiromilhao" style="color:#fff;">primeiromilhao</a></p>
     </div>
   </footer>
 
   <div id="gemini-chat"></div>
 
-  <!-- JavaScript -->
+  <!-- ==== JAVASCRIPT ==== -->
+  <script src="https://unpkg.com/tocbot@4.13.0/dist/tocbot.min.js"></script>
+  <script src="main.js"></script>
   <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
-
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const target = document.querySelector(targetId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.pushState(null, null, targetId);
-        }
-      });
+    // Initialize Gemini Chatbot specifically for this page
+    loadGeminiChatbot({
+        containerId: 'gemini-chat',
+        model: 'gemini-1.5-pro',
+        systemPrompt: "Você é o assistente sábio focado no estudo de Neemias: O Chamado para Restaurar.",
+        jsonConfigUrl: "https://storage.googleapis.com/blogger_estudos_assets/faq_restaurar.json"
     });
-
-    // Scroll Reveal functionality
-    const reveals = document.querySelectorAll('.reveal');
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    reveals.forEach(el => observer.observe(el));
-
-    // Gemini Chatbot Widget (Simplified injection)
-    (function() {
-      const script = document.createElement('script');
-      script.src = "https://storage.googleapis.com/blogger_estudos_assets/gemini-widget.js";
-      script.async = true;
-      script.onload = function() {
-        if (typeof initializeGeminiChatbot === 'function') {
-          initializeGeminiChatbot({
-            containerId: 'gemini-chat',
-            model: 'gemini-1.5-pro',
-            systemPrompt: "Você é o assistente sábio focado no estudo de Neemias: O Chamado para Restaurar.",
-            jsonConfigUrl: "https://storage.googleapis.com/blogger_estudos_assets/faq_restaurar.json"
-          });
-        }
-      };
-      document.head.appendChild(script);
-    })();
   </script>
 </body>
 </html>
