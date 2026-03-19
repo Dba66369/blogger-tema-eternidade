@@ -32,33 +32,11 @@ AFFILIATE_LINKS = {
 }
 
 STUDY_LINKS = {
+    "restaurar_pdf": "https://drive.google.com/file/d/1xqA_jX1mKArbWgSCcxv_H3-KF29ambSC/view?usp=drive_link",
+    "eternidade_pdf1": "https://drive.google.com/file/d/1SLAaLZ5e_5T3r95uC1I1qm2Cz9JZUrwp/view?usp=drive_link",
+    "marinho_pdf": "https://drive.google.com/file/d/13qkhZumCwSRlUbYBvvgrZbOA_tselT6S/view?usp=drive_link",
     "marine_spirits": "https://drive.google.com/file/d/13qkhZumCwSRlUbYBvvgrZbOA_tselT6S/view?usp=drive_link",
-    "marine_spirits_diagnosis_and_deliverance": "https://drive.google.com/file/d/13qkhZumCwSRlUbYBvvgrZbOA_tselT6S/view?usp=drive_link",
     "restoration_call": "https://drive.google.com/file/d/1xqA_jX1mKArbWgSCcxv_H3-KF29ambSC/view?usp=drive_link",
-    "como_destruir_o_altar_satanico": "",
-    "how_to_break_generational_curses": "",
-    "a_conta_bancaria_espiritual": "",
-    "the_airdrops_bible": "",
-    "power_of_compounding": "",
-    "a_lei_da_contribui\u00e7\u00e3o": "",
-    "crypto_staking": "",
-    "a_lei_do_pensamento": "",
-    "the_millionaires_mindset": "",
-    "focus": "",
-    "overcoming_the_spirit_of_self_pity": "",
-    "segredos_de_um_casamento_feliz": "",
-    "rei_trate_sua_mulher_como_uma_rainha": "",
-    "como_lidar_com_pessoas_dificeis": "",
-    "receita_do_amor": "",
-    "a_chave_mestre_da_oracao": "",
-    "a_vida_e_obras_inegaveis_dos_anjos": "",
-    "sos_numbers_for_god": "",
-    "uma_caminhada_com_os_anjos": "",
-    "o_poder_de_um_altar": "",
-    "deus_terminar_o_que_ele_comecou": "",
-    "o_homem_de_fe": "",
-    "salvacao_um_novo_nascimento": "",
-    "danca_comigo": ""
 }
 
 def handler(event, context):
@@ -69,9 +47,25 @@ def handler(event, context):
     if not book:
         return {'statusCode': 302, 'headers': {'Location': '/'}}
 
-    is_study = study == '1' and book in STUDY_LINKS
+    is_study = (study == '1' or book.endswith('_pdf') or book.endswith('_pdf1')) and book in STUDY_LINKS
     destination = STUDY_LINKS[book] if is_study else AFFILIATE_LINKS.get(book, '/')
     click_type = 'study' if is_study else 'amazon'
+
+    email = ""
+    if event.get('httpMethod') == 'POST' and event.get('body'):
+        try:
+            # Tenta decodificar o corpo como formulário-url-encoded ou JSON
+            body = event.get('body')
+            if event.get('isBase64Encoded'):
+                import base64
+                body = base64.b64decode(body).decode('utf-8')
+            
+            # Procura por EMAIL= no corpo do formulário
+            import urllib.parse
+            params = urllib.parse.parse_qs(body)
+            email = params.get('EMAIL', [''])[0]
+        except:
+            pass
 
     if destination == '/':
         return {'statusCode': 302, 'headers': {'Location': '/'}}
@@ -86,7 +80,7 @@ def handler(event, context):
     if sheets_id and google_token:
         try:
             url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheets_id}/values/A1:append?valueInputOption=USER_ENTERED"
-            data = {"values": [[timestamp, book, click_type, ip, user_agent]]}
+            data = {"values": [[timestamp, book, click_type, email, ip, user_agent]]}
             req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'))
             req.add_header('Authorization', f'Bearer {google_token}')
             req.add_header('Content-Type', 'application/json')
