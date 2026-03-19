@@ -222,11 +222,22 @@ window.initializeGeminiChatbot = function(config) {
         document.querySelectorAll('.nj-chat-suggestions').forEach(el => el.remove());
 
         // Simple Keyword Match
-        const match = faqData.find(q => 
-            text.toLowerCase().includes(q.question.toLowerCase().replace('sobre o que é o livro ', '').replace('?', '').trim()) ||
-            q.question.toLowerCase().includes(text.toLowerCase()) ||
-            (q.answer.toLowerCase().includes(text.toLowerCase()) && text.length > 4)
-        );
+        // Melhorado: Busca por palavras-chave mais flexível
+        const match = faqData.find(q => {
+            const qClean = q.question.toLowerCase();
+            const textClean = text.toLowerCase();
+            
+            // 1. Match exato ou inclusão total
+            if (qClean.includes(textClean) || textClean.includes(qClean)) return true;
+            
+            // 2. Match por palavras-chave (ignora palavras curtas)
+            const keywords = textClean.split(/\s+/).filter(w => w.length > 3);
+            if (keywords.length > 0 && keywords.every(kw => qClean.includes(kw) || q.answer.toLowerCase().includes(kw))) {
+                return true;
+            }
+            
+            return false;
+        });
 
         setTimeout(() => {
             if (match) {
