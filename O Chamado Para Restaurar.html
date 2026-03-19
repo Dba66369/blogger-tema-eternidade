@@ -1,196 +1,234 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- ==== META ==== -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>O Chamado Para Restaurar – Estudos</title>
-  <meta name="description"
-        content="Reflexão sobre o chamado divino à restauração pessoal e comunitária.">
-  <!-- Open Graph -->
-  <meta property="og:title" content="O Chamado Para Restaurar">
-  <meta property="og:description" content="Reflexão sobre o chamado divino à restauração.">
-  <meta property="og:image" content="https://primeiromilhao.github.io/blogger_Estudos/img/restaurar-og.jpg">
-  <meta property="og:url" content="https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html">
-  <meta property="og:type" content="article">
+    <!-- ====================== META ====================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>O Chamado Para Restaurar – Estudos</title>
+    <meta name="description"
+          content="Reflexão sobre o chamado divino à restauração pessoal e comunitária.">
+    <meta name="author" content="Primeiro Milhão">
 
-  <!-- ==== FONTS ==== -->
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Roboto:wght@400;500&display=swap"
-        rel="stylesheet">
+    <!-- Open Graph -->
+    <meta property="og:title" content="O Chamado Para Restaurar – Estudos">
+    <meta property="og:description"
+          content="Reflexão sobre o chamado divino à restauração pessoal e comunitária.">
+    <meta property="og:image"
+          content="https://primeiromilhao.github.io/blogger_Estudos/img/restaurar-og.jpg">
+    <meta property="og:url"
+          content="https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html">
+    <meta property="og:type" content="article">
 
-  <!-- ==== CSS ==== -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/tocbot@4.13.0/dist/tocbot.css">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="O Chamado Para Restaurar – Estudos">
+    <meta name="twitter:description"
+          content="Reflexão sobre o chamado divino à restauração pessoal e comunitária.">
+    <meta name="twitter:image"
+          content="https://primeiromilhao.github.io/blogger_Estudos/img/restaurar-og.jpg">
 
-  <!-- ==== JSON‑LD (Schema.org) ==== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "O Chamado Para Restaurar",
-    "image": ["https://primeiromilhao.github.io/blogger_Estudos/img/restaurar-hero.jpg"],
-    "author": {
-      "@type": "Person",
-      "name": "Primeiro Milhão"
-    },
-    "datePublished": "2024-02-14",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Estudos do Primeiro Milhão",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://primeiromilhao.github.io/blogger_Estudos/img/logo.png"
-      }
-    },
-    "description": "Reflexão sobre o chamado divino à restauração pessoal e comunitária."
-  }
-  </script>
+    <!-- Google Fonts – mesmas fontes de Eternidade -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Roboto:wght@400;500&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS principal – reutiliza o mesmo arquivo de Eternidade -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JSON‑LD – schema Article -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Article",
+      "headline":"O Chamado Para Restaurar",
+      "image":["https://primeiromilhao.github.io/blogger_Estudos/img/restaurar-hero.jpg"],
+      "author":{"@type":"Person","name":"Primeiro Milhão"},
+      "datePublished":"2024-02-14",
+      "publisher":{"@type":"Organization","name":"Estudos do Primeiro Milhão","logo":{"@type":"ImageObject","url":"https://primeiromilhao.github.io/blogger_Estudos/img/logo.png"}},
+      "description":"Reflexão sobre o chamado divino à restauração pessoal e comunitária."
+    }
+    </script>
+
+    <!-- Google Analytics (mesma conta) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXXXX-X');
+    </script>
 </head>
 
-<body>
-  <!-- ==== HEADER ==== -->
-  <header class="site-header" role="banner">
-    <div class="container">
-      <h1 class="site-title"><a href="index.html">Estudos</a></h1>
-      <nav class="site-nav" aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="Eternidade.html">Eternidade</a></li>
-          <li><a href="O%20Chamado%20Para%20Restaurar.html"
-                 class="active">Chamado para Restaurar</a></li>
-          <li><a href="Sobre.html">Sobre</a></li>
-        </ul>
-        <!-- Dark‑mode toggle -->
-        <button id="themeToggle" aria-label="Alternar modo escuro"
-                title="Modo escuro/claro">🌙</button>
-      </nav>
-    </div>
-  </header>
+<body data-theme="light">
 
-  <!-- ==== PROGRESS BAR ==== -->
-  <div id="readingProgress" aria-hidden="true"></div>
+    <!-- ========= BAR DE PROGRESSÃO ========= -->
+    <div id="readingProgress" aria-hidden="true"></div>
 
-  <!-- ==== MAIN CONTENT ==== -->
-  <main class="site-content container" role="main">
-    <article class="post">
+    <!-- ========= HEADER (logo + navegação) ========= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="index.html">Estudos</a></h1>
 
-      <!-- HERO IMAGE -->
-      <figure class="post-hero">
-        <picture>
-          <source srcset="img/restaurar-hero.avif" type="image/avif">
-          <source srcset="img/restaurar-hero.webp" type="image/webp">
-          <img src="img/restaurar-hero.jpg"
-               alt="Mãos construindo um mosaico – símbolo da restauração"
-               loading="lazy">
-        </picture>
-        <figcaption>Restaurar: construção cuidadosa, peça por peça</figcaption>
-      </figure>
+            <nav class="site-nav" aria-label="Navegação principal">
+                <ul class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="Eternidade.html">Eternidade</a></li>
+                    <li><a href="O%20Chamado%20Para%20Restaurar.html" class="active">Chamado para Restaurar</a></li>
+                    <li><a href="Sobre.html">Sobre</a></li>
+                </ul>
 
-      <!-- POST HEADER -->
-      <header class="post-header">
-        <h1 class="post-title">O Chamado Para Restaurar</h1>
-        <p class="post-meta">
-          <time datetime="2024-02-14">14 de fevereiro de 2024</time> •
-          <a href="#" class="post-category">Estudo Bíblico</a>
-        </p>
-      </header>
+                <!-- Toggle dark‑mode (mesmo id) -->
+                <button id="themeToggle" aria-label="Alternar modo escuro"
+                        title="Modo escuro/claro">🌙</button>
+            </nav>
+        </div>
+    </header>
 
-      <!-- TABLE OF CONTENTS (TOC) – gerado dinamicamente -->
-      <nav class="toc" id="toc"></nav>
+    <!-- ========= CONTEÚDO PRINCIPAL ========= -->
+    <main class="site-content container">
 
-      <!-- INTRODUÇÃO -->
-      <section class="post-intro">
-        <p>Vivemos num tempo em que muitos clamam por mudança, mas poucos respondem ao <strong>chamado</strong> de restaurar aquilo que já foi
-        quebrado. Este artigo examina o que a Escritura nos ensina acerca desse convite divino através da história de Neemias.</p>
-      </section>
+        <!-- ======== ARTICLE ======== -->
+        <article class="post">
 
-      <!-- PRINCIPAL -->
-      <section class="post-body">
+            <!-- ---- HERO IMAGE ---- -->
+            <figure class="post-hero">
+                <picture>
+                    <source srcset="img/restaurar-hero.avif" type="image/avif">
+                    <source srcset="img/restaurar-hero.webp" type="image/webp">
+                    <img src="img/restaurar-hero.jpg"
+                         alt="Mãos construindo um mosaico – símbolo da restauração"
+                         loading="lazy">
+                </picture>
+                <figcaption>Restaurar: construção cuidadosa, peça por peça</figcaption>
+            </figure>
 
-        <h2 id="atitudes-neemias">1. As 4 Atitudes do Restaurador</h2>
-        <p>Em <cite>Isaías 58:12</cite> lemos: <blockquote>
-          “E os teus renovarão as antigas ruínas; e levantarás os fundamentos de muitas gerações; e chamar-te-ão reparador das brechas, e restaurador de caminhos para morar.”
-          <footer>‑ <cite>Isaías 58:12</cite></footer>
-        </blockquote>
-        Essa passagem faz ponte entre <em>julgamento</em> e <em>restauração</em>. Antes de carregar uma única pedra, aprendemos com Neemias:</p>
+            <!-- ---- TÍTULO + META ---- -->
+            <header class="post-header">
+                <h1 class="post-title">O Chamado Para Restaurar</h1>
+                <p class="post-meta">
+                    <time datetime="2024-02-14">14 de fevereiro de 2024</time> •
+                    <a href="#" class="post-category">Estudo Bíblico</a>
+                </p>
+            </header>
 
-        <h3 id="a-preparacao">1.1 A Preparação Espiritual</h3>
-        <p>A restauração começa com o reconhecimento da situação. Neemias assentou-se, chorou, lamentou e buscou a Deus em oração e jejum antes de qualquer ação prática.</p>
+            <!-- ---- TOC (gerada pelo tocbot) ---- -->
+            <nav class="toc" id="toc"></nav>
 
-        <h2 id="o-modelo-das-portas">2. O Mistério das Portas de Jerusalém</h2>
-        <p>Quando lemos sobre a reconstrução dos muros, cada porta tem um significado profético para a reconstrução da alma humana.</p>
+            <!-- ---- INTRODUÇÃO ---- -->
+            <section class="post-intro">
+                <p>Vivemos num tempo em que <strong>muitos clamam por mudança</strong>, mas poucos respondem ao <em>chamado</em> de restaurar aquilo que já foi quebrado. Este artigo examina o que a Escritura nos ensina acerca desse convite divino através da história de Neemias.</p>
+            </section>
 
-        <!-- Destaque de versículo com classe customizada -->
-        <blockquote class="verse">
-          “Pois eu, o Senhor, faço tudo isso e não falho”. <br>
-          <footer>‑ <cite>Salmos 115:3</cite></footer>
-        </blockquote>
+            <!-- ---- CORPO DO POST ---- -->
+            <section class="post-body">
 
-        <p>Da Porta das Ovelhas à Porta do Vale, cada etapa representa um nível de libertação e cura.</p>
+                <h2 id="atitudes-neemias">1. As 4 Atitudes do Restaurador</h2>
+                <p>Em <cite>Isaías 58:12</cite> lemos:</p>
 
-        <h2 id="libertacao-e-download">3. Prática de restauração hoje</h2>
-        <p>Aplicar o chamado à restauração pode acontecer em três esferas:</p>
-        <ol>
-          <li>Restauração pessoal – <a href="/api/redirect?book=restaurar_pdf">Baixar Guia de Estudo</a>;</li>
-          <li>Restauração familiar – <a href="/api/redirect?book=restaurar_pdf">Manual de Reconciliação</a>;</li>
-          <li>Restauração comunitária – <a href="/api/redirect?book=pessoas_dificeis">Lidando com a Oposição</a>.</li>
-        </ol>
+                <blockquote class="verse">
+                    “E os teus renovarão as antigas ruínas; e levantarás os fundamentos de muitas gerações; e chamar-te-ão reparador das brechas, e restaurador de caminhos para morar.”<br>
+                    <footer>‑ <cite>Isaías 58:12</cite></footer>
+                </blockquote>
 
-      </section>
+                <p>Essa passagem faz ponte entre <em>julgamento</em> e <em>restauração</em>, indicando que a ação de Deus não termina na condenação, mas avança para a reconstrução. Usando a reconstrução de Jerusalém por Neemias como modelo:</p>
 
-      <!-- CONCLUSÃO -->
-      <section class="post-conclusion">
-        <p>Responder ao chamado de restaurar não é opcional; é a própria <strong>essência</strong> da mensagem do Evangelho.</p>
-        <a href="#comments" class="btn-primary">Deixe seu comentário</a>
-      </section>
+                <h3 id="etapas-iniciais">1.1 Etapas Iniciais</h3>
+                <p>A restauração começa no oculto: assentar-se para refletir, chorar pelas ruínas, lamentar o pecado e buscar a Deus em oração e jejum antes de qualquer ação prática.</p>
 
-      <!-- SHARE BUTTONS -->
-      <section class="post-share">
-        <p>Compartilhe:</p>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html"
-           target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"
-           class="share-btn fb">Facebook</a>
-        <a href="https://twitter.com/intent/tweet?url=https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html&text=O%20Chamado%20Para%20Restaurar"
-           target="_blank" rel="noopener" aria-label="Compartilhar no Twitter"
-           class="share-btn tw">Twitter</a>
-        <a href="whatsapp://send?text=O%20Chamado%20Para%20Restaurar%20https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html"
-           target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"
-           class="share-btn wa">WhatsApp</a>
-      </section>
+                <h2 id="o-mistério-das-portas">2. O Mistério das Portas de Jerusalém</h2>
+                <p>Quando lemos sobre a reconstrução dos muros, cada porta tem um significado profético para a reconstrução da alma humana.</p>
 
-      <!-- COMMENTS (Utterances) -->
-      <section id="comments" class="post-comments">
-        <script src="https://utteranc.es/client.js"
-                repo="primeiromilhao/blogger_Estudos"
-                issue-term="pathname"
-                label="comment"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-      </section>
+                <blockquote class="verse">
+                    “Porque eu, o Senhor, faço tudo isso e não falho”.<br>
+                    <footer>‑ <cite>Salmos 115:3</cite></footer>
+                </blockquote>
 
-    </article>
+                <figure class="align-right">
+                    <img src="img/renovacao.jpg"
+                         alt="Mural de construção em andamento"
+                         loading="lazy">
+                    <figcaption>Construir com propósito</figcaption>
+                </figure>
 
-    <!-- SIDEBAR: POSTS RELACIONADOS -->
-    <aside class="sidebar related-posts" aria-label="Posts relacionados">
-      <h2>Você também pode gostar</h2>
-      <ul>
-        <li><a href="Eternidade.html">Eternidade, Tempo e a Cruz</a></li>
-        <li><a href="Espirito_Marinho.html">Os Espíritos Marinhos e a Libertação</a></li>
-      </ul>
-    </aside>
-  </main>
+                <p>Da Porta das Ovelhas (sacrifício) à Porta do Vale (provação), a ordem revela o caminho da cura interior.</p>
 
-  <!-- ==== FOOTER ==== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p>© 2026 Biblioteca Profética • Desenvolvido por <a href="https://github.com/Primeiromilhao" style="color:#fff;">primeiromilhao</a></p>
-    </div>
-  </footer>
+                <h2 id="libertacao-e-recursos">3. Prática de restauração hoje</h2>
+                <p>Aplicar o chamado à restauração pode acontecer em três esferas:</p>
+                <ol>
+                    <li>Restauração pessoal – <a href="/api/redirect?book=restaurar_pdf">Guia de Estudo PDF</a>;</li>
+                    <li>Restauração familiar – <a href="/api/redirect?book=restaurar_pdf">Manual de Reconciliação</a>;</li>
+                    <li>Restauração comunitária – <a href="/api/redirect?book=pessoas_dificeis">Comprar Livro na Amazon</a>.</li>
+                </ol>
 
-  <!-- ==== JAVASCRIPT ==== -->
-  <script src="https://unpkg.com/tocbot@4.13.0/dist/tocbot.min.js"></script>
-  <script src="main.js"></script>
+            </section>
+
+            <!-- ---- CONCLUSÃO ---- -->
+            <section class="post-conclusion">
+                <p>Responder ao chamado de restaurar <strong>não é opcional</strong>; é a própria essência da mensagem do Evangelho.</p>
+                <a href="#comments" class="btn-primary">Deixe seu comentário</a>
+            </section>
+
+            <!-- ---- NAVEGAÇÃO ANTERIOR / PRÓXIMO ---- -->
+            <footer class="post-footer">
+                <nav class="post-pager">
+                    <a href="Eternidade.html" rel="prev">← Eternidade</a>
+                    <a href="Espirito_Marinho.html" rel="next">Espíritos Marinhos →</a>
+                </nav>
+
+                <!-- ---- BOTÕES DE COMPARTILHAMENTO ---- -->
+                <div class="post-share">
+                    <p>Compartilhe:</p>
+
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html"
+                       target="_blank" rel="noopener" class="share-btn fb"
+                       aria-label="Compartilhar no Facebook">Facebook</a>
+
+                    <a href="https://twitter.com/intent/tweet?url=https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html&text=O%20Chamado%20Para%20Restaurar"
+                       target="_blank" rel="noopener" class="share-btn tw"
+                       aria-label="Compartilhar no Twitter">Twitter</a>
+
+                    <a href="whatsapp://send?text=O%20Chamado%20Para%20Restaurar%20https://primeiromilhao.github.io/blogger_Estudos/O%20Chamado%20Para%20Restaurar.html"
+                       target="_blank" rel="noopener" class="share-btn wa"
+                       aria-label="Compartilhar no WhatsApp">WhatsApp</a>
+                </div>
+
+                <!-- ---- COMENTÁRIOS (Utterances) ---- -->
+                <div id="comments" class="post-comments">
+                    <script src="https://utteranc.es/client.js"
+                            repo="primeiromilhao/blogger_Estudos"
+                            issue-term="pathname"
+                            label="comment"
+                            theme="github-light"
+                            crossorigin="anonymous"
+                            async>
+                    </script>
+                </div>
+            </footer>
+
+        </article>
+
+        <!-- ======== SIDEBAR (posts relacionados) ======== -->
+        <aside class="sidebar" aria-label="Posts relacionados">
+            <h2 class="widget-title">Você também pode gostar</h2>
+            <ul class="related-list">
+                <li><a href="Eternidade.html">Eternidade – O que realmente espera por nós?</a></li>
+                <li><a href="Espirito_Marinho.html">Espíritos Marinhos – Libertação</a></li>
+                <li><a href="index.html">Início – Hub de Estudos</a></li>
+            </ul>
+        </aside>
+
+    </main>
+
+    <!-- ========= FOOTER GLOBAL ========= -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 Primeiro Milhão • <a href="Sobre.html">Sobre</a> • <a href="Privacidade.html">Política de privacidade</a></p>
+        </div>
+    </footer>
+
+    <!-- ========= SCRIPTS ========= -->
+    <!-- TOCbot (sumário automático) -->
+    <script src="https://unpkg.com/tocbot@4.13.0/dist/tocbot.min.js"></script>
+    <!-- Script central – idem a Eternidade -->
+    <script src="js/main.js"></script>
 </body>
 </html>

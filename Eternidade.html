@@ -1,197 +1,179 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- ==== META ==== -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Eternidade, Tempo e a Cruz – Estudo Bíblico Profundo</title>
-  <meta name="description" content="Onde o eterno e o temporal se cruzam — e Cristo é o ponto de encontro. Estudo sobre Apocalipse 1:8.">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Eternidade, Tempo e a Cruz">
-  <meta property="og:description" content="Onde o eterno e o temporal se cruzam.">
-  <meta property="og:image" content="https://primeiromilhao.github.io/blogger_Estudos/img/eternidade-og.jpg">
-  <meta property="og:url" content="https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html">
-  <meta property="og:type" content="article">
+    <!-- ====================== META ====================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Eternidade – Estudos</title>
+    <meta name="description"
+          content="Reflexão sobre a eternidade à luz das Escrituras.">
+    <meta name="author" content="Primeiro Milhão">
 
-  <!-- ==== FONTS & ICONS ==== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Eternidade – Estudos">
+    <meta property="og:description"
+          content="Reflexão sobre a eternidade à luz das Escrituras.">
+    <meta property="og:image"
+          content="https://primeiromilhao.github.io/blogger_Estudos/img/eternidade-og.jpg">
+    <meta property="og:url"
+          content="https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html">
+    <meta property="og:type" content="article">
 
-  <!-- ==== CSS ==== -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/tocbot@4.13.0/dist/tocbot.css">
-  <link rel="stylesheet" href="assets/css/chatbot.css">
-  
-  <style>
-    /* Eternidade-specific overrides */
-    :root {
-      --color-primary: #6b1425; /* Wine color for Eternity */
-      --color-primary-dark: #4a0e1a;
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eternidade – Estudos">
+    <meta name="twitter:description"
+          content="Reflexão sobre a eternidade à luz das Escrituras.">
+    <meta name="twitter:image"
+          content="https://primeiromilhao.github.io/blogger_Estudos/img/eternidade-og.jpg">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Roboto:wght@400;500&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JSON‑LD – Article schema -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Article",
+      "headline":"Eternidade",
+      "image":["https://primeiromilhao.github.io/blogger_Estudos/img/eternidade-hero.jpg"],
+      "author":{"@type":"Person","name":"Primeiro Milhão"},
+      "datePublished":"2024-01-12",
+      "publisher":{"@type":"Organization","name":"Estudos do Primeiro Milhão","logo":{"@type":"ImageObject","url":"https://primeiromilhao.github.io/blogger_Estudos/img/logo.png"}},
+      "description":"Reflexão sobre a eternidade à luz das Escrituras."
     }
-    [data-theme="dark"] {
-      --color-bg: #0a0612;
-      --color-primary: #8b1a30;
-    }
-  </style>
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXXXX-X');
+    </script>
 </head>
 
-<body>
-  <!-- ==== HEADER ==== -->
-  <header class="site-header" role="banner">
-    <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 class="site-title"><a href="index.html">Biblioteca Profética</a></h1>
-        <nav class="site-nav" aria-label="Navegação principal">
-          <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="Eternidade.html" class="active">Eternidade</a></li>
-            <li><a href="O%20Chamado%20Para%20Restaurar.html">Restaurar</a></li>
-          </ul>
-          <button id="themeToggle" aria-label="Alternar modo escuro" title="Modo escuro/claro">🌙</button>
-        </nav>
-      </div>
-    </div>
-  </header>
+<body data-theme="light">
 
-  <!-- ==== PROGRESS BAR ==== -->
-  <div id="readingProgress" aria-hidden="true"></div>
+    <!-- ========= BARRA DE LEITURA ========= -->
+    <div id="readingProgress" aria-hidden="true"></div>
 
-  <!-- ==== MAIN CONTENT ==== -->
-  <main class="site-content container" role="main">
-    <article class="post">
-
-      <!-- HERO IMAGE -->
-      <figure class="post-hero">
-        <picture>
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=1200"
-               alt="Céu estrelado representando a eternidade"
-               loading="lazy">
-        </picture>
-        <figcaption>O tempo é apenas uma pequena ilha no oceano da eternidade</figcaption>
-      </figure>
-
-      <!-- POST HEADER -->
-      <header class="post-header">
-        <h1 class="post-title">Eternidade, Tempo e a Cruz</h1>
-        <p class="post-meta">
-          <time datetime="2024-03-15">15 de Março de 2024</time> •
-          <span class="post-category">Estudo Profético</span>
-        </p>
-      </header>
-
-      <!-- TABLE OF CONTENTS -->
-      <nav class="toc" id="toc"></nav>
-
-      <!-- INTRODUÇÃO -->
-      <section class="post-intro">
-        <p>Entender a natureza de Deus exige compreendermos como Ele se relaciona com o tempo. Em Apocalipse 1:8, encontramos a definição definitiva: "Eu sou o Alfa e o Ômega... que é, que era, e que há de vir."</p>
-      </section>
-
-      <!-- PRINCIPAL BODY -->
-      <section class="post-body">
-
-        <h2 id="intersecao">1. A Interseção do Eterno e do Temporal</h2>
-        <p>Existem duas esferas na existência de Deus que se tocam em Cristo:</p>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-          <div style="padding: 1.5rem; background: rgba(107, 20, 37, 0.05); border-radius: 8px; border-left: 3px solid var(--color-primary);">
-            <strong style="display:block; margin-bottom: 0.5rem;">O Tempo (Cronos)</strong>
-            "Alfa e Ômega, princípio e fim." Representa a história linear, com começo, meio e término.
-          </div>
-          <div style="padding: 1.5rem; background: rgba(107, 20, 37, 0.05); border-radius: 8px; border-left: 3px solid var(--color-primary);">
-            <strong style="display:block; margin-bottom: 0.5rem;">A Eternidade (Kairos)</strong>
-            "Que é, que era, e que há de vir." Representa o eterno presente de Deus, fora das limitações do relógio.
-          </div>
+    <!-- ========= HEADER ========= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="index.html">Estudos</a></h1>
+            <nav class="site-nav" aria-label="Navegação principal">
+                <ul class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="Eternidade.html" class="active">Eternidade</a></li>
+                    <li><a href="O%20Chamado%20Para%20Restaurar.html">Chamado para Restaurar</a></li>
+                    <li><a href="Sobre.html">Sobre</a></li>
+                </ul>
+                <button id="themeToggle" aria-label="Alternar modo escuro" title="Modo escuro/claro">🌙</button>
+            </nav>
         </div>
+    </header>
 
-        <blockquote>
-          "Eu sou o Alfa e o Ômega, o princípio e o fim, diz o Senhor, que é, que era e que há de vir, o Todo-Poderoso."
-          <footer>— <cite>Apocalipse 1:8</cite></footer>
-        </blockquote>
+    <!-- ========= CONTEÚDO ========= -->
+    <main class="site-content container">
+        <article class="post">
 
-        <h2 id="ponto-encontro">2. O Ponto de Encontro: A Cruz</h2>
-        <p>A Cruz de Cristo é o local onde o Kairos (o tempo de Deus) invade o Cronos (o nosso tempo). Foi um evento histórico linear, mas com impacto eterno e retroativo.</p>
+            <figure class="post-hero">
+                <picture>
+                    <source srcset="img/eternidade-hero.avif" type="image/avif">
+                    <source srcset="img/eternidade-hero.webp" type="image/webp">
+                    <img src="img/eternidade-hero.jpg" alt="Ilustração que simboliza a eternidade" loading="lazy">
+                </picture>
+                <figcaption>Eternidade – a primavera que nunca acaba</figcaption>
+            </figure>
 
-        <h2 id="downloads">3. Materiais de Estudo (PDF)</h2>
-        <p>Aprofunde-se nesta revelação com os nossos guias estruturados:</p>
-        
-        <div style="background: rgba(107, 20, 37, 0.05); padding: 2rem; border-radius: 12px; text-align: center; margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-          <a href="/api/redirect?book=eternidade_pdf1" class="btn-primary">Baixar PDF 1: Visão Geral</a>
-          <a href="/api/redirect?book=eternidade_pdf2" class="btn-primary" style="opacity: 0.8;">Baixar PDF 2: Cronos × Kairos</a>
+            <header class="post-header">
+                <h1 class="post-title">Eternidade</h1>
+                <p class="post-meta">
+                    <time datetime="2024-01-12">12 de janeiro de 2024</time> •
+                    <a href="#" class="post-category">Estudo Bíblico</a>
+                </p>
+            </header>
+
+            <nav class="toc" id="toc"></nav>
+
+            <section class="post-intro">
+                <p>O conceito de “eternidade” molda a nossa caminhada com Deus, revelando que o tempo cronológico é apenas o palco para um destino eterno.</p>
+            </section>
+
+            <section class="post-body">
+                <h2 id="definicao">1. Definição bíblica</h2>
+                <p>A eternidade não é apenas tempo infinito, mas a qualidade de vida encontrada na comunhão ininterrupta com o Criador.</p>
+
+                <blockquote class="verse">
+                    “Os céus proclamam a glória de Deus; o firmamento anuncia a obra das suas mãos.”<br>
+                    <footer>‑ <cite>Salmos 19:1</cite></footer>
+                </blockquote>
+
+                <h3 id="intersecao">1.1 A Interseção com o Tempo</h3>
+                <p>Em Cristo, o eterno invade o temporal. Ele é o Alfa e o Ômega, o princípio e o fim.</p>
+
+                <h2 id="implicacoes">2. Implicações para a vida cristã</h2>
+                <p>Viver com a perspectiva da eternidade altera as nossas prioridades e a forma como enfrentamos o sofrimento temporal.</p>
+
+                <figure class="align-right">
+                    <img src="img/eternidade-simbolismo.jpg" alt="Mosaico que representa a eternidade" loading="lazy">
+                    <figcaption>Mosaico de esperança</figcaption>
+                </figure>
+
+                <h2 id="recursos">3. Materiais de Estudo</h2>
+                <p>Aprofunde-se nesta temática com os nossos recursos:</p>
+                <ul>
+                    <li><a href="/api/redirect?book=eternidade_pdf1">Baixar PDF: Visão Geral</a></li>
+                    <li><a href="/api/redirect?book=deus_terminar">Livro: O Altar da Eternidade</a></li>
+                </ul>
+            </section>
+
+            <section class="post-conclusion">
+                <p>Em síntese, a eternidade não é apenas um conceito futuro, mas a realidade que molda nosso presente.</p>
+            </section>
+
+            <footer class="post-footer">
+                <nav class="post-pager">
+                    <a href="index.html" rel="prev">← Início</a>
+                    <a href="O%20Chamado%20Para%20Restaurar.html" rel="next">Próximo →</a>
+                </nav>
+
+                <div class="post-share">
+                    <p>Compartilhe:</p>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html" target="_blank" rel="noopener" class="share-btn fb" aria-label="Compartilhar no Facebook">Facebook</a>
+                    <a href="https://twitter.com/intent/tweet?url=https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html&text=Eternidade" target="_blank" rel="noopener" class="share-btn tw" aria-label="Compartilhar no Twitter">Twitter</a>
+                    <a href="whatsapp://send?text=Eternidade%20https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html" target="_blank" rel="noopener" class="share-btn wa" aria-label="Compartilhar no WhatsApp">WhatsApp</a>
+                </div>
+
+                <div id="comments" class="post-comments">
+                    <script src="https://utteranc.es/client.js" repo="primeiromilhao/blogger_Estudos" issue-term="pathname" label="comment" theme="github-light" crossorigin="anonymous" async></script>
+                </div>
+            </footer>
+        </article>
+
+        <aside class="sidebar" aria-label="Posts relacionados">
+            <h2 class="widget-title">Você também pode gostar</h2>
+            <ul class="related-list">
+                <li><a href="O%20Chamado%20Para%20Restaurar.html">O Chamado Para Restaurar</a></li>
+                <li><a href="Espirito_Marinho.html">Espíritos Marinhos</a></li>
+                <li><a href="index.html">Hub de Estudos</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 Primeiro Milhão • <a href="Sobre.html">Sobre</a> • <a href="Privacidade.html">Política de privacidade</a></p>
         </div>
+    </footer>
 
-      </section>
-
-      <!-- CONCLUSÃO -->
-      <section class="post-conclusion">
-        <p>Somos seres temporais chamados a habitar na eternidade com Aquele que é o Princípio e o Fim.</p>
-      </section>
-
-      <!-- SHARE BUTTONS -->
-      <section class="post-share">
-        <p>Partilhe este Estudo:</p>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html"
-           target="_blank" rel="noopener" aria-label="Compartilhar no Facebook" class="share-btn fb">Facebook</a>
-        <a href="https://twitter.com/intent/tweet?url=https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html&text=Eternidade, Tempo e a Cruz"
-           target="_blank" rel="noopener" aria-label="Compartilhar no Twitter" class="share-btn tw">Twitter</a>
-        <a href="whatsapp://send?text=Eternidade, Tempo e a Cruz https://primeiromilhao.github.io/blogger_Estudos/Eternidade.html"
-           target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp" class="share-btn wa">WhatsApp</a>
-      </section>
-
-      <!-- COMMENTS -->
-      <section id="comments" class="post-comments">
-        <script src="https://utteranc.es/client.js"
-                repo="primeiromilhao/blogger_Estudos"
-                issue-term="pathname"
-                label="comment"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-      </section>
-
-    </article>
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar related-posts" aria-label="Posts relacionados">
-      <h2>Estudos Relacionados</h2>
-      <ul>
-        <li><a href="O%20Chamado%20Para%20Restaurar.html">O Chamado Para Restaurar</a></li>
-        <li><a href="Espirito_Marinho.html">Os Espíritos Marinhos e a Libertação</a></li>
-      </ul>
-    </aside>
-  </main>
-
-  <section id="livro-recomendado" style="background:rgba(107, 20, 37, 0.05); padding: 5rem 0; border-top:1px solid rgba(0,0,0,0.05);">
-    <div class="container" style="text-align:center;">
-        <h2 style="font-family: var(--font-serif); margin-bottom: 1.5rem;">O Altar da Eternidade</h2>
-        <p style="max-width:600px; margin:0 auto 2.5rem; opacity: 0.8;">Entenda como o seu destino é selado no altar de Deus através desta leitura essencial.</p>
-        <a href="/api/redirect?book=deus_terminar" class="btn-primary">Adquirir Livro na Amazon</a>
-    </div>
-  </section>
-
-  <!-- ==== FOOTER ==== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p>© 2026 Biblioteca Profética • Desenvolvido por <a href="https://github.com/Primeiromilhao" style="color:#fff;">primeiromilhao</a></p>
-    </div>
-  </footer>
-
-  <div id="gemini-chat"></div>
-
-  <!-- ==== JAVASCRIPT ==== -->
-  <script src="https://unpkg.com/tocbot@4.13.0/dist/tocbot.min.js"></script>
-  <script src="main.js"></script>
-  <script>
-    loadGeminiChatbot({
-        containerId: 'gemini-chat',
-        model: 'gemini-1.5-pro',
-        systemPrompt: "Você é o assistente sábio focado no estudo: Eternidade, Tempo e a Cruz.",
-        jsonConfigUrl: "https://storage.googleapis.com/blogger_estudos_assets/faq_eternidade.json"
-    });
-  </script>
+    <script src="https://unpkg.com/tocbot@4.13.0/dist/tocbot.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
