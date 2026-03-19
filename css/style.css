@@ -173,7 +173,8 @@ blockquote footer { text-align:right; font-size:.85rem; margin-top: 0.5rem; font
 }
 
 /* Specific study colors */
-.study-restaurar { --color-primary: #0d6efd; }
+.study-restaurar { --color-primary: #D4A017; --color-accent: #FFD700; }
+.study-restaurar[data-theme="dark"] { --color-primary: #FFE566; }
 .study-eternidade { --color-primary: #6b1425; }
 .study-marinho { --color-primary: #0a4d68; }
 
