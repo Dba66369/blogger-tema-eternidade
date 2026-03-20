@@ -89,6 +89,18 @@
         .btn-generate:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(236,72,153,.6); }
         .btn-generate:disabled { opacity: .5; cursor: wait; }
 
+        /* --- API Key Field --- */
+        .apikey-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+        .apikey-row input {
+            flex: 1; background: rgba(0,0,0,0.5); border: 1px solid rgba(251,191,36,.5);
+            border-radius: 10px; color: var(--text); font-family: inherit; font-size: .8rem;
+            padding: 10px 14px; outline: none; transition: .25s; font-family: monospace;
+        }
+        .apikey-row input:focus { border-color: var(--neon-gold); box-shadow: 0 0 10px rgba(251,191,36,.2); }
+        .apikey-row a { font-size: .72rem; color: var(--neon-gold); text-decoration: none; white-space: nowrap; }
+        .apikey-row a:hover { text-decoration: underline; }
+        .apikey-row .key-icon { font-size: 1.1rem; }
+
         /* --- Loading --- */
         .loading { display: none; text-align: center; padding: 20px 0; color: var(--neon-purple); font-weight: 600; }
         .spin { display: inline-block; animation: spin 1.2s linear infinite; }
@@ -190,6 +202,13 @@
         </header>
 
         <div class="shell">
+            <!-- API Key Row -->
+            <div class="apikey-row">
+                <span class="key-icon">🔑</span>
+                <input type="password" id="api-key-input" placeholder="Cole sua API Key do Gemini aqui..." value="AIzaSyDouYjeRyr4FA8A1ITwe4pmEqcqeSsr-wE">
+                <a href="https://aistudio.google.com/app/apikey" target="_blank">Obter chave grátis ↗</a>
+            </div>
+
             <div class="platform-row">
                 <button class="plat-btn active" onclick="setPlatform('facebook', this)">Facebook / WA</button>
                 <button class="plat-btn" onclick="setPlatform('instagram', this)">Instagram</button>
@@ -246,8 +265,19 @@
 
     <script>
         /* ───────────── config ───────────── */
-        const API_KEY = "AIzaSyDouYjeRyr4FA8A1ITwe4pmEqcqeSsr-wE";
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+        function getApiKey() {
+            const input = document.getElementById('api-key-input');
+            const key = input ? input.value.trim() : '';
+            if (key) { localStorage.setItem('gemini_api_key', key); return key; }
+            return localStorage.getItem('gemini_api_key') || '';
+        }
+
+        // Restore saved key
+        const savedKey = localStorage.getItem('gemini_api_key');
+        if (savedKey) {
+            const inp = document.getElementById('api-key-input');
+            if (inp && !inp.value) inp.value = savedKey;
+        }
 
         let currentPlatform = 'facebook';
 
@@ -261,6 +291,8 @@
         async function handleGenerate() {
             const prompt = document.getElementById('prompt-input').value.trim();
             if (!prompt) { alert('Por favor, escreva o tema do post!'); return; }
+            const apiKey = getApiKey();
+            if (!apiKey) { alert('⚠️ Cole sua API Key do Gemini no campo acima primeiro!'); return; }
 
             const btn    = document.getElementById('btn-gen');
             const load   = document.getElementById('loading');
@@ -271,7 +303,7 @@
             dash.classList.remove('visible');
 
             try {
-                const data = await callGemini(prompt, currentPlatform);
+                const data = await callGemini(prompt, currentPlatform, apiKey);
                 document.getElementById('res-book').textContent     = data.bookTitle    || '—';
                 document.getElementById('res-caption').textContent  = buildCaption(data);
                 document.getElementById('res-practice').textContent = data.practice     || '—';
@@ -293,11 +325,13 @@
         }
 
         /* ───────────── Gemini REST ───────────── */
-        async function callGemini(userPrompt, platform) {
+        async function callGemini(userPrompt, platform, apiKey) {
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
             const platformInstructions = {
                 facebook: 'Tom engajador para Facebook/WhatsApp, emojis e CTA.',
                 instagram: 'Tom inspirador para Instagram, com hashtags.',
                 tiktok: 'Gancho rápido para TikTok, viral, hashtags.'
+            };
             };
 
             const promptText = `Você é especialista em redes sociais cristão.
