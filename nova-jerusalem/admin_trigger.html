@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Publicador (GitHub Actions) — Nova Jerusalém</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --gold: #C9A84C;
+            --dark: #050A18;
+            --purple: #6D28D9;
+            --accent: #8b5cf6;
+            --neon-gold: #fbbf24;
+            --neon-purple: #a78bfa;
+            --muted: #94a3b8;
+        }
+        body {
+            background: var(--dark);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--neon-gold);
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 15px rgba(251,191,36,0.3);
+        }
+        .content-card {
+            background: rgba(15,23,42,0.6);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(167,139,250,0.3);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--neon-purple);
+            font-weight: 600;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--neon-gold);
+            box-shadow: 0 0 10px rgba(251,191,36,0.2);
+        }
+        .btn-action {
+            width: 100%;
+            padding: 15px;
+            background: var(--purple);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+            box-shadow: 0 0 15px rgba(109,40,217,0.5);
+        }
+        .btn-action:hover {
+            background: var(--accent);
+            box-shadow: 0 0 20px rgba(139,92,246,0.8);
+        }
+        .btn-action:active {
+            transform: scale(0.98);
+        }
+        .btn-action:disabled {
+            background: #333;
+            box-shadow: none;
+            cursor: not-allowed;
+            color: #888;
+        }
+        
+        .info-msg {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        #debug-console { 
+            margin-top: 20px; padding: 12px; background: #000; border: 1px solid #333; 
+            border-radius: 8px; font-family: monospace; font-size: 0.75rem; color: #0f0; 
+            max-height: 150px; overflow-y: auto; display: none;
+            border-left: 3px solid var(--accent);
+        }
+        #debug-console .err { color: #f44; }
+        
+        .workflow-link {
+            color: var(--neon-gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .workflow-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <i data-lucide="server-cog" style="color:var(--neon-purple); margin-bottom:10px; width:40px; height:40px;"></i>
+            <h1>Painel de Publicação (CI/CD)</h1>
+            <p style="color:var(--muted); font-size:0.9rem;">Acione a inteligência artificial para ler seu repositório, gerar e publicar a página final.</p>
+        </div>
+
+        <div class="content-card">
+            
+            <div class="input-group">
+                <label for="github-pat"><i data-lucide="key" style="width:16px; height:16px; display:inline; vertical-align:middle;"></i> GitHub Personal Access Token (PAT)</label>
+                <input type="password" id="github-pat" class="input-field" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+                <p class="info-msg">O token fica salvo apenas no seu navegador. Requer permissão <code>repo</code> ou permissão de escrita em Actions.</p>
+            </div>
+
+            <div class="input-group">
+                <label for="theme-input"><i data-lucide="book-open" style="width:16px; height:16px; display:inline; vertical-align:middle;"></i> Tema do Estudo</label>
+                <input type="text" id="theme-input" class="input-field" placeholder="Ex: A importância do perdão" autocomplete="off">
+                <p class="info-msg">O GitHub Actions buscará nas pastas <code>books/</code> e <code>studies/</code> do repositório por materiais que falem sobre isso.</p>
+            </div>
+
+            <button id="btn-trigger" class="btn-action" onclick="triggerWorkflow()">
+                <i data-lucide="rocket"></i> DISPARAR GERAÇÃO NO GITHUB
+            </button>
+            
+            <a href="https://github.com/Primeiromilhao/blogger_Estudos/actions" target="_blank" class="workflow-link">Acompanhar Progresso no GitHub Actions ↗</a>
+        </div>
+
+        <div id="debug-console"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Constants
+        const GITHUB_REPO = "Primeiromilhao/blogger_Estudos";
+        const WORKFLOW_FILE = "generate-theme-post.yml";
+        const BRANCH_REF = "main"; // A ramificação alvo que roda a action
+
+        // Init
+        const patInput = document.getElementById('github-pat');
+        const themeInput = document.getElementById('theme-input');
+        const btn = document.getElementById('btn-trigger');
+        
+        // Restore PAT
+        const savedPat = localStorage.getItem('social_github_pat');
+        if (savedPat) patInput.value = savedPat;
+
+        patInput.addEventListener('input', () => {
+            localStorage.setItem('social_github_pat', patInput.value.trim());
+        });
+
+        function log(msg, type = 'log') {
+            const con = document.getElementById('debug-console');
+            con.style.display = 'block';
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            con.prepend(line);
+        }
+
+        async function triggerWorkflow() {
+            const token = patInput.value.trim();
+            const theme = themeInput.value.trim();
+
+            if (!token) return alert('Por favor, informe seu GitHub PAT.');
+            if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+                alert('⚠️ O token costuma começar com ghp_ ou github_pat_. Verifique se copiou corretamente.');
+            }
+            if (!theme) return alert('Por favor, defina um tema para a IA buscar.');
+
+            // UI Feedback
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="spin" style="animation: spin 1.2s linear infinite;"></i> ENVIANDO...';
+            lucide.createIcons();
+            
+            log(`Acionando disparador para o tema: "${theme}"...`);
+
+            const url = `https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches`;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ref: BRANCH_REF,
+                        inputs: { theme: theme }
+                    })
+                });
+
+                if (!response.ok) {
+                    const err = await response.text();
+                    log(`Erro API (${response.status}): ${err}`, 'err');
+                    throw new Error(`Ocorreu um erro ${response.status} ao disparar a Action. Verifique seu PAT e se o workflow existe.`);
+                }
+
+                log(`✅ SUCESSO! Workflow enfileirado no GitHub Actions.`);
+                log(`Acesse o link abaixo para visualizar a IA trabalhando em nuvem e gerando seu HTML.`);
+                
+            } catch (e) {
+                log(e.message, 'err');
+                alert(e.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="rocket"></i> DISPARAR GERAÇÃO NO GITHUB';
+                lucide.createIcons();
+            }
+        }
+        
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
