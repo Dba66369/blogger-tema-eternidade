@@ -803,7 +803,10 @@ document.querySelectorAll('.rv').forEach(el=>observer.observe(el));
     const script = document.createElement('script');
     script.src = "chatbot/gemini-widget.js?v=" + new Date().getTime(); // Substituir pelo seu URL final se necessário
     script.onload = function() {
+        initializeGeminiChatbot({
+            containerId: 'gemini-chat',
             apiKey: 'AIzaSyDXlzlmjEnRmo_-ywN9TlKrawKHnCbuod8',
+            model: 'gemini-1.5-flash',
             systemPrompt: "Você é o assistente sábio da Escola Bíblica Nova Jerusalém. Responda com base na Bíblia e encoraje o estudo.",
             jsonConfigUrl: "chatbot/faq_library.json",
             booksUrl: "books.json",
