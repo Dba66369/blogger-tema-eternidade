@@ -14,25 +14,28 @@ window.initializeGeminiChatbot = function(config) {
     // Load Library/Books data
     const loadData = async () => {
         try {
+            const booksUrl = config.booksUrl || 'books.json';
+            const libraryUrl = config.libraryUrl || 'data/library.json';
+
             // Load Books with links
-            const booksRes = await fetch('books.json');
+            const booksRes = await fetch(booksUrl);
             const books = await booksRes.json();
             
             // Load Library with covers
-            const libRes = await fetch('data/library.json');
+            const libRes = await fetch(libraryUrl);
             const lib = await libRes.json();
             
             // Merge data
             libraryData = (lib.books || []).map(b => {
-                const bookInfo = books.find(book => book.title.toLowerCase().includes(b.title.toLowerCase()));
+                const bookInfo = (books || []).find(book => book.title && b.title && book.title.toLowerCase().includes(b.title.toLowerCase()));
                 return {
                     ...b,
                     affiliate_link: bookInfo ? bookInfo.affiliate_link : "https://primeiromilhao.github.io/blogger_Estudos/#biblioteca"
                 };
             });
-            console.log("Biblioteca carregada:", libraryData.length, "livros.");
+            console.log("Chatbot Data Loaded:", libraryData.length, "books.");
         } catch (err) {
-            console.error("Erro ao carregar dados do Bot:", err);
+            console.error("Error loading Chatbot data:", err);
         }
     };
     loadData();

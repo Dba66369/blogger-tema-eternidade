@@ -557,6 +557,8 @@
                 model: 'gemini-1.5-flash',
                 systemPrompt: "Você é o assistente sábio da Escola Bíblica Nova Jerusalém. Ajude os alunos a encontrar os estudos.",
                 jsonConfigUrl: "../chatbot/faq_library.json",
+                booksUrl: "../books.json",
+                libraryUrl: "../data/library.json",
                 onMessage: (msg) => {
                     if (typeof gtag === 'function') {
                         gtag('event', 'chatbot_interaction', { 'message': msg });
