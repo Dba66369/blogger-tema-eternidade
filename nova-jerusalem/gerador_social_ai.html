@@ -98,17 +98,20 @@
         }
         .apikey-row input:focus { border-color: var(--neon-gold); box-shadow: 0 0 10px rgba(251,191,36,.2); }
         .apikey-row a { font-size: .72rem; color: var(--neon-gold); text-decoration: none; white-space: nowrap; }
-        .apikey-row a:hover { text-decoration: underline; }
-        .apikey-row .key-icon { font-size: 1.1rem; }
-        
-        /* --- Model Selector --- */
-        .model-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-        .model-select {
-            flex: 1; background: rgba(0,0,0,0.5); border: 1px solid var(--border);
-            border-radius: 10px; color: var(--text); font-family: inherit; font-size: .85rem;
-            padding: 10px; outline: none; cursor: pointer; transition: .25s;
-        }
         .model-select:focus { border-color: var(--neon-purple); box-shadow: 0 0 10px rgba(167,139,250,.2); }
+
+        /* --- Provider Selector --- */
+        .provider-tabs { display: flex; gap: 5px; margin-bottom: 12px; background: rgba(0,0,0,0.3); padding: 4px; border-radius: 12px; border: 1px solid var(--border); }
+        .prov-btn { flex: 1; padding: 8px; border: none; background: transparent; color: var(--muted); border-radius: 8px; font-size: .75rem; font-weight: 600; cursor: pointer; transition: .2s; }
+        .prov-btn.active { background: var(--accent); color: white; box-shadow: 0 0 10px var(--accent); }
+
+        /* --- Debug Console --- */
+        #debug-console { 
+            margin-top: 20px; padding: 12px; background: #000; border: 1px solid #333; 
+            border-radius: 8px; font-family: monospace; font-size: .7rem; color: #0f0; 
+            max-height: 120px; overflow-y: auto; display: none;
+        }
+        #debug-console .err { color: #f44; }
 
         /* --- Loading --- */
         .loading { display: none; text-align: center; padding: 20px 0; color: var(--neon-purple); font-weight: 600; }
@@ -211,21 +214,24 @@
         </header>
 
         <div class="shell">
+            <!-- Provider Selector -->
+            <div class="provider-tabs">
+                <button id="prov-google" class="prov-btn" onclick="setProvider('google')">Google AI Studio (Grátis)</button>
+                <button id="prov-openrouter" class="prov-btn active" onclick="setProvider('openrouter')">OpenRouter (Claude/Sonnet)</button>
+            </div>
+
             <!-- API Key Row -->
             <div class="apikey-row">
                 <span class="key-icon">🔑</span>
-                <input type="password" id="api-key-input" placeholder="Cole sua API Key do OpenRouter aqui..." value="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">
-                <a href="https://openrouter.ai/keys" target="_blank">Obter chave OpenRouter ↗</a>
+                <input type="password" id="api-key-input" placeholder="API Key..." value="">
+                <a id="key-link" href="https://openrouter.ai/keys" target="_blank">Obter chave ↗</a>
             </div>
 
             <!-- Model Selector -->
             <div class="model-row">
                 <span class="key-icon">🤖</span>
-                <select id="model-select" class="model-select" onchange="saveModel()">
-                    <option value="anthropic/claude-3.5-sonnet">Claude 3.5 Sonnet (Premium)</option>
-                    <option value="google/gemini-2.0-flash-lite-preview-02-05:free">Gemini 2.0 Flash Lite (Rápido/Grátis)</option>
-                    <option value="google/gemini-pro-1.5:free">Gemini 1.5 Pro (Grátis)</option>
-                    <option value="deepseek/deepseek-chat:free">DeepSeek V3 (Grátis)</option>
+                <select id="model-select" class="model-select" onchange="saveConfig()">
+                    <!-- Options populated by JS -->
                 </select>
             </div>
 
@@ -280,6 +286,9 @@
                     <p class="map-hint">📸 Tire um print deste mapa para usar no Instagram/TikTok!</p>
                 </div>
             </div>
+
+            <!-- Debug Console -->
+            <div id="debug-console"></div>
         </div>
     </div>
 
@@ -287,31 +296,71 @@
         /* ───────────── config ───────────── */
         const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
         
-        function getApiKey() {
-            const input = document.getElementById('api-key-input');
-            const key = input ? input.value.trim() : '';
-            if (key) { localStorage.setItem('openrouter_api_key', key); return key; }
-            return localStorage.getItem('openrouter_api_key') || '';
-        }
+        const MODELS = {
+            google: [
+                { id: "gemini-1.5-flash", name: "Gemini 1.5 Flash (Recomendado)" },
+                { id: "gemini-1.5-pro", name: "Gemini 1.5 Pro (Potente)" }
+            ],
+            openrouter: [
+                { id: "anthropic/claude-3.5-sonnet", name: "Claude 3.5 Sonnet (Premium)" },
+                { id: "google/gemini-2.0-flash-lite-preview-02-05:free", name: "Gemini 2.0 Flash (Grátis)" },
+                { id: "google/gemini-pro-1.5:free", name: "Gemini 1.5 Pro (Grátis)" },
+                { id: "deepseek/deepseek-chat", name: "DeepSeek V3 (Barato/Forte)" }
+            ]
+        };
 
-        function saveModel() {
-            const val = document.getElementById('model-select').value;
-            localStorage.setItem('openrouter_model', val);
-        }
-
-        // Restore saved settings
-        const savedKey = localStorage.getItem('openrouter_api_key');
-        if (savedKey) {
-            const inp = document.getElementById('api-key-input');
-            if (inp && !inp.value) inp.value = savedKey;
-        }
-        
-        const savedModel = localStorage.getItem('openrouter_model');
-        if (savedModel) {
-            document.getElementById('model-select').value = savedModel;
-        }
-
+        let currentProvider = localStorage.getItem('social_provider') || 'openrouter';
         let currentPlatform = 'facebook';
+
+        function setProvider(p) {
+            currentProvider = p;
+            localStorage.setItem('social_provider', p);
+            
+            // UI Update
+            document.querySelectorAll('.prov-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`prov-${p}`).classList.add('active');
+            
+            const link = document.getElementById('key-link');
+            if (p === 'google') {
+                link.href = "https://aistudio.google.com/app/api-keys";
+                link.textContent = "Obter chave Google ↗";
+            } else {
+                link.href = "https://openrouter.ai/keys";
+                link.textContent = "Obter chave OpenRouter ↗";
+            }
+
+            // Load saved key
+            const key = localStorage.getItem(`key_${p}`) || '';
+            document.getElementById('api-key-input').value = key;
+
+            // Populate models
+            const sel = document.getElementById('model-select');
+            sel.innerHTML = MODELS[p].map(m => `<option value="${m.id}">${m.name}</option>`).join('');
+            
+            // Restore saved model for this provider
+            const savedM = localStorage.getItem(`model_${p}`);
+            if (savedM) sel.value = savedM;
+        }
+
+        function saveConfig() {
+            const key = document.getElementById('api-key-input').value.trim();
+            const mod = document.getElementById('model-select').value;
+            localStorage.setItem(`key_${currentProvider}`, key);
+            localStorage.setItem(`model_${currentProvider}`, mod);
+        }
+
+        // Auto-save key on change
+        document.getElementById('api-key-input').addEventListener('input', saveConfig);
+
+        function log(msg, type = 'log') {
+            const con = document.getElementById('debug-console');
+            con.style.display = 'block';
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            con.prepend(line);
+            console[type](msg);
+        }
 
         function setPlatform(p, el) {
             currentPlatform = p;
@@ -319,14 +368,17 @@
             el.classList.add('active');
         }
 
+        // Init
+        setProvider(currentProvider);
+
         /* ───────────── generate ───────────── */
         async function handleGenerate() {
             const prompt = document.getElementById('prompt-input').value.trim();
             if (!prompt) { alert('Por favor, escreva o tema do post!'); return; }
-            const apiKey = getApiKey();
-            if (!apiKey) { alert('⚠️ Cole sua OpenRouter API Key no campo acima!'); return; }
+            const apiKey = document.getElementById('api-key-input').value.trim();
+            if (!apiKey) { alert('⚠️ Cole sua API Key no campo acima!'); return; }
 
-            console.log("Iniciando geração para:", prompt, "Plataforma:", currentPlatform);
+            log(`Iniciando geração para: "${prompt}" via ${currentProvider.toUpperCase()}`);
 
             const btn    = document.getElementById('btn-gen');
             const load   = document.getElementById('loading');
@@ -337,14 +389,23 @@
             dash.classList.remove('visible');
 
             try {
-                const data = await callGemini(prompt, currentPlatform, apiKey);
+                let data;
+                const model = document.getElementById('model-select').value;
+                
+                if (currentProvider === 'google') {
+                    data = await callGoogle(prompt, currentPlatform, apiKey, model);
+                } else {
+                    data = await callOpenRouter(prompt, currentPlatform, apiKey, model);
+                }
+
                 document.getElementById('res-book').textContent     = data.bookTitle    || '—';
                 document.getElementById('res-caption').textContent  = buildCaption(data);
                 document.getElementById('res-practice').textContent = data.practice     || '—';
                 renderMap(data.mapData);
                 dash.classList.add('visible');
+                log("Sucesso! Post gerado.");
             } catch (e) {
-                console.error(e);
+                log(e.message, 'err');
                 alert('❌ Erro: ' + e.message);
             } finally {
                 btn.disabled = false;
@@ -358,15 +419,71 @@
             return text;
         }
 
-         /* ───────────── OpenRouter REST ───────────── */
-        async function callGemini(userPrompt, platform, apiKey) {
+         /* ───────────── Google Direct ───────────── */
+        async function callGoogle(userPrompt, platform, apiKey, model) {
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            const promptText = buildPrompt(userPrompt, platform);
+
+            log(`Chamando Google Gemini (${model})...`);
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: promptText }] }],
+                    generationConfig: { temperature: 0.8 }
+                })
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(`Google API Error ${res.status}: ${err.error?.message || 'Erro desconhecido'}`);
+            }
+
+            const json = await res.json();
+            const raw = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            return parseJSON(raw);
+        }
+
+        /* ───────────── OpenRouter REST ───────────── */
+        async function callOpenRouter(userPrompt, platform, apiKey, model) {
+            const promptText = buildPrompt(userPrompt, platform);
+
+            log(`Chamando OpenRouter (${model})...`);
+            const res = await fetch(OPENROUTER_URL, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`,
+                    'X-Title': 'Gerador Social Nova Jerusalém'
+                },
+                body: JSON.stringify({
+                    model: model,
+                    messages: [{ role: 'user', content: promptText }],
+                    temperature: 0.8
+                })
+            });
+
+            if (!res.ok) {
+                const errText = await res.text();
+                log(`Erro OpenRouter: ${errText}`, 'err');
+                let msg = res.statusText;
+                try { const jsonErr = JSON.parse(errText); msg = jsonErr.error?.message || msg; } catch(e){}
+                throw new Error(`OpenRouter Error: ${msg}`);
+            }
+
+            const json = await res.json();
+            const raw  = json.choices?.[0]?.message?.content || '';
+            return parseJSON(raw);
+        }
+
+        function buildPrompt(userPrompt, platform) {
             const platformInstructions = {
                 facebook: 'Tom engajador para Facebook/WhatsApp, emojis e CTA.',
                 instagram: 'Tom inspirador para Instagram, com hashtags.',
                 tiktok: 'Gancho rápido para TikTok, viral, hashtags.'
             };
 
-            const promptText = `Você é especialista em redes sociais cristão.
+            return `Você é especialista em redes sociais cristão.
 Plataforma: ${platform.toUpperCase()}
 Instrução de tom: ${platformInstructions[platform] || platformInstructions.facebook}
 
@@ -391,33 +508,9 @@ IMPORTANTE: Retorne APENAS o JSON no formato:
     ]
   }
 }`;
+        }
 
-            console.log("Enviando requisição para OpenRouter...");
-            const res = await fetch(OPENROUTER_URL, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`,
-                    'X-Title': 'Gerador Social Nova Jerusalém'
-                },
-                body: JSON.stringify({
-                    model: document.getElementById('model-select').value,
-                    messages: [{ role: 'user', content: promptText }],
-                    temperature: 0.8
-                })
-            });
-
-            if (!res.ok) {
-                const errText = await res.text();
-                console.error("Erro da API:", errText);
-                let msg = res.statusText;
-                try { const jsonErr = JSON.parse(errText); msg = jsonErr.error?.message || msg; } catch(e){}
-                throw new Error(`OpenRouter Error: ${msg}`);
-            }
-
-            const json = await res.json();
-            console.log("Resposta recebida com sucesso.");
-            const raw  = json.choices?.[0]?.message?.content || '';
+        function parseJSON(raw) {
             const s = raw.indexOf('{'), e = raw.lastIndexOf('}') + 1;
             if (s < 0) throw new Error('Resposta inválida da IA. Tente novamente.');
             return JSON.parse(raw.slice(s, e));
