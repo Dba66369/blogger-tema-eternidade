@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudos Bíblicos — Índice</title>
-    <meta name="description" content="Página de índice dos estudos bíblicos em HTML. Uma coleção de estudos aprofundados baseados na Palavra de Deus, inspirados na Nova Jerusalém.">
+    <title>Hub de Estudos Bíblicos — A Nova Jerusalém</title>
+    <meta name="description" content="Explore nossa coleção de estudos bíblicos e livros proféticos sobre libertação, fé e a cidade celeste.">
+    <meta name="keywords" content="estudos bíblicos, livros cristãos, nova jerusalém, biblioteca bíblica, ensino profético">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Hub de Estudos Bíblicos — Nova Jerusalém">
+    <meta property="og:description" content="Coleção completa de estudos e livros para seu crescimento espiritual.">
+    <meta property="og:image" content="https://novajerusalem.netlify.app/assets/img/hub-preview.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/chatbot.css">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518556229546726" crossorigin="anonymous"></script>
@@ -486,6 +492,53 @@
         <p>© 2026 <span>Hub Educacional Bíblico</span> — Todos os direitos reservados.</p>
         <p style="margin-top:0.4rem;">Inspirado em <span>Apocalipse 21 & 22</span> — A Nova Jerusalém</p>
     </footer>
+    <!-- ── SOCIAL SHARE BAR ── -->
+    <style>
+        .nj-share-bar {
+            position: fixed;
+            left: 20px;
+            bottom: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+        .nj-share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: transform 0.3s, background 0.3s;
+            border: 1px solid rgba(184,134,11,0.2);
+            color: var(--gold);
+        }
+        .nj-share-btn:hover {
+            transform: scale(1.1) translateX(5px);
+            background: var(--sky);
+        }
+        @media (max-width: 768px) {
+            .nj-share-bar {
+                left: auto;
+                right: 20px;
+                bottom: 150px;
+                flex-direction: row;
+            }
+        }
+    </style>
+    <div class="nj-share-bar" style="z-index: 9999;">
+        <a href="https://api.whatsapp.com/send?text=Confira%20os%20estudos%20e%20livros%20da%20Escola%20B%C3%ADblica%20Nova%20Jerusal%C3%A9m:%20https://novajerusalem.netlify.app/nova-jerusalem/index.html" target="_blank" class="nj-share-btn wa" title="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://novajerusalem.netlify.app/nova-jerusalem/index.html" target="_blank" class="nj-share-btn fb" title="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+    </div>
+
     <div id="gemini-chat"></div>
 
 </div>
